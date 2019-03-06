@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		246DE9CF222F6C090007D4BE /* Compiler in Resources */ = {isa = PBXBuildFile; fileRef = 246DE9CE222F6C090007D4BE /* Compiler */; };
+		246DE9D1222F6DA20007D4BE /* gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 246DE9D0222F6DA20007D4BE /* gitignore */; };
 		24BDBD45222E0B0B009FA75D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BDBD44222E0B0B009FA75D /* AppDelegate.swift */; };
 		24BDBD47222E0B0B009FA75D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BDBD46222E0B0B009FA75D /* ViewController.swift */; };
 		24BDBD4A222E0B0B009FA75D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24BDBD48222E0B0B009FA75D /* Main.storyboard */; };
 		24BDBD4C222E0B0C009FA75D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24BDBD4B222E0B0C009FA75D /* Assets.xcassets */; };
 		24BDBD4F222E0B0C009FA75D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24BDBD4D222E0B0C009FA75D /* LaunchScreen.storyboard */; };
+		537432E1D1784BD9854BE8C8 /* Pods_PreciseV5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9820FCBAF3B51927E1B2DC53 /* Pods_PreciseV5.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0546606411991CF3CEA3D465 /* Pods-PreciseV5.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PreciseV5.release.xcconfig"; path = "Target Support Files/Pods-PreciseV5/Pods-PreciseV5.release.xcconfig"; sourceTree = "<group>"; };
+		246DE9CE222F6C090007D4BE /* Compiler */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Compiler; sourceTree = "<group>"; };
+		246DE9D0222F6DA20007D4BE /* gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gitignore; sourceTree = "<group>"; };
 		24BDBD41222E0B0B009FA75D /* PreciseV5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PreciseV5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24BDBD44222E0B0B009FA75D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24BDBD46222E0B0B009FA75D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +28,8 @@
 		24BDBD4B222E0B0C009FA75D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24BDBD4E222E0B0C009FA75D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		24BDBD50222E0B0C009FA75D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5FB3D93D3BAD7DC51D30B59F /* Pods-PreciseV5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PreciseV5.debug.xcconfig"; path = "Target Support Files/Pods-PreciseV5/Pods-PreciseV5.debug.xcconfig"; sourceTree = "<group>"; };
+		9820FCBAF3B51927E1B2DC53 /* Pods_PreciseV5.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PreciseV5.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				537432E1D1784BD9854BE8C8 /* Pods_PreciseV5.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,8 +47,11 @@
 		24BDBD38222E0B0B009FA75D = {
 			isa = PBXGroup;
 			children = (
+				246DE9D0222F6DA20007D4BE /* gitignore */,
 				24BDBD43222E0B0B009FA75D /* PreciseV5 */,
 				24BDBD42222E0B0B009FA75D /* Products */,
+				5709BAD82B5283D565537E3A /* Pods */,
+				E9E64DA22067B3E6097D6963 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,6 +66,7 @@
 		24BDBD43222E0B0B009FA75D /* PreciseV5 */ = {
 			isa = PBXGroup;
 			children = (
+				246DE9CE222F6C090007D4BE /* Compiler */,
 				24BDBD44222E0B0B009FA75D /* AppDelegate.swift */,
 				24BDBD46222E0B0B009FA75D /* ViewController.swift */,
 				24BDBD48222E0B0B009FA75D /* Main.storyboard */,
@@ -64,6 +77,23 @@
 			path = PreciseV5;
 			sourceTree = "<group>";
 		};
+		5709BAD82B5283D565537E3A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5FB3D93D3BAD7DC51D30B59F /* Pods-PreciseV5.debug.xcconfig */,
+				0546606411991CF3CEA3D465 /* Pods-PreciseV5.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E9E64DA22067B3E6097D6963 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9820FCBAF3B51927E1B2DC53 /* Pods_PreciseV5.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24BDBD53222E0B0C009FA75D /* Build configuration list for PBXNativeTarget "PreciseV5" */;
 			buildPhases = (
+				5F59DE8413CCCBFD65A7919C /* [CP] Check Pods Manifest.lock */,
 				24BDBD3D222E0B0B009FA75D /* Sources */,
 				24BDBD3E222E0B0B009FA75D /* Frameworks */,
 				24BDBD3F222E0B0B009FA75D /* Resources */,
+				7117B77E237D7C016F5DDFA6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -125,10 +157,59 @@
 				24BDBD4F222E0B0C009FA75D /* LaunchScreen.storyboard in Resources */,
 				24BDBD4C222E0B0C009FA75D /* Assets.xcassets in Resources */,
 				24BDBD4A222E0B0B009FA75D /* Main.storyboard in Resources */,
+				246DE9CF222F6C090007D4BE /* Compiler in Resources */,
+				246DE9D1222F6DA20007D4BE /* gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5F59DE8413CCCBFD65A7919C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PreciseV5-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7117B77E237D7C016F5DDFA6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PreciseV5/Pods-PreciseV5-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PreciseV5/Pods-PreciseV5-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		24BDBD3D222E0B0B009FA75D /* Sources */ = {
@@ -280,6 +361,7 @@
 		};
 		24BDBD54222E0B0C009FA75D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5FB3D93D3BAD7DC51D30B59F /* Pods-PreciseV5.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -298,6 +380,7 @@
 		};
 		24BDBD55222E0B0C009FA75D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0546606411991CF3CEA3D465 /* Pods-PreciseV5.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

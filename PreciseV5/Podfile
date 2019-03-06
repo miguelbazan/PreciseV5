@@ -1,0 +1,9 @@
+
+platform :ios, '10.0'
+
+target 'PreciseV5' do
+  use_frameworks!
+
+    pod 'SwiftyJSON', '~> 4.0'
+
+end

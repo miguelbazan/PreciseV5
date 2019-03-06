@@ -1,0 +1,6 @@
+framework module Pods_PreciseV5 {
+  umbrella header "Pods-PreciseV5-umbrella.h"
+
+  export *
+  module * { export * }
+}
