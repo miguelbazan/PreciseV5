@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		246DE9CF222F6C090007D4BE /* Compiler in Resources */ = {isa = PBXBuildFile; fileRef = 246DE9CE222F6C090007D4BE /* Compiler */; };
+		246DE9D1222F6DA20007D4BE /* gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 246DE9D0222F6DA20007D4BE /* gitignore */; };
 		24BDBD45222E0B0B009FA75D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BDBD44222E0B0B009FA75D /* AppDelegate.swift */; };
 		24BDBD47222E0B0B009FA75D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BDBD46222E0B0B009FA75D /* ViewController.swift */; };
 		24BDBD4A222E0B0B009FA75D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24BDBD48222E0B0B009FA75D /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		0546606411991CF3CEA3D465 /* Pods-PreciseV5.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PreciseV5.release.xcconfig"; path = "Target Support Files/Pods-PreciseV5/Pods-PreciseV5.release.xcconfig"; sourceTree = "<group>"; };
 		246DE9CE222F6C090007D4BE /* Compiler */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Compiler; sourceTree = "<group>"; };
+		246DE9D0222F6DA20007D4BE /* gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gitignore; sourceTree = "<group>"; };
 		24BDBD41222E0B0B009FA75D /* PreciseV5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PreciseV5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24BDBD44222E0B0B009FA75D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24BDBD46222E0B0B009FA75D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +47,7 @@
 		24BDBD38222E0B0B009FA75D = {
 			isa = PBXGroup;
 			children = (
+				246DE9D0222F6DA20007D4BE /* gitignore */,
 				24BDBD43222E0B0B009FA75D /* PreciseV5 */,
 				24BDBD42222E0B0B009FA75D /* Products */,
 				5709BAD82B5283D565537E3A /* Pods */,
@@ -155,6 +158,7 @@
 				24BDBD4C222E0B0C009FA75D /* Assets.xcassets in Resources */,
 				24BDBD4A222E0B0B009FA75D /* Main.storyboard in Resources */,
 				246DE9CF222F6C090007D4BE /* Compiler in Resources */,
+				246DE9D1222F6DA20007D4BE /* gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
