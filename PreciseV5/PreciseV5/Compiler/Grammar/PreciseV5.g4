@@ -4,7 +4,7 @@ grammar PreciseV5;
  * Parser Rules
 
 
- */
+*/
   
 
 preciseV5       : PROGRAM ID COLON declare? function* body END SCOLON ;

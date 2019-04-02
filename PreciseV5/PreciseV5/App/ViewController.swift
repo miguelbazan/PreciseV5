@@ -19,13 +19,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         
-//        setup()
-//        print(semanticCube["1"]["1"]["1"])
+        setup()
+        print(semanticCube["1"]["1"]["1"])
         
         
-//        print("Hola")
+        print("Hola")
 
     }
+    
+    
     
     func setup(){
         
