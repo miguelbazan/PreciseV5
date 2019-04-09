@@ -13,6 +13,7 @@ import Antlr4
 
 class Heart {
     
+//    Singleton
     static let shared = Heart()
     
 }
