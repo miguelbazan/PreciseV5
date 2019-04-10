@@ -13,25 +13,26 @@
 		243EB063225304A2003C525B /* MyBaseListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243EB05C225304A2003C525B /* MyBaseListener.swift */; };
 		243EB064225304A2003C525B /* Tipos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243EB05D225304A2003C525B /* Tipos.swift */; };
 		243EB065225304A2003C525B /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243EB05E225304A2003C525B /* Stack.swift */; };
-		243EB083225306F6003C525B /* Directorio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243EB082225306F6003C525B /* Directorio.swift */; };
-		243EB09A225307F1003C525B /* PreciseV5.g4 in Resources */ = {isa = PBXBuildFile; fileRef = 243EB08F225307F1003C525B /* PreciseV5.g4 */; };
+		243EB083225306F6003C525B /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243EB082225306F6003C525B /* Variables.swift */; };
 		243EB09E22530845003C525B /* Heart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243EB09D22530845003C525B /* Heart.swift */; };
 		246DE9D1222F6DA20007D4BE /* gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 246DE9D0222F6DA20007D4BE /* gitignore */; };
 		249C41222252FEBA0059CBE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C41212252FEBA0059CBE6 /* AppDelegate.swift */; };
+		24B0211A225C1CAC00DACB9F /* Funciones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B02119225C1CAC00DACB9F /* Funciones.swift */; };
 		24BDBD4A222E0B0B009FA75D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24BDBD48222E0B0B009FA75D /* Main.storyboard */; };
 		24BDBD4C222E0B0C009FA75D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24BDBD4B222E0B0C009FA75D /* Assets.xcassets */; };
 		24BDBD4F222E0B0C009FA75D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24BDBD4D222E0B0C009FA75D /* LaunchScreen.storyboard */; };
-		24D0C5752253213800B14A59 /* PreciseV5Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D0C5662253213800B14A59 /* PreciseV5Parser.swift */; };
-		24D0C5762253213800B14A59 /* PreciseV5BaseListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D0C56B2253213800B14A59 /* PreciseV5BaseListener.swift */; };
-		24D0C5772253213800B14A59 /* PreciseV5Listener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D0C56C2253213800B14A59 /* PreciseV5Listener.swift */; };
-		24D0C5782253213800B14A59 /* PreciseV5ParserATN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D0C56D2253213800B14A59 /* PreciseV5ParserATN.swift */; };
-		24D0C5792253213800B14A59 /* PreciseV5LexerATN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D0C56E2253213800B14A59 /* PreciseV5LexerATN.swift */; };
-		24D0C57A2253213800B14A59 /* PreciseV5Lexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D0C56F2253213800B14A59 /* PreciseV5Lexer.swift */; };
-		24D0C57B2253213800B14A59 /* PreciseV5.interp in Resources */ = {isa = PBXBuildFile; fileRef = 24D0C5702253213800B14A59 /* PreciseV5.interp */; };
-		24D0C57C2253213800B14A59 /* PreciseV5.tokens in Resources */ = {isa = PBXBuildFile; fileRef = 24D0C5712253213800B14A59 /* PreciseV5.tokens */; };
-		24D0C57D2253213800B14A59 /* PreciseV5Lexer.tokens in Resources */ = {isa = PBXBuildFile; fileRef = 24D0C5722253213800B14A59 /* PreciseV5Lexer.tokens */; };
-		24D0C57E2253213800B14A59 /* PreciseV5.g4 in Resources */ = {isa = PBXBuildFile; fileRef = 24D0C5732253213800B14A59 /* PreciseV5.g4 */; };
-		24D0C57F2253213800B14A59 /* PreciseV5Lexer.interp in Resources */ = {isa = PBXBuildFile; fileRef = 24D0C5742253213800B14A59 /* PreciseV5Lexer.interp */; };
+		24C19BE7225D7BAB00F77700 /* Memoria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C19BE6225D7BAB00F77700 /* Memoria.swift */; };
+		24C19C09225D878200F77700 /* PreciseV5.g4 in Resources */ = {isa = PBXBuildFile; fileRef = 24C19BFE225D878100F77700 /* PreciseV5.g4 */; };
+		24C19C0A225D878200F77700 /* PreciseV5Lexer.interp in Resources */ = {isa = PBXBuildFile; fileRef = 24C19BFF225D878100F77700 /* PreciseV5Lexer.interp */; };
+		24C19C0B225D878200F77700 /* PreciseV5Lexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C19C00225D878100F77700 /* PreciseV5Lexer.swift */; };
+		24C19C0C225D878200F77700 /* PreciseV5.tokens in Resources */ = {isa = PBXBuildFile; fileRef = 24C19C01225D878100F77700 /* PreciseV5.tokens */; };
+		24C19C0D225D878200F77700 /* PreciseV5Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C19C02225D878100F77700 /* PreciseV5Parser.swift */; };
+		24C19C0E225D878200F77700 /* PreciseV5Lexer.tokens in Resources */ = {isa = PBXBuildFile; fileRef = 24C19C03225D878100F77700 /* PreciseV5Lexer.tokens */; };
+		24C19C0F225D878200F77700 /* PreciseV5.interp in Resources */ = {isa = PBXBuildFile; fileRef = 24C19C04225D878200F77700 /* PreciseV5.interp */; };
+		24C19C10225D878200F77700 /* PreciseV5BaseListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C19C05225D878200F77700 /* PreciseV5BaseListener.swift */; };
+		24C19C11225D878200F77700 /* PreciseV5Listener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C19C06225D878200F77700 /* PreciseV5Listener.swift */; };
+		24C19C12225D878200F77700 /* PreciseV5ParserATN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C19C07225D878200F77700 /* PreciseV5ParserATN.swift */; };
+		24C19C13225D878200F77700 /* PreciseV5LexerATN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C19C08225D878200F77700 /* PreciseV5LexerATN.swift */; };
 		24D0C582225321D200B14A59 /* Antlr4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243EB0A722531DFE003C525B /* Antlr4.framework */; };
 		24DA92CC2252FD30000C9AE2 /* CuboSemantico.json in Resources */ = {isa = PBXBuildFile; fileRef = 24DA92CB2252FD30000C9AE2 /* CuboSemantico.json */; };
 		537432E1D1784BD9854BE8C8 /* Pods_PreciseV5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9820FCBAF3B51927E1B2DC53 /* Pods_PreciseV5.framework */; };
@@ -69,28 +70,29 @@
 		243EB05C225304A2003C525B /* MyBaseListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBaseListener.swift; sourceTree = "<group>"; };
 		243EB05D225304A2003C525B /* Tipos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tipos.swift; sourceTree = "<group>"; };
 		243EB05E225304A2003C525B /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
-		243EB082225306F6003C525B /* Directorio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Directorio.swift; sourceTree = "<group>"; };
-		243EB08F225307F1003C525B /* PreciseV5.g4 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PreciseV5.g4; sourceTree = "<group>"; };
+		243EB082225306F6003C525B /* Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
 		243EB09D22530845003C525B /* Heart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heart.swift; sourceTree = "<group>"; };
 		243EB09F22531DFE003C525B /* Antlr4.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Antlr4.xcodeproj; path = "../../../../../../../../Library/Containers/com.apple.mail/Data/Library/Mail Downloads/F7B3B566-8328-4CAD-9D58-268CCAE24FC1/Swift/Antlr4.xcodeproj"; sourceTree = "<group>"; };
 		246DE9D0222F6DA20007D4BE /* gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gitignore; sourceTree = "<group>"; };
 		249C41212252FEBA0059CBE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		24B02119225C1CAC00DACB9F /* Funciones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Funciones.swift; sourceTree = "<group>"; };
 		24BDBD41222E0B0B009FA75D /* PreciseV5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PreciseV5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24BDBD49222E0B0B009FA75D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		24BDBD4B222E0B0C009FA75D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24BDBD4E222E0B0C009FA75D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		24BDBD50222E0B0C009FA75D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		24D0C5662253213800B14A59 /* PreciseV5Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreciseV5Parser.swift; sourceTree = "<group>"; };
-		24D0C56B2253213800B14A59 /* PreciseV5BaseListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreciseV5BaseListener.swift; sourceTree = "<group>"; };
-		24D0C56C2253213800B14A59 /* PreciseV5Listener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreciseV5Listener.swift; sourceTree = "<group>"; };
-		24D0C56D2253213800B14A59 /* PreciseV5ParserATN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreciseV5ParserATN.swift; sourceTree = "<group>"; };
-		24D0C56E2253213800B14A59 /* PreciseV5LexerATN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreciseV5LexerATN.swift; sourceTree = "<group>"; };
-		24D0C56F2253213800B14A59 /* PreciseV5Lexer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreciseV5Lexer.swift; sourceTree = "<group>"; };
-		24D0C5702253213800B14A59 /* PreciseV5.interp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PreciseV5.interp; sourceTree = "<group>"; };
-		24D0C5712253213800B14A59 /* PreciseV5.tokens */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PreciseV5.tokens; sourceTree = "<group>"; };
-		24D0C5722253213800B14A59 /* PreciseV5Lexer.tokens */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PreciseV5Lexer.tokens; sourceTree = "<group>"; };
-		24D0C5732253213800B14A59 /* PreciseV5.g4 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PreciseV5.g4; sourceTree = "<group>"; };
-		24D0C5742253213800B14A59 /* PreciseV5Lexer.interp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PreciseV5Lexer.interp; sourceTree = "<group>"; };
+		24C19BE6225D7BAB00F77700 /* Memoria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memoria.swift; sourceTree = "<group>"; };
+		24C19BFE225D878100F77700 /* PreciseV5.g4 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = PreciseV5.g4; path = ../../../../Grammar/PreciseV5.g4; sourceTree = "<group>"; };
+		24C19BFF225D878100F77700 /* PreciseV5Lexer.interp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = PreciseV5Lexer.interp; path = ../../../../Grammar/PreciseV5Lexer.interp; sourceTree = "<group>"; };
+		24C19C00225D878100F77700 /* PreciseV5Lexer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreciseV5Lexer.swift; path = ../../../../Grammar/PreciseV5Lexer.swift; sourceTree = "<group>"; };
+		24C19C01225D878100F77700 /* PreciseV5.tokens */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = PreciseV5.tokens; path = ../../../../Grammar/PreciseV5.tokens; sourceTree = "<group>"; };
+		24C19C02225D878100F77700 /* PreciseV5Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreciseV5Parser.swift; path = ../../../../Grammar/PreciseV5Parser.swift; sourceTree = "<group>"; };
+		24C19C03225D878100F77700 /* PreciseV5Lexer.tokens */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = PreciseV5Lexer.tokens; path = ../../../../Grammar/PreciseV5Lexer.tokens; sourceTree = "<group>"; };
+		24C19C04225D878200F77700 /* PreciseV5.interp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = PreciseV5.interp; path = ../../../../Grammar/PreciseV5.interp; sourceTree = "<group>"; };
+		24C19C05225D878200F77700 /* PreciseV5BaseListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreciseV5BaseListener.swift; path = ../../../../Grammar/PreciseV5BaseListener.swift; sourceTree = "<group>"; };
+		24C19C06225D878200F77700 /* PreciseV5Listener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreciseV5Listener.swift; path = ../../../../Grammar/PreciseV5Listener.swift; sourceTree = "<group>"; };
+		24C19C07225D878200F77700 /* PreciseV5ParserATN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreciseV5ParserATN.swift; path = ../../../../Grammar/PreciseV5ParserATN.swift; sourceTree = "<group>"; };
+		24C19C08225D878200F77700 /* PreciseV5LexerATN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreciseV5LexerATN.swift; path = ../../../../Grammar/PreciseV5LexerATN.swift; sourceTree = "<group>"; };
 		24DA92CB2252FD30000C9AE2 /* CuboSemantico.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CuboSemantico.json; sourceTree = "<group>"; };
 		5FB3D93D3BAD7DC51D30B59F /* Pods-PreciseV5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PreciseV5.debug.xcconfig"; path = "Target Support Files/Pods-PreciseV5/Pods-PreciseV5.debug.xcconfig"; sourceTree = "<group>"; };
 		9820FCBAF3B51927E1B2DC53 /* Pods_PreciseV5.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PreciseV5.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,12 +125,14 @@
 			children = (
 				243EB086225307E5003C525B /* Grammar */,
 				243EB05A225304A2003C525B /* Cuadruplos.swift */,
+				24B02119225C1CAC00DACB9F /* Funciones.swift */,
 				243EB05C225304A2003C525B /* MyBaseListener.swift */,
 				243EB05B225304A2003C525B /* Operadores.swift */,
 				243EB05E225304A2003C525B /* Stack.swift */,
 				243EB05D225304A2003C525B /* Tipos.swift */,
 				243EB09D22530845003C525B /* Heart.swift */,
-				243EB082225306F6003C525B /* Directorio.swift */,
+				243EB082225306F6003C525B /* Variables.swift */,
+				24C19BE6225D7BAB00F77700 /* Memoria.swift */,
 			);
 			path = Compiler;
 			sourceTree = "<group>";
@@ -144,18 +148,17 @@
 		243EB086225307E5003C525B /* Grammar */ = {
 			isa = PBXGroup;
 			children = (
-				24D0C5732253213800B14A59 /* PreciseV5.g4 */,
-				24D0C5702253213800B14A59 /* PreciseV5.interp */,
-				24D0C5712253213800B14A59 /* PreciseV5.tokens */,
-				24D0C56B2253213800B14A59 /* PreciseV5BaseListener.swift */,
-				24D0C5742253213800B14A59 /* PreciseV5Lexer.interp */,
-				24D0C56F2253213800B14A59 /* PreciseV5Lexer.swift */,
-				24D0C5722253213800B14A59 /* PreciseV5Lexer.tokens */,
-				24D0C56E2253213800B14A59 /* PreciseV5LexerATN.swift */,
-				24D0C56C2253213800B14A59 /* PreciseV5Listener.swift */,
-				24D0C5662253213800B14A59 /* PreciseV5Parser.swift */,
-				24D0C56D2253213800B14A59 /* PreciseV5ParserATN.swift */,
-				243EB08F225307F1003C525B /* PreciseV5.g4 */,
+				24C19BFE225D878100F77700 /* PreciseV5.g4 */,
+				24C19C04225D878200F77700 /* PreciseV5.interp */,
+				24C19C01225D878100F77700 /* PreciseV5.tokens */,
+				24C19C05225D878200F77700 /* PreciseV5BaseListener.swift */,
+				24C19BFF225D878100F77700 /* PreciseV5Lexer.interp */,
+				24C19C00225D878100F77700 /* PreciseV5Lexer.swift */,
+				24C19C03225D878100F77700 /* PreciseV5Lexer.tokens */,
+				24C19C08225D878200F77700 /* PreciseV5LexerATN.swift */,
+				24C19C06225D878200F77700 /* PreciseV5Listener.swift */,
+				24C19C02225D878100F77700 /* PreciseV5Parser.swift */,
+				24C19C07225D878200F77700 /* PreciseV5ParserATN.swift */,
 			);
 			path = Grammar;
 			sourceTree = "<group>";
@@ -305,17 +308,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24D0C57C2253213800B14A59 /* PreciseV5.tokens in Resources */,
-				24D0C57F2253213800B14A59 /* PreciseV5Lexer.interp in Resources */,
+				24C19C09225D878200F77700 /* PreciseV5.g4 in Resources */,
+				24C19C0E225D878200F77700 /* PreciseV5Lexer.tokens in Resources */,
 				24BDBD4F222E0B0C009FA75D /* LaunchScreen.storyboard in Resources */,
-				24D0C57D2253213800B14A59 /* PreciseV5Lexer.tokens in Resources */,
 				24BDBD4C222E0B0C009FA75D /* Assets.xcassets in Resources */,
 				24DA92CC2252FD30000C9AE2 /* CuboSemantico.json in Resources */,
-				24D0C57E2253213800B14A59 /* PreciseV5.g4 in Resources */,
 				24BDBD4A222E0B0B009FA75D /* Main.storyboard in Resources */,
-				243EB09A225307F1003C525B /* PreciseV5.g4 in Resources */,
-				24D0C57B2253213800B14A59 /* PreciseV5.interp in Resources */,
 				246DE9D1222F6DA20007D4BE /* gitignore in Resources */,
+				24C19C0F225D878200F77700 /* PreciseV5.interp in Resources */,
+				24C19C0C225D878200F77700 /* PreciseV5.tokens in Resources */,
+				24C19C0A225D878200F77700 /* PreciseV5Lexer.interp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,19 +376,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				243EB05822530470003C525B /* ViewController.swift in Sources */,
-				24D0C5762253213800B14A59 /* PreciseV5BaseListener.swift in Sources */,
-				24D0C5752253213800B14A59 /* PreciseV5Parser.swift in Sources */,
-				243EB083225306F6003C525B /* Directorio.swift in Sources */,
+				24C19BE7225D7BAB00F77700 /* Memoria.swift in Sources */,
+				243EB083225306F6003C525B /* Variables.swift in Sources */,
+				24B0211A225C1CAC00DACB9F /* Funciones.swift in Sources */,
 				243EB063225304A2003C525B /* MyBaseListener.swift in Sources */,
+				24C19C13225D878200F77700 /* PreciseV5LexerATN.swift in Sources */,
 				243EB065225304A2003C525B /* Stack.swift in Sources */,
+				24C19C11225D878200F77700 /* PreciseV5Listener.swift in Sources */,
 				249C41222252FEBA0059CBE6 /* AppDelegate.swift in Sources */,
 				243EB061225304A2003C525B /* Cuadruplos.swift in Sources */,
-				24D0C5782253213800B14A59 /* PreciseV5ParserATN.swift in Sources */,
-				24D0C5792253213800B14A59 /* PreciseV5LexerATN.swift in Sources */,
+				24C19C0D225D878200F77700 /* PreciseV5Parser.swift in Sources */,
 				243EB09E22530845003C525B /* Heart.swift in Sources */,
+				24C19C10225D878200F77700 /* PreciseV5BaseListener.swift in Sources */,
+				24C19C0B225D878200F77700 /* PreciseV5Lexer.swift in Sources */,
+				24C19C12225D878200F77700 /* PreciseV5ParserATN.swift in Sources */,
 				243EB062225304A2003C525B /* Operadores.swift in Sources */,
-				24D0C5772253213800B14A59 /* PreciseV5Listener.swift in Sources */,
-				24D0C57A2253213800B14A59 /* PreciseV5Lexer.swift in Sources */,
 				243EB064225304A2003C525B /* Tipos.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

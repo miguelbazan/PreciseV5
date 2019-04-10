@@ -33,7 +33,7 @@ enum Tipo: Int {
         case "void":
             self = .Void
         case "mostrar":
-                self = .String
+            self = .String
         default:
             self = .Error
         }

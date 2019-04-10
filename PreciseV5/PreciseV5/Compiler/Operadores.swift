@@ -52,7 +52,7 @@ enum Operator: Int {
     case Verify = 20
     // Return value of function
     case Return = 21
-    // End main?
+    // End main
     case End = 22
     // False bottom mark
     case FalseBottomMark = 23

@@ -1,36 +1,21 @@
 //
-//  Directorio.swift
+//  Funciones.swift
 //  PreciseV5
 //
-//  Created by Miguel Bazán on 4/1/19.
+//  Created by Miguel Bazán on 4/8/19.
 //  Copyright © 2019 Miguel Bazán. All rights reserved.
 //
 
 import Foundation
 
-
-struct Variable {
-    var type: Tipo!
-    var address: Int!
-    var arrSize: Int?
-    var paramIndex: Int?
-    
-    init(_ type: Tipo, _ address: Int, _ arrSize: Int? = nil, paramIndex: Int? = nil){
-        self.type = type
-        self.address = address
-        self.arrSize = arrSize
-        self.paramIndex = paramIndex
-    }
-}
-
-struct Function: Equatable {
+struct Funcion: Equatable {
     
     
     // MARK: - Variables
     var returnType: Tipo!
     var address: Int!
     var quadAddress: Int!
-    var variables = [String: Variable]()
+    var variables = [String: Variables]()
     var paramsSecuence = [Tipo]() // used to know parameters of function
     
     
@@ -45,7 +30,9 @@ struct Function: Equatable {
     
     // MARK: - Equatable functions
     
-    static func == (lhs: Function, rhs: Function) -> Bool {
+    static func == (lhs: Funcion, rhs: Funcion) -> Bool {
         return lhs.address == rhs.address
     }
 }
+
+
