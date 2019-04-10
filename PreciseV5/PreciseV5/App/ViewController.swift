@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import Antlr4
 
 
 class ViewController: UIViewController {
@@ -19,11 +20,38 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         
-        setup()
-        print(semanticCube["1"]["1"]["1"])
+        
+//        print(semanticCube["1"]["1"]["1"])
         
         
-        print("Hola")
+        let input = """
+        program pepe:
+        
+        
+        var iJ : int;
+        var iR : float;
+        
+        
+
+        function void juan(int hola, int jaime)
+        {
+            var it:int;
+            
+        }
+
+        main(){
+
+        iR = 20.5;
+
+        }
+        end;
+
+        """
+        
+     setup()
+        
+        Heart.shared.runCode(input: input)
+        
 
     }
     
@@ -43,7 +71,6 @@ class ViewController: UIViewController {
         } else {
             print("Invalid filename/path.")
         }
-        
     }
     
 }

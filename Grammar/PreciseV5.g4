@@ -7,14 +7,14 @@ grammar PreciseV5;
  */
   
 
-preciseV5       : PROGRAM ID COLON declare? function* body END SCOLON ;
-declare         : DECLARE type ID array? (COMA ID array?)* SCOLON (type ID array? (COMA ID array?)* SCOLON)?  ;
+preciseV5       : PROGRAM ID COLON declare*? function* body END SCOLON ;
+declare         : VAR ID array? COLON type SCOLON ;
 type            : INT | FLOAT | BOOL | CHAR ;
 array           : LBRA varcte RBRA ;
 body            : MAIN LPAREN RPAREN LCBRA estatuto* RCBRA ;
 estatuto        : condicion | ciclo | escritura | lectura | asignacion | declare ;
 expresionbool   : expresion ((AND | OR) expresion)* ;
-function        : FUNCTION (type | VOID) ID LPAREN (type ID (COMA type ID)*)? RPAREN LCBRA declare? (estatuto (SCOLON estatuto)*)? RCBRA ;
+function        : FUNCTION (type | VOID) ID LPAREN (type ID (COMA type ID)*)? RPAREN LCBRA (estatuto (SCOLON estatuto)*)? RCBRA ;
 expresion       : exp ((GTHAN | LTHAN | GRTHAN | LSTHAN | NOTEQUAL | EQUAL) exp)? ;
 exp             : termino ((PLUS | MIN) termino )? ;
 termino         : factor ((DIV | MUL) factor)? ;
@@ -25,6 +25,8 @@ escritura       : PRINT LPAREN (expresionbool | varcte)+ RPAREN SCOLON ;
 lectura         : READ LPAREN ID (array)? RPAREN SCOLON ;
 asignacion      : ID (array)? ASSIGN expresionbool SCOLON;
 varcte          : ID (LBRA exp RBRA (LPAREN exp RPAREN | COMA exp)*)?| CTEINT | CTEFLOAT | CTEBOOL | CTECHAR ;
+
+
 
  /*
  * Lexer Rules
@@ -68,7 +70,7 @@ fragment APOS       : ('\'');
  /* PALABRAS RESERVADAS */
 
 PROGRAM             : P R O G R A M ;
-DECLARE             : D E C L A R E ;
+VAR                 : V A R ;
 FUNCTION            : F U N C T I O N ;
 END                 : E N D ;
 MAIN                : M A I N ;

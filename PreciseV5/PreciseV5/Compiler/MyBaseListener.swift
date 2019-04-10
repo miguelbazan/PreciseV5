@@ -31,11 +31,15 @@ class PreciseV5Walker: PreciseV5BaseListener {
     
     override func enterDeclare(_ ctx: PreciseV5Parser.DeclareContext) {
         wizard.enterDeclare(ctx)
+//        let id = ctx.ID()
+//        print("ID: \(id)")
         
     }
 
     override func exitDeclare(_ ctx: PreciseV5Parser.DeclareContext) {
         wizard.exitDeclare(ctx)
+//        let id = ctx.ID()
+//        print("ID: \(id)")
     }
     
     
@@ -68,6 +72,9 @@ class PreciseV5Walker: PreciseV5BaseListener {
     
     override func enterEstatuto(_ ctx: PreciseV5Parser.EstatutoContext) {
         wizard.enterEstatuto(ctx)
+//        let content = ctx.getText()
+//        print("Estatuto: \(content)")
+
     }
     
     override func exitEstatuto(_ ctx: PreciseV5Parser.EstatutoContext) {

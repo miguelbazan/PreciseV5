@@ -1,4 +1,4 @@
-// Generated from PreciseV5.g4 by ANTLR 4.7.1
+// Generated from PreciseV5.g4 by ANTLR 4.7.2
 import Antlr4
 
 open class PreciseV5Parser: Parser {
@@ -16,7 +16,7 @@ open class PreciseV5Parser: Parser {
 
 	public
 	enum Tokens: Int {
-		case EOF = -1, PROGRAM = 1, DECLARE = 2, FUNCTION = 3, END = 4, MAIN = 5, 
+		case EOF = -1, PROGRAM = 1, VAR = 2, FUNCTION = 3, END = 4, MAIN = 5, 
                  IF = 6, ELSE = 7, PRINT = 8, READ = 9, WHILE = 10, INT = 11, 
                  FLOAT = 12, CHAR = 13, BOOL = 14, VOID = 15, COLON = 16, 
                  SCOLON = 17, COMA = 18, DOT = 19, RPAREN = 20, LPAREN = 21, 
@@ -44,7 +44,7 @@ open class PreciseV5Parser: Parser {
 	private static let _LITERAL_NAMES: [String?] = [
 	]
 	private static let _SYMBOLIC_NAMES: [String?] = [
-		nil, "PROGRAM", "DECLARE", "FUNCTION", "END", "MAIN", "IF", "ELSE", "PRINT", 
+		nil, "PROGRAM", "VAR", "FUNCTION", "END", "MAIN", "IF", "ELSE", "PRINT", 
 		"READ", "WHILE", "INT", "FLOAT", "CHAR", "BOOL", "VOID", "COLON", "SCOLON", 
 		"COMA", "DOT", "RPAREN", "LPAREN", "RBRA", "LBRA", "RCBRA", "LCBRA", "PLUS", 
 		"MIN", "DIV", "MUL", "MOD", "GTHAN", "LTHAN", "GRTHAN", "LSTHAN", "NOTEQUAL", 
@@ -66,6 +66,7 @@ open class PreciseV5Parser: Parser {
 	override open
 	func getATN() -> ATN { return PreciseV5Parser._ATN }
 
+
 	override open
 	func getVocabulary() -> Vocabulary {
 	    return PreciseV5Parser.VOCABULARY
@@ -73,10 +74,11 @@ open class PreciseV5Parser: Parser {
 
 	override public
 	init(_ input:TokenStream) throws {
-	    RuntimeMetaData.checkVersion("4.7.1", RuntimeMetaData.VERSION)
+	    RuntimeMetaData.checkVersion("4.7.2", RuntimeMetaData.VERSION)
 		try super.init(input)
 		_interp = ParserATNSimulator(self,PreciseV5Parser._ATN,PreciseV5Parser._decisionToDFA, PreciseV5Parser._sharedContextCache)
 	}
+
 
 	public class PreciseV5Context: ParserRuleContext {
 			open
@@ -104,8 +106,12 @@ open class PreciseV5Parser: Parser {
 				return getToken(PreciseV5Parser.Tokens.SCOLON.rawValue, 0)
 			}
 			open
-			func declare() -> DeclareContext? {
-				return getRuleContext(DeclareContext.self, 0)
+			func declare() -> [DeclareContext] {
+				return getRuleContexts(DeclareContext.self)
+			}
+			open
+			func declare(_ i: Int) -> DeclareContext? {
+				return getRuleContext(DeclareContext.self, i)
 			}
 			open
 			func function() -> [FunctionContext] {
@@ -141,6 +147,7 @@ open class PreciseV5Parser: Parser {
 	    		try! exitRule()
 	    }
 		do {
+			var _alt:Int
 		 	try enterOuterAlt(_localctx, 1)
 		 	setState(36)
 		 	try match(PreciseV5Parser.Tokens.PROGRAM.rawValue)
@@ -148,20 +155,21 @@ open class PreciseV5Parser: Parser {
 		 	try match(PreciseV5Parser.Tokens.ID.rawValue)
 		 	setState(38)
 		 	try match(PreciseV5Parser.Tokens.COLON.rawValue)
-		 	setState(40)
+		 	setState(42)
 		 	try _errHandler.sync(self)
-		 	_la = try _input.LA(1)
-		 	if (//closure
-		 	 { () -> Bool in
-		 	      let testSet: Bool = _la == PreciseV5Parser.Tokens.DECLARE.rawValue
-		 	      return testSet
-		 	 }()) {
-		 		setState(39)
-		 		try declare()
+		 	_alt = try getInterpreter().adaptivePredict(_input,0,_ctx)
+		 	while (_alt != 1 && _alt != ATN.INVALID_ALT_NUMBER) {
+		 		if ( _alt==1+1 ) {
+		 			setState(39)
+		 			try declare()
 
+		 	 
+		 		}
+		 		setState(44)
+		 		try _errHandler.sync(self)
+		 		_alt = try getInterpreter().adaptivePredict(_input,0,_ctx)
 		 	}
-
-		 	setState(45)
+		 	setState(48)
 		 	try _errHandler.sync(self)
 		 	_la = try _input.LA(1)
 		 	while (//closure
@@ -169,19 +177,19 @@ open class PreciseV5Parser: Parser {
 		 	      let testSet: Bool = _la == PreciseV5Parser.Tokens.FUNCTION.rawValue
 		 	      return testSet
 		 	 }()) {
-		 		setState(42)
+		 		setState(45)
 		 		try function()
 
 
-		 		setState(47)
+		 		setState(50)
 		 		try _errHandler.sync(self)
 		 		_la = try _input.LA(1)
 		 	}
-		 	setState(48)
+		 	setState(51)
 		 	try body()
-		 	setState(49)
+		 	setState(52)
 		 	try match(PreciseV5Parser.Tokens.END.rawValue)
-		 	setState(50)
+		 	setState(53)
 		 	try match(PreciseV5Parser.Tokens.SCOLON.rawValue)
 
 		}
@@ -196,48 +204,28 @@ open class PreciseV5Parser: Parser {
 
 	public class DeclareContext: ParserRuleContext {
 			open
-			func DECLARE() -> TerminalNode? {
-				return getToken(PreciseV5Parser.Tokens.DECLARE.rawValue, 0)
+			func VAR() -> TerminalNode? {
+				return getToken(PreciseV5Parser.Tokens.VAR.rawValue, 0)
 			}
 			open
-			func type() -> [TypeContext] {
-				return getRuleContexts(TypeContext.self)
+			func ID() -> TerminalNode? {
+				return getToken(PreciseV5Parser.Tokens.ID.rawValue, 0)
 			}
 			open
-			func type(_ i: Int) -> TypeContext? {
-				return getRuleContext(TypeContext.self, i)
+			func COLON() -> TerminalNode? {
+				return getToken(PreciseV5Parser.Tokens.COLON.rawValue, 0)
 			}
 			open
-			func ID() -> [TerminalNode] {
-				return getTokens(PreciseV5Parser.Tokens.ID.rawValue)
+			func type() -> TypeContext? {
+				return getRuleContext(TypeContext.self, 0)
 			}
 			open
-			func ID(_ i:Int) -> TerminalNode? {
-				return getToken(PreciseV5Parser.Tokens.ID.rawValue, i)
+			func SCOLON() -> TerminalNode? {
+				return getToken(PreciseV5Parser.Tokens.SCOLON.rawValue, 0)
 			}
 			open
-			func SCOLON() -> [TerminalNode] {
-				return getTokens(PreciseV5Parser.Tokens.SCOLON.rawValue)
-			}
-			open
-			func SCOLON(_ i:Int) -> TerminalNode? {
-				return getToken(PreciseV5Parser.Tokens.SCOLON.rawValue, i)
-			}
-			open
-			func array() -> [ArrayContext] {
-				return getRuleContexts(ArrayContext.self)
-			}
-			open
-			func array(_ i: Int) -> ArrayContext? {
-				return getRuleContext(ArrayContext.self, i)
-			}
-			open
-			func COMA() -> [TerminalNode] {
-				return getTokens(PreciseV5Parser.Tokens.COMA.rawValue)
-			}
-			open
-			func COMA(_ i:Int) -> TerminalNode? {
-				return getToken(PreciseV5Parser.Tokens.COMA.rawValue, i)
+			func array() -> ArrayContext? {
+				return getRuleContext(ArrayContext.self, 0)
 			}
 		override open
 		func getRuleIndex() -> Int {
@@ -266,13 +254,11 @@ open class PreciseV5Parser: Parser {
 	    }
 		do {
 		 	try enterOuterAlt(_localctx, 1)
-		 	setState(52)
-		 	try match(PreciseV5Parser.Tokens.DECLARE.rawValue)
-		 	setState(53)
-		 	try type()
-		 	setState(54)
-		 	try match(PreciseV5Parser.Tokens.ID.rawValue)
+		 	setState(55)
+		 	try match(PreciseV5Parser.Tokens.VAR.rawValue)
 		 	setState(56)
+		 	try match(PreciseV5Parser.Tokens.ID.rawValue)
+		 	setState(58)
 		 	try _errHandler.sync(self)
 		 	_la = try _input.LA(1)
 		 	if (//closure
@@ -280,108 +266,17 @@ open class PreciseV5Parser: Parser {
 		 	      let testSet: Bool = _la == PreciseV5Parser.Tokens.LBRA.rawValue
 		 	      return testSet
 		 	 }()) {
-		 		setState(55)
+		 		setState(57)
 		 		try array()
 
 		 	}
 
-		 	setState(65)
-		 	try _errHandler.sync(self)
-		 	_la = try _input.LA(1)
-		 	while (//closure
-		 	 { () -> Bool in
-		 	      let testSet: Bool = _la == PreciseV5Parser.Tokens.COMA.rawValue
-		 	      return testSet
-		 	 }()) {
-		 		setState(58)
-		 		try match(PreciseV5Parser.Tokens.COMA.rawValue)
-		 		setState(59)
-		 		try match(PreciseV5Parser.Tokens.ID.rawValue)
-		 		setState(61)
-		 		try _errHandler.sync(self)
-		 		_la = try _input.LA(1)
-		 		if (//closure
-		 		 { () -> Bool in
-		 		      let testSet: Bool = _la == PreciseV5Parser.Tokens.LBRA.rawValue
-		 		      return testSet
-		 		 }()) {
-		 			setState(60)
-		 			try array()
-
-		 		}
-
-
-
-		 		setState(67)
-		 		try _errHandler.sync(self)
-		 		_la = try _input.LA(1)
-		 	}
-		 	setState(68)
+		 	setState(60)
+		 	try match(PreciseV5Parser.Tokens.COLON.rawValue)
+		 	setState(61)
+		 	try type()
+		 	setState(62)
 		 	try match(PreciseV5Parser.Tokens.SCOLON.rawValue)
-		 	setState(86)
-		 	try _errHandler.sync(self)
-		 	_la = try _input.LA(1)
-		 	if (//closure
-		 	 { () -> Bool in
-		 	      let testSet: Bool = {  () -> Bool in
-		 	   let testArray: [Int] = [_la, PreciseV5Parser.Tokens.INT.rawValue,PreciseV5Parser.Tokens.FLOAT.rawValue,PreciseV5Parser.Tokens.CHAR.rawValue,PreciseV5Parser.Tokens.BOOL.rawValue]
-		 	    return  Utils.testBitLeftShiftArray(testArray, 0)
-		 	}()
-		 	      return testSet
-		 	 }()) {
-		 		setState(69)
-		 		try type()
-		 		setState(70)
-		 		try match(PreciseV5Parser.Tokens.ID.rawValue)
-		 		setState(72)
-		 		try _errHandler.sync(self)
-		 		_la = try _input.LA(1)
-		 		if (//closure
-		 		 { () -> Bool in
-		 		      let testSet: Bool = _la == PreciseV5Parser.Tokens.LBRA.rawValue
-		 		      return testSet
-		 		 }()) {
-		 			setState(71)
-		 			try array()
-
-		 		}
-
-		 		setState(81)
-		 		try _errHandler.sync(self)
-		 		_la = try _input.LA(1)
-		 		while (//closure
-		 		 { () -> Bool in
-		 		      let testSet: Bool = _la == PreciseV5Parser.Tokens.COMA.rawValue
-		 		      return testSet
-		 		 }()) {
-		 			setState(74)
-		 			try match(PreciseV5Parser.Tokens.COMA.rawValue)
-		 			setState(75)
-		 			try match(PreciseV5Parser.Tokens.ID.rawValue)
-		 			setState(77)
-		 			try _errHandler.sync(self)
-		 			_la = try _input.LA(1)
-		 			if (//closure
-		 			 { () -> Bool in
-		 			      let testSet: Bool = _la == PreciseV5Parser.Tokens.LBRA.rawValue
-		 			      return testSet
-		 			 }()) {
-		 				setState(76)
-		 				try array()
-
-		 			}
-
-
-
-		 			setState(83)
-		 			try _errHandler.sync(self)
-		 			_la = try _input.LA(1)
-		 		}
-		 		setState(84)
-		 		try match(PreciseV5Parser.Tokens.SCOLON.rawValue)
-
-		 	}
-
 
 		}
 		catch ANTLRException.recognition(let re) {
@@ -437,7 +332,7 @@ open class PreciseV5Parser: Parser {
 	    }
 		do {
 		 	try enterOuterAlt(_localctx, 1)
-		 	setState(88)
+		 	setState(64)
 		 	_la = try _input.LA(1)
 		 	if (!(//closure
 		 	 { () -> Bool in
@@ -503,11 +398,11 @@ open class PreciseV5Parser: Parser {
 	    }
 		do {
 		 	try enterOuterAlt(_localctx, 1)
-		 	setState(90)
+		 	setState(66)
 		 	try match(PreciseV5Parser.Tokens.LBRA.rawValue)
-		 	setState(91)
+		 	setState(67)
 		 	try varcte()
-		 	setState(92)
+		 	setState(68)
 		 	try match(PreciseV5Parser.Tokens.RBRA.rawValue)
 
 		}
@@ -576,34 +471,34 @@ open class PreciseV5Parser: Parser {
 	    }
 		do {
 		 	try enterOuterAlt(_localctx, 1)
-		 	setState(94)
+		 	setState(70)
 		 	try match(PreciseV5Parser.Tokens.MAIN.rawValue)
-		 	setState(95)
+		 	setState(71)
 		 	try match(PreciseV5Parser.Tokens.LPAREN.rawValue)
-		 	setState(96)
+		 	setState(72)
 		 	try match(PreciseV5Parser.Tokens.RPAREN.rawValue)
-		 	setState(97)
+		 	setState(73)
 		 	try match(PreciseV5Parser.Tokens.LCBRA.rawValue)
-		 	setState(101)
+		 	setState(77)
 		 	try _errHandler.sync(self)
 		 	_la = try _input.LA(1)
 		 	while (//closure
 		 	 { () -> Bool in
 		 	      let testSet: Bool = {  () -> Bool in
-		 	   let testArray: [Int] = [_la, PreciseV5Parser.Tokens.DECLARE.rawValue,PreciseV5Parser.Tokens.IF.rawValue,PreciseV5Parser.Tokens.PRINT.rawValue,PreciseV5Parser.Tokens.READ.rawValue,PreciseV5Parser.Tokens.WHILE.rawValue,PreciseV5Parser.Tokens.ID.rawValue]
+		 	   let testArray: [Int] = [_la, PreciseV5Parser.Tokens.VAR.rawValue,PreciseV5Parser.Tokens.IF.rawValue,PreciseV5Parser.Tokens.PRINT.rawValue,PreciseV5Parser.Tokens.READ.rawValue,PreciseV5Parser.Tokens.WHILE.rawValue,PreciseV5Parser.Tokens.ID.rawValue]
 		 	    return  Utils.testBitLeftShiftArray(testArray, 0)
 		 	}()
 		 	      return testSet
 		 	 }()) {
-		 		setState(98)
+		 		setState(74)
 		 		try estatuto()
 
 
-		 		setState(103)
+		 		setState(79)
 		 		try _errHandler.sync(self)
 		 		_la = try _input.LA(1)
 		 	}
-		 	setState(104)
+		 	setState(80)
 		 	try match(PreciseV5Parser.Tokens.RCBRA.rawValue)
 
 		}
@@ -666,47 +561,47 @@ open class PreciseV5Parser: Parser {
 	    		try! exitRule()
 	    }
 		do {
-		 	setState(112)
+		 	setState(88)
 		 	try _errHandler.sync(self)
 		 	switch (PreciseV5Parser.Tokens(rawValue: try _input.LA(1))!) {
 		 	case .IF:
 		 		try enterOuterAlt(_localctx, 1)
-		 		setState(106)
+		 		setState(82)
 		 		try condicion()
 
 		 		break
 
 		 	case .WHILE:
 		 		try enterOuterAlt(_localctx, 2)
-		 		setState(107)
+		 		setState(83)
 		 		try ciclo()
 
 		 		break
 
 		 	case .PRINT:
 		 		try enterOuterAlt(_localctx, 3)
-		 		setState(108)
+		 		setState(84)
 		 		try escritura()
 
 		 		break
 
 		 	case .READ:
 		 		try enterOuterAlt(_localctx, 4)
-		 		setState(109)
+		 		setState(85)
 		 		try lectura()
 
 		 		break
 
 		 	case .ID:
 		 		try enterOuterAlt(_localctx, 5)
-		 		setState(110)
+		 		setState(86)
 		 		try asignacion()
 
 		 		break
 
-		 	case .DECLARE:
+		 	case .VAR:
 		 		try enterOuterAlt(_localctx, 6)
-		 		setState(111)
+		 		setState(87)
 		 		try declare()
 
 		 		break
@@ -775,9 +670,9 @@ open class PreciseV5Parser: Parser {
 	    }
 		do {
 		 	try enterOuterAlt(_localctx, 1)
-		 	setState(114)
+		 	setState(90)
 		 	try expresion()
-		 	setState(119)
+		 	setState(95)
 		 	try _errHandler.sync(self)
 		 	_la = try _input.LA(1)
 		 	while (//closure
@@ -785,7 +680,7 @@ open class PreciseV5Parser: Parser {
 		 	      let testSet: Bool = _la == PreciseV5Parser.Tokens.AND.rawValue || _la == PreciseV5Parser.Tokens.OR.rawValue
 		 	      return testSet
 		 	 }()) {
-		 		setState(115)
+		 		setState(91)
 		 		_la = try _input.LA(1)
 		 		if (!(//closure
 		 		 { () -> Bool in
@@ -798,11 +693,11 @@ open class PreciseV5Parser: Parser {
 		 			_errHandler.reportMatch(self)
 		 			try consume()
 		 		}
-		 		setState(116)
+		 		setState(92)
 		 		try expresion()
 
 
-		 		setState(121)
+		 		setState(97)
 		 		try _errHandler.sync(self)
 		 		_la = try _input.LA(1)
 		 	}
@@ -859,10 +754,6 @@ open class PreciseV5Parser: Parser {
 				return getToken(PreciseV5Parser.Tokens.VOID.rawValue, 0)
 			}
 			open
-			func declare() -> DeclareContext? {
-				return getRuleContext(DeclareContext.self, 0)
-			}
-			open
 			func estatuto() -> [EstatutoContext] {
 				return getRuleContexts(EstatutoContext.self)
 			}
@@ -913,33 +804,33 @@ open class PreciseV5Parser: Parser {
 	    }
 		do {
 		 	try enterOuterAlt(_localctx, 1)
-		 	setState(122)
+		 	setState(98)
 		 	try match(PreciseV5Parser.Tokens.FUNCTION.rawValue)
-		 	setState(125)
+		 	setState(101)
 		 	try _errHandler.sync(self)
 		 	switch (PreciseV5Parser.Tokens(rawValue: try _input.LA(1))!) {
 		 	case .INT:fallthrough
 		 	case .FLOAT:fallthrough
 		 	case .CHAR:fallthrough
 		 	case .BOOL:
-		 		setState(123)
+		 		setState(99)
 		 		try type()
 
 		 		break
 
 		 	case .VOID:
-		 		setState(124)
+		 		setState(100)
 		 		try match(PreciseV5Parser.Tokens.VOID.rawValue)
 
 		 		break
 		 	default:
 		 		throw ANTLRException.recognition(e: NoViableAltException(self))
 		 	}
-		 	setState(127)
+		 	setState(103)
 		 	try match(PreciseV5Parser.Tokens.ID.rawValue)
-		 	setState(128)
+		 	setState(104)
 		 	try match(PreciseV5Parser.Tokens.LPAREN.rawValue)
-		 	setState(140)
+		 	setState(116)
 		 	try _errHandler.sync(self)
 		 	_la = try _input.LA(1)
 		 	if (//closure
@@ -950,11 +841,11 @@ open class PreciseV5Parser: Parser {
 		 	}()
 		 	      return testSet
 		 	 }()) {
-		 		setState(129)
+		 		setState(105)
 		 		try type()
-		 		setState(130)
+		 		setState(106)
 		 		try match(PreciseV5Parser.Tokens.ID.rawValue)
-		 		setState(137)
+		 		setState(113)
 		 		try _errHandler.sync(self)
 		 		_la = try _input.LA(1)
 		 		while (//closure
@@ -962,49 +853,39 @@ open class PreciseV5Parser: Parser {
 		 		      let testSet: Bool = _la == PreciseV5Parser.Tokens.COMA.rawValue
 		 		      return testSet
 		 		 }()) {
-		 			setState(131)
+		 			setState(107)
 		 			try match(PreciseV5Parser.Tokens.COMA.rawValue)
-		 			setState(132)
+		 			setState(108)
 		 			try type()
-		 			setState(133)
+		 			setState(109)
 		 			try match(PreciseV5Parser.Tokens.ID.rawValue)
 
 
-		 			setState(139)
+		 			setState(115)
 		 			try _errHandler.sync(self)
 		 			_la = try _input.LA(1)
 		 		}
 
 		 	}
 
-		 	setState(142)
+		 	setState(118)
 		 	try match(PreciseV5Parser.Tokens.RPAREN.rawValue)
-		 	setState(143)
+		 	setState(119)
 		 	try match(PreciseV5Parser.Tokens.LCBRA.rawValue)
-		 	setState(145)
-		 	try _errHandler.sync(self)
-		 	switch (try getInterpreter().adaptivePredict(_input,15,_ctx)) {
-		 	case 1:
-		 		setState(144)
-		 		try declare()
-
-		 		break
-		 	default: break
-		 	}
-		 	setState(155)
+		 	setState(128)
 		 	try _errHandler.sync(self)
 		 	_la = try _input.LA(1)
 		 	if (//closure
 		 	 { () -> Bool in
 		 	      let testSet: Bool = {  () -> Bool in
-		 	   let testArray: [Int] = [_la, PreciseV5Parser.Tokens.DECLARE.rawValue,PreciseV5Parser.Tokens.IF.rawValue,PreciseV5Parser.Tokens.PRINT.rawValue,PreciseV5Parser.Tokens.READ.rawValue,PreciseV5Parser.Tokens.WHILE.rawValue,PreciseV5Parser.Tokens.ID.rawValue]
+		 	   let testArray: [Int] = [_la, PreciseV5Parser.Tokens.VAR.rawValue,PreciseV5Parser.Tokens.IF.rawValue,PreciseV5Parser.Tokens.PRINT.rawValue,PreciseV5Parser.Tokens.READ.rawValue,PreciseV5Parser.Tokens.WHILE.rawValue,PreciseV5Parser.Tokens.ID.rawValue]
 		 	    return  Utils.testBitLeftShiftArray(testArray, 0)
 		 	}()
 		 	      return testSet
 		 	 }()) {
-		 		setState(147)
+		 		setState(120)
 		 		try estatuto()
-		 		setState(152)
+		 		setState(125)
 		 		try _errHandler.sync(self)
 		 		_la = try _input.LA(1)
 		 		while (//closure
@@ -1012,20 +893,20 @@ open class PreciseV5Parser: Parser {
 		 		      let testSet: Bool = _la == PreciseV5Parser.Tokens.SCOLON.rawValue
 		 		      return testSet
 		 		 }()) {
-		 			setState(148)
+		 			setState(121)
 		 			try match(PreciseV5Parser.Tokens.SCOLON.rawValue)
-		 			setState(149)
+		 			setState(122)
 		 			try estatuto()
 
 
-		 			setState(154)
+		 			setState(127)
 		 			try _errHandler.sync(self)
 		 			_la = try _input.LA(1)
 		 		}
 
 		 	}
 
-		 	setState(157)
+		 	setState(130)
 		 	try match(PreciseV5Parser.Tokens.RCBRA.rawValue)
 
 		}
@@ -1098,9 +979,9 @@ open class PreciseV5Parser: Parser {
 	    }
 		do {
 		 	try enterOuterAlt(_localctx, 1)
-		 	setState(159)
+		 	setState(132)
 		 	try exp()
-		 	setState(162)
+		 	setState(135)
 		 	try _errHandler.sync(self)
 		 	_la = try _input.LA(1)
 		 	if (//closure
@@ -1111,7 +992,7 @@ open class PreciseV5Parser: Parser {
 		 	}()
 		 	      return testSet
 		 	 }()) {
-		 		setState(160)
+		 		setState(133)
 		 		_la = try _input.LA(1)
 		 		if (!(//closure
 		 		 { () -> Bool in
@@ -1127,7 +1008,7 @@ open class PreciseV5Parser: Parser {
 		 			_errHandler.reportMatch(self)
 		 			try consume()
 		 		}
-		 		setState(161)
+		 		setState(134)
 		 		try exp()
 
 		 	}
@@ -1187,13 +1068,13 @@ open class PreciseV5Parser: Parser {
 	    }
 		do {
 		 	try enterOuterAlt(_localctx, 1)
-		 	setState(164)
+		 	setState(137)
 		 	try termino()
-		 	setState(167)
+		 	setState(140)
 		 	try _errHandler.sync(self)
-		 	switch (try getInterpreter().adaptivePredict(_input,19,_ctx)) {
+		 	switch (try getInterpreter().adaptivePredict(_input,12,_ctx)) {
 		 	case 1:
-		 		setState(165)
+		 		setState(138)
 		 		_la = try _input.LA(1)
 		 		if (!(//closure
 		 		 { () -> Bool in
@@ -1206,7 +1087,7 @@ open class PreciseV5Parser: Parser {
 		 			_errHandler.reportMatch(self)
 		 			try consume()
 		 		}
-		 		setState(166)
+		 		setState(139)
 		 		try termino()
 
 		 		break
@@ -1267,13 +1148,13 @@ open class PreciseV5Parser: Parser {
 	    }
 		do {
 		 	try enterOuterAlt(_localctx, 1)
-		 	setState(169)
+		 	setState(142)
 		 	try factor()
-		 	setState(172)
+		 	setState(145)
 		 	try _errHandler.sync(self)
-		 	switch (try getInterpreter().adaptivePredict(_input,20,_ctx)) {
+		 	switch (try getInterpreter().adaptivePredict(_input,13,_ctx)) {
 		 	case 1:
-		 		setState(170)
+		 		setState(143)
 		 		_la = try _input.LA(1)
 		 		if (!(//closure
 		 		 { () -> Bool in
@@ -1286,7 +1167,7 @@ open class PreciseV5Parser: Parser {
 		 			_errHandler.reportMatch(self)
 		 			try consume()
 		 		}
-		 		setState(171)
+		 		setState(144)
 		 		try factor()
 
 		 		break
@@ -1345,16 +1226,16 @@ open class PreciseV5Parser: Parser {
 	    		try! exitRule()
 	    }
 		do {
-		 	setState(179)
+		 	setState(152)
 		 	try _errHandler.sync(self)
 		 	switch (PreciseV5Parser.Tokens(rawValue: try _input.LA(1))!) {
 		 	case .LPAREN:
 		 		try enterOuterAlt(_localctx, 1)
-		 		setState(174)
+		 		setState(147)
 		 		try match(PreciseV5Parser.Tokens.LPAREN.rawValue)
-		 		setState(175)
+		 		setState(148)
 		 		try expresion()
-		 		setState(176)
+		 		setState(149)
 		 		try match(PreciseV5Parser.Tokens.RPAREN.rawValue)
 
 		 		break
@@ -1364,7 +1245,7 @@ open class PreciseV5Parser: Parser {
 		 	case .CTECHAR:fallthrough
 		 	case .ID:
 		 		try enterOuterAlt(_localctx, 2)
-		 		setState(178)
+		 		setState(151)
 		 		try varcte()
 
 		 		break
@@ -1453,38 +1334,38 @@ open class PreciseV5Parser: Parser {
 	    }
 		do {
 		 	try enterOuterAlt(_localctx, 1)
-		 	setState(181)
+		 	setState(154)
 		 	try match(PreciseV5Parser.Tokens.IF.rawValue)
-		 	setState(182)
+		 	setState(155)
 		 	try match(PreciseV5Parser.Tokens.LPAREN.rawValue)
-		 	setState(183)
+		 	setState(156)
 		 	try expresionbool()
-		 	setState(184)
+		 	setState(157)
 		 	try match(PreciseV5Parser.Tokens.RPAREN.rawValue)
-		 	setState(185)
+		 	setState(158)
 		 	try match(PreciseV5Parser.Tokens.LCBRA.rawValue)
-		 	setState(189)
+		 	setState(162)
 		 	try _errHandler.sync(self)
 		 	_la = try _input.LA(1)
 		 	while (//closure
 		 	 { () -> Bool in
 		 	      let testSet: Bool = {  () -> Bool in
-		 	   let testArray: [Int] = [_la, PreciseV5Parser.Tokens.DECLARE.rawValue,PreciseV5Parser.Tokens.IF.rawValue,PreciseV5Parser.Tokens.PRINT.rawValue,PreciseV5Parser.Tokens.READ.rawValue,PreciseV5Parser.Tokens.WHILE.rawValue,PreciseV5Parser.Tokens.ID.rawValue]
+		 	   let testArray: [Int] = [_la, PreciseV5Parser.Tokens.VAR.rawValue,PreciseV5Parser.Tokens.IF.rawValue,PreciseV5Parser.Tokens.PRINT.rawValue,PreciseV5Parser.Tokens.READ.rawValue,PreciseV5Parser.Tokens.WHILE.rawValue,PreciseV5Parser.Tokens.ID.rawValue]
 		 	    return  Utils.testBitLeftShiftArray(testArray, 0)
 		 	}()
 		 	      return testSet
 		 	 }()) {
-		 		setState(186)
+		 		setState(159)
 		 		try estatuto()
 
 
-		 		setState(191)
+		 		setState(164)
 		 		try _errHandler.sync(self)
 		 		_la = try _input.LA(1)
 		 	}
-		 	setState(192)
+		 	setState(165)
 		 	try match(PreciseV5Parser.Tokens.RCBRA.rawValue)
-		 	setState(202)
+		 	setState(175)
 		 	try _errHandler.sync(self)
 		 	_la = try _input.LA(1)
 		 	if (//closure
@@ -1492,30 +1373,30 @@ open class PreciseV5Parser: Parser {
 		 	      let testSet: Bool = _la == PreciseV5Parser.Tokens.ELSE.rawValue
 		 	      return testSet
 		 	 }()) {
-		 		setState(193)
+		 		setState(166)
 		 		try match(PreciseV5Parser.Tokens.ELSE.rawValue)
-		 		setState(194)
+		 		setState(167)
 		 		try match(PreciseV5Parser.Tokens.LCBRA.rawValue)
-		 		setState(198)
+		 		setState(171)
 		 		try _errHandler.sync(self)
 		 		_la = try _input.LA(1)
 		 		while (//closure
 		 		 { () -> Bool in
 		 		      let testSet: Bool = {  () -> Bool in
-		 		   let testArray: [Int] = [_la, PreciseV5Parser.Tokens.DECLARE.rawValue,PreciseV5Parser.Tokens.IF.rawValue,PreciseV5Parser.Tokens.PRINT.rawValue,PreciseV5Parser.Tokens.READ.rawValue,PreciseV5Parser.Tokens.WHILE.rawValue,PreciseV5Parser.Tokens.ID.rawValue]
+		 		   let testArray: [Int] = [_la, PreciseV5Parser.Tokens.VAR.rawValue,PreciseV5Parser.Tokens.IF.rawValue,PreciseV5Parser.Tokens.PRINT.rawValue,PreciseV5Parser.Tokens.READ.rawValue,PreciseV5Parser.Tokens.WHILE.rawValue,PreciseV5Parser.Tokens.ID.rawValue]
 		 		    return  Utils.testBitLeftShiftArray(testArray, 0)
 		 		}()
 		 		      return testSet
 		 		 }()) {
-		 			setState(195)
+		 			setState(168)
 		 			try estatuto()
 
 
-		 			setState(200)
+		 			setState(173)
 		 			try _errHandler.sync(self)
 		 			_la = try _input.LA(1)
 		 		}
-		 		setState(201)
+		 		setState(174)
 		 		try match(PreciseV5Parser.Tokens.RCBRA.rawValue)
 
 		 	}
@@ -1591,36 +1472,36 @@ open class PreciseV5Parser: Parser {
 	    }
 		do {
 		 	try enterOuterAlt(_localctx, 1)
-		 	setState(204)
+		 	setState(177)
 		 	try match(PreciseV5Parser.Tokens.WHILE.rawValue)
-		 	setState(205)
+		 	setState(178)
 		 	try match(PreciseV5Parser.Tokens.LPAREN.rawValue)
-		 	setState(206)
+		 	setState(179)
 		 	try expresionbool()
-		 	setState(207)
+		 	setState(180)
 		 	try match(PreciseV5Parser.Tokens.RPAREN.rawValue)
-		 	setState(208)
+		 	setState(181)
 		 	try match(PreciseV5Parser.Tokens.LCBRA.rawValue)
-		 	setState(212)
+		 	setState(185)
 		 	try _errHandler.sync(self)
 		 	_la = try _input.LA(1)
 		 	while (//closure
 		 	 { () -> Bool in
 		 	      let testSet: Bool = {  () -> Bool in
-		 	   let testArray: [Int] = [_la, PreciseV5Parser.Tokens.DECLARE.rawValue,PreciseV5Parser.Tokens.IF.rawValue,PreciseV5Parser.Tokens.PRINT.rawValue,PreciseV5Parser.Tokens.READ.rawValue,PreciseV5Parser.Tokens.WHILE.rawValue,PreciseV5Parser.Tokens.ID.rawValue]
+		 	   let testArray: [Int] = [_la, PreciseV5Parser.Tokens.VAR.rawValue,PreciseV5Parser.Tokens.IF.rawValue,PreciseV5Parser.Tokens.PRINT.rawValue,PreciseV5Parser.Tokens.READ.rawValue,PreciseV5Parser.Tokens.WHILE.rawValue,PreciseV5Parser.Tokens.ID.rawValue]
 		 	    return  Utils.testBitLeftShiftArray(testArray, 0)
 		 	}()
 		 	      return testSet
 		 	 }()) {
-		 		setState(209)
+		 		setState(182)
 		 		try estatuto()
 
 
-		 		setState(214)
+		 		setState(187)
 		 		try _errHandler.sync(self)
 		 		_la = try _input.LA(1)
 		 	}
-		 	setState(215)
+		 	setState(188)
 		 	try match(PreciseV5Parser.Tokens.RCBRA.rawValue)
 
 		}
@@ -1693,31 +1574,31 @@ open class PreciseV5Parser: Parser {
 	    }
 		do {
 		 	try enterOuterAlt(_localctx, 1)
-		 	setState(217)
+		 	setState(190)
 		 	try match(PreciseV5Parser.Tokens.PRINT.rawValue)
-		 	setState(218)
+		 	setState(191)
 		 	try match(PreciseV5Parser.Tokens.LPAREN.rawValue)
-		 	setState(221) 
+		 	setState(194) 
 		 	try _errHandler.sync(self)
 		 	_la = try _input.LA(1)
 		 	repeat {
-		 		setState(221)
+		 		setState(194)
 		 		try _errHandler.sync(self)
-		 		switch(try getInterpreter().adaptivePredict(_input,26, _ctx)) {
+		 		switch(try getInterpreter().adaptivePredict(_input,19, _ctx)) {
 		 		case 1:
-		 			setState(219)
+		 			setState(192)
 		 			try expresionbool()
 
 		 			break
 		 		case 2:
-		 			setState(220)
+		 			setState(193)
 		 			try varcte()
 
 		 			break
 		 		default: break
 		 		}
 
-		 		setState(223); 
+		 		setState(196); 
 		 		try _errHandler.sync(self)
 		 		_la = try _input.LA(1)
 		 	} while (//closure
@@ -1728,9 +1609,9 @@ open class PreciseV5Parser: Parser {
 		 	}()
 		 	      return testSet
 		 	 }())
-		 	setState(225)
+		 	setState(198)
 		 	try match(PreciseV5Parser.Tokens.RPAREN.rawValue)
-		 	setState(226)
+		 	setState(199)
 		 	try match(PreciseV5Parser.Tokens.SCOLON.rawValue)
 
 		}
@@ -1795,13 +1676,13 @@ open class PreciseV5Parser: Parser {
 	    }
 		do {
 		 	try enterOuterAlt(_localctx, 1)
-		 	setState(228)
+		 	setState(201)
 		 	try match(PreciseV5Parser.Tokens.READ.rawValue)
-		 	setState(229)
+		 	setState(202)
 		 	try match(PreciseV5Parser.Tokens.LPAREN.rawValue)
-		 	setState(230)
+		 	setState(203)
 		 	try match(PreciseV5Parser.Tokens.ID.rawValue)
-		 	setState(232)
+		 	setState(205)
 		 	try _errHandler.sync(self)
 		 	_la = try _input.LA(1)
 		 	if (//closure
@@ -1809,14 +1690,14 @@ open class PreciseV5Parser: Parser {
 		 	      let testSet: Bool = _la == PreciseV5Parser.Tokens.LBRA.rawValue
 		 	      return testSet
 		 	 }()) {
-		 		setState(231)
+		 		setState(204)
 		 		try array()
 
 		 	}
 
-		 	setState(234)
+		 	setState(207)
 		 	try match(PreciseV5Parser.Tokens.RPAREN.rawValue)
-		 	setState(235)
+		 	setState(208)
 		 	try match(PreciseV5Parser.Tokens.SCOLON.rawValue)
 
 		}
@@ -1877,9 +1758,9 @@ open class PreciseV5Parser: Parser {
 	    }
 		do {
 		 	try enterOuterAlt(_localctx, 1)
-		 	setState(237)
+		 	setState(210)
 		 	try match(PreciseV5Parser.Tokens.ID.rawValue)
-		 	setState(239)
+		 	setState(212)
 		 	try _errHandler.sync(self)
 		 	_la = try _input.LA(1)
 		 	if (//closure
@@ -1887,16 +1768,16 @@ open class PreciseV5Parser: Parser {
 		 	      let testSet: Bool = _la == PreciseV5Parser.Tokens.LBRA.rawValue
 		 	      return testSet
 		 	 }()) {
-		 		setState(238)
+		 		setState(211)
 		 		try array()
 
 		 	}
 
-		 	setState(241)
+		 	setState(214)
 		 	try match(PreciseV5Parser.Tokens.ASSIGN.rawValue)
-		 	setState(242)
+		 	setState(215)
 		 	try expresionbool()
-		 	setState(243)
+		 	setState(216)
 		 	try match(PreciseV5Parser.Tokens.SCOLON.rawValue)
 
 		}
@@ -1997,14 +1878,14 @@ open class PreciseV5Parser: Parser {
 	    }
 		do {
 			var _alt:Int
-		 	setState(266)
+		 	setState(239)
 		 	try _errHandler.sync(self)
 		 	switch (PreciseV5Parser.Tokens(rawValue: try _input.LA(1))!) {
 		 	case .ID:
 		 		try enterOuterAlt(_localctx, 1)
-		 		setState(245)
+		 		setState(218)
 		 		try match(PreciseV5Parser.Tokens.ID.rawValue)
-		 		setState(260)
+		 		setState(233)
 		 		try _errHandler.sync(self)
 		 		_la = try _input.LA(1)
 		 		if (//closure
@@ -2012,34 +1893,34 @@ open class PreciseV5Parser: Parser {
 		 		      let testSet: Bool = _la == PreciseV5Parser.Tokens.LBRA.rawValue
 		 		      return testSet
 		 		 }()) {
-		 			setState(246)
+		 			setState(219)
 		 			try match(PreciseV5Parser.Tokens.LBRA.rawValue)
-		 			setState(247)
+		 			setState(220)
 		 			try exp()
-		 			setState(248)
+		 			setState(221)
 		 			try match(PreciseV5Parser.Tokens.RBRA.rawValue)
-		 			setState(257)
+		 			setState(230)
 		 			try _errHandler.sync(self)
-		 			_alt = try getInterpreter().adaptivePredict(_input,31,_ctx)
+		 			_alt = try getInterpreter().adaptivePredict(_input,24,_ctx)
 		 			while (_alt != 2 && _alt != ATN.INVALID_ALT_NUMBER) {
 		 				if ( _alt==1 ) {
-		 					setState(255)
+		 					setState(228)
 		 					try _errHandler.sync(self)
 		 					switch (PreciseV5Parser.Tokens(rawValue: try _input.LA(1))!) {
 		 					case .LPAREN:
-		 						setState(249)
+		 						setState(222)
 		 						try match(PreciseV5Parser.Tokens.LPAREN.rawValue)
-		 						setState(250)
+		 						setState(223)
 		 						try exp()
-		 						setState(251)
+		 						setState(224)
 		 						try match(PreciseV5Parser.Tokens.RPAREN.rawValue)
 
 		 						break
 
 		 					case .COMA:
-		 						setState(253)
+		 						setState(226)
 		 						try match(PreciseV5Parser.Tokens.COMA.rawValue)
-		 						setState(254)
+		 						setState(227)
 		 						try exp()
 
 		 						break
@@ -2048,9 +1929,9 @@ open class PreciseV5Parser: Parser {
 		 					}
 		 			 
 		 				}
-		 				setState(259)
+		 				setState(232)
 		 				try _errHandler.sync(self)
-		 				_alt = try getInterpreter().adaptivePredict(_input,31,_ctx)
+		 				_alt = try getInterpreter().adaptivePredict(_input,24,_ctx)
 		 			}
 
 		 		}
@@ -2060,28 +1941,28 @@ open class PreciseV5Parser: Parser {
 
 		 	case .CTEINT:
 		 		try enterOuterAlt(_localctx, 2)
-		 		setState(262)
+		 		setState(235)
 		 		try match(PreciseV5Parser.Tokens.CTEINT.rawValue)
 
 		 		break
 
 		 	case .CTEFLOAT:
 		 		try enterOuterAlt(_localctx, 3)
-		 		setState(263)
+		 		setState(236)
 		 		try match(PreciseV5Parser.Tokens.CTEFLOAT.rawValue)
 
 		 		break
 
 		 	case .CTEBOOL:
 		 		try enterOuterAlt(_localctx, 4)
-		 		setState(264)
+		 		setState(237)
 		 		try match(PreciseV5Parser.Tokens.CTEBOOL.rawValue)
 
 		 		break
 
 		 	case .CTECHAR:
 		 		try enterOuterAlt(_localctx, 5)
-		 		setState(265)
+		 		setState(238)
 		 		try match(PreciseV5Parser.Tokens.CTECHAR.rawValue)
 
 		 		break
