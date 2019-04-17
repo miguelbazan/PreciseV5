@@ -11,6 +11,7 @@ import Foundation
 struct Funcion: Equatable {
     
     
+
     // MARK: - Variables
     var returnType: Tipo!
     var address: Int!
@@ -19,7 +20,7 @@ struct Funcion: Equatable {
     var paramsSecuence = [Tipo]() // used to know parameters of function
     
     
-    // MARK: - Init function
+//     MARK: - Init function
     
     init(returnType: Tipo, address: Int, quadAddress: Int) {
         self.returnType = returnType

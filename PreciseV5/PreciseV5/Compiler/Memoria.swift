@@ -141,5 +141,55 @@ struct Memory {
         return stringStartAddress + strings.count - 1
     }
     
+    // MARK: Find functions
+    // Only for constants table
+    
+    func find(bool: Bool) -> Int? {
+        if let index = bools.firstIndex(of: bool) {
+            return index + boolStartAddress
+        }
+        
+        return nil
+    }
+    
+    func find(char: Character) -> Int? {
+        if let index = chars.firstIndex(of: char) {
+            return index + charStartAddress
+        }
+        
+        return nil
+    }
+    
+    func find(float: Float) -> Int? {
+        if let index = floats.firstIndex(of: float) {
+            return index + floatStartAddress
+        }
+        
+        return nil
+    }
+    
+    func find(int: Int) -> Int? {
+        if let index = ints.firstIndex(of: int) {
+            return index + intStartAddress
+        }
+        
+        return nil
+    }
+    
+    func find(string: String) -> Int? {
+        if let index = strings.firstIndex(of: string) {
+            return index + stringStartAddress
+        }
+        
+        return nil
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 }
 

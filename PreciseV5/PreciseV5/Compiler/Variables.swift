@@ -11,33 +11,21 @@ import Foundation
 
 struct Variables {
     
-    var nombre : String!
-    var tipo: Tipo!
-    var scope: String!
+    var tipo : Tipo!
     var address: Int!
+    var arrSize: Int?
+    var paramIndex: Int?
     
-    init(_ nombre: String,_ tipo: Tipo,_ scope: String,_ address: Int){
+    init(_ tipo: Tipo,_ address: Int,_ arrSize: Int? = nil,_ paramIndex: Int? = nil){
         
-        self.nombre = nombre
         self.tipo = tipo
-        self.scope = scope
         self.address = address
+        self.arrSize = arrSize
+        self.paramIndex = paramIndex
+        
     }
     
     
 
-    
-    
-//    var type: Tipo!
-//    var address: Int!
-//    var arrSize: Int?
-//    var paramIndex: Int?
-//
-//    init(_ type: Tipo, _ address: Int, _ arrSize: Int? = nil, paramIndex: Int? = nil){
-//        self.type = type
-//        self.address = address
-//        self.arrSize = arrSize
-//        self.paramIndex = paramIndex
-//    }
 }
 

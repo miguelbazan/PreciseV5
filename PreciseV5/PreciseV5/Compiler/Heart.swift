@@ -10,7 +10,6 @@ import Foundation
 import SwiftyJSON
 import Antlr4
 
-
 class Heart {
     
 //    Singleton
@@ -26,17 +25,17 @@ class Heart {
     
     let globalFunc = "global"
     
-    var functions = [String:Funcion]()
+    var functions = [String: Funcion]()
     
     
     
     //   MARK: - Constantes memoria
     
-    let constantBaseAddress = 3000
-    let globalBaseAddress = 6000
-    let localBaseAddress = 9000
-    let tempBaseAdress = 12000
-    let tempGlobalAddress = 15000
+    let constantBaseAddress = 5000
+    let globalBaseAddress = 10000
+    let localBaseAddress = 15000
+    let tempBaseAdress = 20000
+    let tempGlobalAddress = 25000
     
     
     
@@ -88,7 +87,7 @@ class Heart {
         }
     }
     
-    func setup(){
+        init(){
         if let path = Bundle.main.path(forResource: "CuboSemantico", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
@@ -101,13 +100,36 @@ class Heart {
             print("Couldn't find semanticCube") // Aqui tambien
             
         }
+    }
+    func clearModels() {
+        cuadruplos.removeAll()
         
+        stop = false
         
+        currentFunction = globalFunc
+        
+        functions.removeAll()
+        globalJumps.removeAll()
+        jumps.removeAll()
+        types.removeAll()
+        operands.removeAll()
+        
+        constantMemory = Memory(baseAddress: constantBaseAddress)
+        globalMemory = Memory(baseAddress: globalBaseAddress)
+        localMemory = Memory(baseAddress: localBaseAddress)
+        tempMemory = Memory(baseAddress: tempBaseAdress)
+        tempGlobalMemory = Memory(baseAddress: tempGlobalAddress)
+        
+//        outputs.removeAll()
+//        errors.removeAll()
+        
+        functions[currentFunction] = Funcion(returnType: .Void, address: -1, quadAddress: -1)
     }
     
     
     func runCode(input: String){
         
+        clearModels()
         do {
             let lexer = PreciseV5Lexer(ANTLRInputStream(input))
             let tokens = CommonTokenStream(lexer)
@@ -176,6 +198,7 @@ class Heart {
     /// - Parameters:
     ///   - quadToFill: index of the quad, in quadruples array, to fill with the direction
     ///   - direction: direction to fill to the quad
+    
     private func fillGoTo(_ quadToFill: Int, with direction: Int) {
         cuadruplos[quadToFill].temp = direction
     }
@@ -227,7 +250,6 @@ class Heart {
         } else {
             print("Type mismatch")
         }
-    
     }
 }
 
@@ -253,60 +275,6 @@ extension Heart {
         return -1
     }
     
-//    func save(_ value: Any, in address: Int) {
-//        switch address {
-//        case ..<0:
-//            let (arrayAddress,_) = getValue(from: -address)
-//            //            return getValue(from: arrayAddress as! Address)
-//            save(value, in: arrayAddress as! Int)
-//        case ..<constantBaseAddress:
-//            let function = getFuncWithAddress(address)
-//            let funcName = getFuncName(of: function)
-//            let globalReturnVar = functions[funcName]?.variables[funcName]
-//            let globalReturnAddress = (globalReturnVar?.address)!
-//            save(value, in: globalReturnAddress)
-//        case ..<globalBaseAddress:
-//            constantsMemory.save(value, in: address)
-//        case ..<localBaseAddress:
-//            globalMemory.save(value, in: address)
-//        case ..<tempBaseAddress:
-//            localMemory.save(value, in: address)
-//        case ..<tempGlobalAddress:
-//            tempMemory.save(value, in: address)
-//        default:
-//            tempGlobalMemory.save(value, in: address)
-//        }
-//    }
-    
-//    func getFuncName(of function: Function) -> String {
-//        return functions.someKey(forValue: function)!
-//    }
-    
-//    func getValue(from address: Address) -> (value: Any, type: Type) {
-//
-//        switch address {
-//        case ..<0:
-//            let (arrayAddress,_) = getValue(from: -address)
-//            return getValue(from: arrayAddress as! Address)
-//        case ..<constantsBaseAddress:
-//            let function = getFuncWithAddress(address)
-//            let funcName = getFuncName(of: function)
-//            let globalReturnVar = functions[globalFunc]?.variables[funcName]
-//            let globalReturnAddress = (globalReturnVar?.address)!
-//
-//            return getValue(from: globalReturnAddress)
-//        case ..<globalBaseAddress:
-//            return constantsMemory.getValue(from: address)
-//        case ..<localBaseAddress:
-//            return globalMemory.getValue(from: address)
-//        case ..<tempBaseAddress:
-//            return localMemory.getValue(from: address)
-//        case ..<tempGlobalAddress:
-//            return tempMemory.getValue(from: address)
-//        default:
-//            return tempGlobalMemory.getValue(from: address)
-//        }
-//    }
 
     
     func getVariable(withId id: String) -> Variables? {
@@ -315,38 +283,38 @@ extension Heart {
         } else if let idVar = functions[globalFunc]?.variables[id] {
             return idVar
         } else {
-//            compileError("Variable '\(id)' does not exists")
+//         compileError("Variable '\(id)' does not exists")
             print("Variable '\(id)' does not exists")
             return nil
         }
-        
+    
     }
     
     func printQuads() {
-        
+
         func formatNumber(_ string: String) -> String{
             var str = string
             let length = str.count
             let new = 6 - length
-            
+
             for _ in 0..<new {
                 str.insert(" ", at: str.startIndex)
             }
-            
+
             return str
         }
-        
+
         print("#  Operators   Left   Right  Temp  ")
         print("-----------------------------------")
         for index in 0..<quadsCount {
             let quad = cuadruplos[index]
-            
+
             var indexString = "\(index)"
             var op = "\(quad.op)"
             var left = quad.operandLeft?.description ?? "_____"
             var right = quad.operandRight?.description ?? "_____"
             var temp = quad.temp?.description ?? "_____"
-            
+
             let length = op.count
             if length != 11 {
                 let new = 11 - length
@@ -354,15 +322,15 @@ extension Heart {
                     op += " "
                 }
             }
-            
+
             let newIndexString = indexString + " "
             indexString = indexString.count == 1 ? newIndexString : indexString
             left = formatNumber(left)
             right = formatNumber(right)
             temp = formatNumber(temp)
-            
+
             print(indexString, op, left, right, temp)
-            
+
         }
     }
 }
@@ -370,8 +338,8 @@ extension Heart {
 extension Heart {
     
     
-    
     func enterPreciseV5(_ ctx:PreciseV5Parser.PreciseV5Context){
+        
 
         if stop {return}
     }
@@ -379,7 +347,8 @@ extension Heart {
     func exitPreciseV5(_ ctx:PreciseV5Parser.PreciseV5Context){
         
         if stop {return}
-        print(DirectorioP)
+        print(functions)
+        printQuads()
     }
     
     func enterDeclare(_ ctx:PreciseV5Parser.DeclareContext){
@@ -391,14 +360,19 @@ extension Heart {
         
         if stop {return}
         
-        let nombreVar = ctx.ID()!.getText()
+        let nombreVariable = getTexto(from: ctx.ID()!)
+        if (functions[currentFunction]?.variables.keys.contains(nombreVariable))!{
+            print("La variable '\(nombreVariable)'ya existe")
+            return
+        }
+        
         let varType = getType(from: ctx.type()!)
         
-        //Crear la tabla de variables
-        let variable = Variables(nombreVar, varType, currentFunction, 123)
-        
-        //Agregar la tabla de variables al directorio de procedimientos
-        DirectorioP.append(variable)
+        let varAddress = isGlobal ? globalMemory.save(varType) : localMemory.save(varType)
+        let variable = Variables(varType, varAddress)
+        functions[currentFunction]?.variables[nombreVariable] = variable
+        print("jalo")
+//        print(functions)
         
     }
     
@@ -443,14 +417,7 @@ extension Heart {
     }
     
     func enterFunction(_ ctx:PreciseV5Parser.FunctionContext){
-        
         if stop {return}
-        
-        let nombreFuncion = ctx.ID().first!
-        
-        print(nombreFuncion)
-        
-        currentFunction =  ctx.ID().first!.getText()
     }
     
     func exitFunction(_ ctx:PreciseV5Parser.FunctionContext){
@@ -524,19 +491,56 @@ extension Heart {
     
     func enterAsignacion(_ ctx:PreciseV5Parser.AsignacionContext){
         if stop {return}
+        
+        
+        
     }
     
     func exitAsignacion(_ ctx:PreciseV5Parser.AsignacionContext){
         
         if stop {return}
         
+        if ctx.ID() != nil {
+            let id = getTexto(from: ctx.ID()!)
+            
+            guard let variable = getVariable(withId: id) else {return}
+            addOperandToStacks(address: variable.address, type: variable.tipo)
+            print(operands)
+            print(types)
+            
+        }
         
+        let (resultValue,resultType) = getOperandAndType()
+        let (idValue,idType) = getOperandAndType()
+        
+        
+//        Cubo semantico
+        let assignType = getResultType(idType, resultType, .Assign)
+        if assignType == .Error{
+            print("No se puede asignar la expresion de tipo '\(resultType)'")
+        } else{
+            addQuad(.Assign, resultValue, nil, idValue)
+            print("se agrego")
+        }
         
         
     }
     
     func enterVarcte(_ ctx:PreciseV5Parser.VarcteContext){
         if stop {return}
+        
+        if let floatNode = ctx.CTEFLOAT(){
+            var float = Float(getTexto(from: floatNode))!
+            
+            if let floatAddress = constantMemory.find(float: float){
+                addOperandToStacks(address: floatAddress, type: .Float)
+            }else{
+                let floatAddress = constantMemory.save(float: float)
+                addOperandToStacks(address: floatAddress, type: .Float)
+            }
+        }
+        
+        
     }
     
     func exitVarcte(_ ctx:PreciseV5Parser.VarcteContext){
