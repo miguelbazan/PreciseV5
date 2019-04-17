@@ -35,6 +35,9 @@
 		24C19C13225D878200F77700 /* PreciseV5LexerATN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C19C08225D878200F77700 /* PreciseV5LexerATN.swift */; };
 		24D0C582225321D200B14A59 /* Antlr4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243EB0A722531DFE003C525B /* Antlr4.framework */; };
 		24DA92CC2252FD30000C9AE2 /* CuboSemantico.json in Resources */ = {isa = PBXBuildFile; fileRef = 24DA92CB2252FD30000C9AE2 /* CuboSemantico.json */; };
+		24ECB8CB2266A66800EAAF39 /* Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ECB8CA2266A66800EAAF39 /* Extras.swift */; };
+		24ECBB61226685F8003FF1A4 /* DiccEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ECBB60226685F8003FF1A4 /* DiccEx.swift */; };
+		24ECBB63226685FE003FF1A4 /* StringEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ECBB62226685FE003FF1A4 /* StringEx.swift */; };
 		537432E1D1784BD9854BE8C8 /* Pods_PreciseV5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9820FCBAF3B51927E1B2DC53 /* Pods_PreciseV5.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +97,9 @@
 		24C19C07225D878200F77700 /* PreciseV5ParserATN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreciseV5ParserATN.swift; path = ../../../../Grammar/PreciseV5ParserATN.swift; sourceTree = "<group>"; };
 		24C19C08225D878200F77700 /* PreciseV5LexerATN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreciseV5LexerATN.swift; path = ../../../../Grammar/PreciseV5LexerATN.swift; sourceTree = "<group>"; };
 		24DA92CB2252FD30000C9AE2 /* CuboSemantico.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CuboSemantico.json; sourceTree = "<group>"; };
+		24ECB8CA2266A66800EAAF39 /* Extras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extras.swift; sourceTree = "<group>"; };
+		24ECBB60226685F8003FF1A4 /* DiccEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiccEx.swift; sourceTree = "<group>"; };
+		24ECBB62226685FE003FF1A4 /* StringEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringEx.swift; sourceTree = "<group>"; };
 		5FB3D93D3BAD7DC51D30B59F /* Pods-PreciseV5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PreciseV5.debug.xcconfig"; path = "Target Support Files/Pods-PreciseV5/Pods-PreciseV5.debug.xcconfig"; sourceTree = "<group>"; };
 		9820FCBAF3B51927E1B2DC53 /* Pods_PreciseV5.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PreciseV5.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -123,6 +129,7 @@
 		243EB05922530493003C525B /* Compiler */ = {
 			isa = PBXGroup;
 			children = (
+				24ECBB5C226685E5003FF1A4 /* Extra */,
 				243EB086225307E5003C525B /* Grammar */,
 				243EB05A225304A2003C525B /* Cuadruplos.swift */,
 				24B02119225C1CAC00DACB9F /* Funciones.swift */,
@@ -133,6 +140,7 @@
 				243EB09D22530845003C525B /* Heart.swift */,
 				243EB082225306F6003C525B /* Variables.swift */,
 				24C19BE6225D7BAB00F77700 /* Memoria.swift */,
+				24ECB8CA2266A66800EAAF39 /* Extras.swift */,
 			);
 			path = Compiler;
 			sourceTree = "<group>";
@@ -204,6 +212,15 @@
 				24BDBD50222E0B0C009FA75D /* Info.plist */,
 			);
 			path = PreciseV5;
+			sourceTree = "<group>";
+		};
+		24ECBB5C226685E5003FF1A4 /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				24ECBB60226685F8003FF1A4 /* DiccEx.swift */,
+				24ECBB62226685FE003FF1A4 /* StringEx.swift */,
+			);
+			path = Extra;
 			sourceTree = "<group>";
 		};
 		5709BAD82B5283D565537E3A /* Pods */ = {
@@ -381,6 +398,7 @@
 				24B0211A225C1CAC00DACB9F /* Funciones.swift in Sources */,
 				243EB063225304A2003C525B /* MyBaseListener.swift in Sources */,
 				24C19C13225D878200F77700 /* PreciseV5LexerATN.swift in Sources */,
+				24ECB8CB2266A66800EAAF39 /* Extras.swift in Sources */,
 				243EB065225304A2003C525B /* Stack.swift in Sources */,
 				24C19C11225D878200F77700 /* PreciseV5Listener.swift in Sources */,
 				249C41222252FEBA0059CBE6 /* AppDelegate.swift in Sources */,
@@ -389,7 +407,9 @@
 				243EB09E22530845003C525B /* Heart.swift in Sources */,
 				24C19C10225D878200F77700 /* PreciseV5BaseListener.swift in Sources */,
 				24C19C0B225D878200F77700 /* PreciseV5Lexer.swift in Sources */,
+				24ECBB63226685FE003FF1A4 /* StringEx.swift in Sources */,
 				24C19C12225D878200F77700 /* PreciseV5ParserATN.swift in Sources */,
+				24ECBB61226685F8003FF1A4 /* DiccEx.swift in Sources */,
 				243EB062225304A2003C525B /* Operadores.swift in Sources */,
 				243EB064225304A2003C525B /* Tipos.swift in Sources */,
 			);

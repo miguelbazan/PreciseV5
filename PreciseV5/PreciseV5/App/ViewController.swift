@@ -28,27 +28,20 @@ class ViewController: UIViewController {
         program pepe:
         
         
-        var iJ : int;
         var iR : float;
-        
-        
-
-        function void juan(int hola, int jaime)
-        {
-            var it:int;
-            
-        }
+        var iJ : float;
 
         main(){
 
         iR = 20.5;
+        iJ = 3.2;
 
         }
         end;
 
         """
         
-     setup()
+//     setup()
         
         Heart.shared.runCode(input: input)
         
