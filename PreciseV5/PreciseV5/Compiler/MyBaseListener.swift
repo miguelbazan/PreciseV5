@@ -185,7 +185,54 @@ class PreciseV5Walker: PreciseV5BaseListener {
     override func exitVarcte(_ ctx: PreciseV5Parser.VarcteContext) {
         wizard.exitVarcte(ctx)
     }
+    
+    override func enterPnCond(_ ctx: PreciseV5Parser.PnCondContext) {
+        wizard.enterPnCond(ctx)
+    }
+  
+    override func exitPnCond(_ ctx: PreciseV5Parser.PnCondContext) {
+        wizard.exitPnCond(ctx)
+    }
+    
+    override func enterPnEq(_ ctx: PreciseV5Parser.PnEqContext) {
+        wizard.enterPnEq(ctx)
+    }
+  
+    override func exitPnEq(_ ctx: PreciseV5Parser.PnEqContext) {
+        wizard.exitPnEq(ctx)
+    }
+    
+    override func enterPnSA(_ ctx: PreciseV5Parser.PnSAContext) {
+        wizard.enterPnSA(ctx)
+    }
    
+    override func exitPnSA(_ ctx: PreciseV5Parser.PnSAContext) {
+        wizard.exitPnSA(ctx)
+    }
+    
+    override func enterPnDM(_ ctx: PreciseV5Parser.PnDMContext) {
+        wizard.enterPnDM(ctx)
+    }
+    
+    override func exitPnDM(_ ctx: PreciseV5Parser.PnDMContext) {
+        wizard.exitPnDM(ctx)
+    }
+   
+    override func enterPnIfWh(_ ctx: PreciseV5Parser.PnIfWhContext) {
+        wizard.enterPnIfWh(ctx)
+    }
+   
+    override func exitPnIfWh(_ ctx: PreciseV5Parser.PnIfWhContext) {
+        wizard.exitPnIfWh(ctx)
+    }
+    
+    override func enterPnElse(_ ctx: PreciseV5Parser.PnElseContext) {
+        wizard.enterPnElse(ctx)
+    }
+   
+    override func exitPnElse(_ ctx: PreciseV5Parser.PnElseContext) {
+        wizard.exitPnElse(ctx)
+    }
     
     
     

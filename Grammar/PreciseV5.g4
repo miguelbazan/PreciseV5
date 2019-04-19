@@ -1,11 +1,11 @@
 grammar PreciseV5;
 
 /*
- * Parser Rules
+* Parser Rules
 
 
- */
-  
+*/
+
 
 preciseV5       : PROGRAM ID COLON declare*? function* body END SCOLON ;
 declare         : VAR ID array? COLON type SCOLON ;
@@ -13,24 +13,31 @@ type            : INT | FLOAT | BOOL | CHAR ;
 array           : LBRA varcte RBRA ;
 body            : MAIN LPAREN RPAREN LCBRA estatuto* RCBRA ;
 estatuto        : condicion | ciclo | escritura | lectura | asignacion | declare ;
-expresionbool   : expresion ((AND | OR) expresion)* ;
-function        : FUNCTION (type | VOID) ID LPAREN (type ID (COMA type ID)*)? RPAREN LCBRA (estatuto (SCOLON estatuto)*)? RCBRA ;
-expresion       : exp ((GTHAN | LTHAN | GRTHAN | LSTHAN | NOTEQUAL | EQUAL) exp)? ;
-exp             : termino ((PLUS | MIN) termino )? ;
-termino         : factor ((DIV | MUL) factor)? ;
+expresionbool   : expresion (pnCond (AND | OR) expresion)* ;
+function        : FUNCTION (type | VOID) ID LPAREN (type ID (COMA type ID)*)? RPAREN LCBRA ((estatuto)*)? (RETURN expresionbool SCOLON)? RCBRA ;
+expresion       : exp (pnEq (GTHAN | LTHAN | GRTHAN | LSTHAN | NOTEQUAL | EQUAL) exp)? ;
+exp             : termino (pnSA (PLUS | MIN) termino )? ;
+termino         : factor (pnDM(DIV | MUL) factor)? ;
 factor          : LPAREN expresion RPAREN | varcte ;
-condicion       : IF LPAREN expresionbool RPAREN LCBRA estatuto* RCBRA (ELSE LCBRA estatuto* RCBRA)? ;
-ciclo           : WHILE LPAREN expresionbool RPAREN LCBRA estatuto* RCBRA ;
-escritura       : PRINT LPAREN (expresionbool | varcte)+ RPAREN SCOLON ; 
+condicion       : IF LPAREN expresionbool RPAREN pnIfWh LCBRA estatuto* RCBRA (ELSE pnElse LCBRA estatuto* RCBRA)? SCOLON ;
+ciclo           : WHILE LPAREN expresionbool RPAREN pnIfWh LCBRA estatuto* RCBRA SCOLON ;
+escritura       : PRINT LPAREN (TEXT | expresionbool) RPAREN SCOLON ;
 lectura         : READ LPAREN ID (array)? RPAREN SCOLON ;
 asignacion      : ID (array)? ASSIGN expresionbool SCOLON;
-varcte          : ID (LBRA exp RBRA (LPAREN exp RPAREN | COMA exp)*)?| CTEINT | CTEFLOAT | CTEBOOL | CTECHAR ;
+varcte          : ID (LBRA exp RBRA (LPAREN exp RPAREN | COMA exp)*)?| CTEINT | CTEFLOAT | 'true' | 'false' | CTECHAR ;
+
+pnCond          : ;
+pnEq            : ;
+pnSA            : ;
+pnDM            : ;
+pnIfWh          : ;
+pnElse          : ;
 
 
 
- /*
- * Lexer Rules
- */
+/*
+* Lexer Rules
+*/
 
 // Fragementos de letras para distinguir entre mayusuclas y minusculas
 
@@ -65,9 +72,10 @@ fragment DIGIT      : ('0'..'9');
 fragment LOWERCASE  : [a-z] ;
 fragment UPPERCASE  : [A-Z] ;
 fragment APOS       : ('\'');
+fragment QUOTE      : ('"') ;
 
 
- /* PALABRAS RESERVADAS */
+/* PALABRAS RESERVADAS */
 
 PROGRAM             : P R O G R A M ;
 VAR                 : V A R ;
@@ -84,6 +92,7 @@ FLOAT               : F L O A T ;
 CHAR                : C H A R ;
 BOOL                : B O O L ;
 VOID                : V O I D ;
+RETURN              : R E T U R N ;
 
 
 /* TOKENS */
@@ -119,25 +128,10 @@ FALSE               : F A L S E;
 
 CTEINT              : DIGIT+ ;
 CTEFLOAT            : DIGIT+ DOT DIGIT+;
-CTEBOOL             : (TRUE|FALSE) ;
 CTECHAR             : APOS [A-Za-z0-9_] APOS;
+TEXT                : QUOTE .*? QUOTE;
+
 
 ID                  : [A-Za-z][A-Za-z0-9_]*;
 
 BSPACE              : [ \t\n\r]+ -> skip ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -249,6 +249,84 @@ open class PreciseV5BaseListener: PreciseV5Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	open func enterPnCond(_ ctx: PreciseV5Parser.PnCondContext) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	open func exitPnCond(_ ctx: PreciseV5Parser.PnCondContext) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	open func enterPnEq(_ ctx: PreciseV5Parser.PnEqContext) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	open func exitPnEq(_ ctx: PreciseV5Parser.PnEqContext) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	open func enterPnSA(_ ctx: PreciseV5Parser.PnSAContext) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	open func exitPnSA(_ ctx: PreciseV5Parser.PnSAContext) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	open func enterPnDM(_ ctx: PreciseV5Parser.PnDMContext) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	open func exitPnDM(_ ctx: PreciseV5Parser.PnDMContext) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	open func enterPnIfWh(_ ctx: PreciseV5Parser.PnIfWhContext) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	open func exitPnIfWh(_ ctx: PreciseV5Parser.PnIfWhContext) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	open func enterPnElse(_ ctx: PreciseV5Parser.PnElseContext) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	open func exitPnElse(_ ctx: PreciseV5Parser.PnElseContext) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	open func enterEveryRule(_ ctx: ParserRuleContext) { }
 	/**
 	 * {@inheritDoc}

@@ -27,16 +27,38 @@ class ViewController: UIViewController {
         let input = """
         program pepe:
         
+        var A : int;
+        var B : int;
+        var C : int;
+        var D : int;
+        var E : int;
+        var f : int;
+        var g : int;
+        var h : int;
+        var i : int;
+        var j : int;
         
-        var iR : float;
-        var iJ : float;
-
         main(){
+                A = 5;
+        B = 6;
+        C = 7;
+        D = 1;
 
-        iR = 20.5;
-        iJ = 3.2;
-
+        if (A+B>D){
+            if (A<B){
+                A = 0;
+                B = B + D;
+            }
+            else {
+                C = A + B;
+            }
         }
+        else {
+            A = B + C;
+        }
+            D = B + A * C;
+        }
+
         end;
 
         """
