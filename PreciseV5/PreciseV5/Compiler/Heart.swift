@@ -15,21 +15,29 @@ class Heart {
 //    Singleton
     static let shared = Heart()
     
+//    Cubo semantico
     var semanticCube : JSON!
     
+//    Estructura de datos para los cuadruplos de tipo Cuadruplos
     var cuadruplos = [Cuadruplos]()
-    
+//    Variable para detener la ejecucion de la compilacion si hay error en alguna entrada o salida de gramatica
     var stop = false
-    
+//    Variable para saber si el scope es global o "local"
     var currentFunction = "global"
-    
+//    Variable para definir cuando el scope es global
     let globalFunc = "global"
-    
+//  Directorio de procedimientos de tipo Funcion
     var functions = [String: Funcion]()
     
+//    Outputs para la maquina virtual
+    var outputs: [String] = []
+    
+//    Array de los errores de la maquina virtual
+    var errors: [String] = []
     
     
-    //   MARK: - Constantes memoria
+    
+    //   MARK: - Constantes memoria en ejecucion
     
     let constantBaseAddress = 5000
     let globalBaseAddress = 10000
@@ -43,7 +51,7 @@ class Heart {
     var DirectorioP = [Variables]()
     //     IMPORTANTE!!!!!!!
     
-    // Brincos pendientes
+    // Estructura de datos para los saltos pendientes en cuadruplos
     var jumps = Stack<Int>()
     var globalJumps = Stack<Int>()
     
@@ -53,7 +61,7 @@ class Heart {
     // pTypes
     var types = Stack<Tipo>()
     
-    /// PilaOperandos
+    /// Pila Operandos
     var operands = Stack<Int>()
     
     
@@ -69,24 +77,19 @@ class Heart {
     var tempLocalMemory: Memory!
     var tempTempMemory: Memory!
     
-    
-    
-    
-//    var viewCont = ViewController!
-
-    
+    //    MARK: - Funcion para contar los cuadruplos
     var quadsCount: Int {
         get {
             return cuadruplos.count
         }
     }
-    
+    //    MARK: - Funcion para revisar si estamos en global o local
     var isGlobal: Bool {
         get {
             return currentFunction == globalFunc
         }
     }
-    
+    //    MARK: - Funcion para inicializar el cubo semantico
         init(){
         if let path = Bundle.main.path(forResource: "CuboSemantico", ofType: "json") {
             do {
@@ -101,6 +104,8 @@ class Heart {
             
         }
     }
+    
+    //    MARK: - Funcion para inicializar memoria y limpiar todas las estructuras de datos
     func clearModels() {
         cuadruplos.removeAll()
         
@@ -120,13 +125,13 @@ class Heart {
         tempMemory = Memory(baseAddress: tempBaseAdress)
         tempGlobalMemory = Memory(baseAddress: tempGlobalAddress)
         
-//        outputs.removeAll()
-//        errors.removeAll()
+        outputs.removeAll()
+        errors.removeAll()
         
         functions[currentFunction] = Funcion(returnType: .Void, address: -1, quadAddress: -1)
     }
     
-    
+    //    MARK: - Funcion para inicializar el Lexer y Parser de ANTLR4
     func runCode(input: String){
         
         clearModels()
@@ -145,10 +150,10 @@ class Heart {
     
 
     
-    // MARK: - Manage Quadruples
+    // MARK: - Manejo de cuadruplos
     
-    /// Create a Quad and add it to the quadruples array
-    ///
+    
+    
     /// - Parameters:
     ///   - op: Operator
     ///   - opL: Left Operand
@@ -156,7 +161,7 @@ class Heart {
     ///   - temp: Temp var \ Sometimes direction for some instructions
     
     
-    // MARk: - Semantic cube functions
+    // MARk: - Funciones del cubo semantico
     
     func getResultType(_ left: Type, _ right: Type, _ oper: Operator) -> Tipo {
         let rawType = semanticCube[String(left.rawValue)][String(right.rawValue)][String(oper.rawValue)].int!
@@ -169,46 +174,44 @@ class Heart {
         cuadruplos.append(quad)
     }
     
+    //    MARK: - Funcion para mostrar el compile error y detener la compilacion
 //    func compileError(_ message: String) {
-//        editorVC.showCompileError(message)
+//        ViewController.showCompileError(message)
 //        stop = true
 //    }
     
-    // MARK: - Manage Stacks
+    // MARK: - Funcion para agregar memoria y tipo a sus respectivas estructuras d datos
     func addOperandToStacks(address: Int, type: Tipo) {
         operands.push(address)
         types.push(type)
     }
-    
+    //    MARK: - Funcion que retorna el operando y el tipo de las pilas respectivas
     func getOperandAndType() -> (operand: Int, type: Tipo) {
         let operand = operands.pop()!
         let type = types.pop()!
         return (operand, type)
     }
     
-    // MARK: - Semantic cube functions
+    // MARK: - Funcion que retorna la respuesta del cubo semantico
     
     func getResultType(_ left: Tipo, _ right: Tipo, _ oper: Operator) -> Tipo {
         let rawType = semanticCube[String(left.rawValue)][String(right.rawValue)][String(oper.rawValue)].int!
         return Tipo(rawValue: rawType)!
     }
     
-    /// Meter en el cuadruplo la direccion del GoTo faltante que se sabe mas abajo en la compilacion
-    ///
-    /// - Parametros:
-    ///   - quadToFill: index of the quad, in quadruples array, to fill with the direction
-    ///   - direction: direction to fill to the quad
+  
+    //    MARK: - Funcion para llenar el GoTo faltante en los cuadruplos
     
     private func fillGoTo(_ quadToFill: Int, with direction: Int) {
         cuadruplos[quadToFill].temp = direction
     }
     
-    // MARK: - CTX functions
+    // MARK: - Funciones para traer el texto explicito del ctx
     
     func getTexto(from node: TerminalNode ) -> String {
         return (node.getSymbol()?.getText())!
     }
-    
+    //    MARK: - Funcion para retornar el tipo de dato segun lo obtenido en el token
     func getType(from ctx: PreciseV5Parser.TypeContext) -> Tipo {
         
         if ctx.INT() != nil {
@@ -223,11 +226,11 @@ class Heart {
         
         return .Void
     }
-    
+    //    MARK: - Funcion para retornar si el tipo de la funcion es void o tiene return
     func getReturnType(from functionCtx: PreciseV5Parser.FunctionContext) -> Tipo {
         return (functionCtx.VOID() != nil) ? .Void : getType(from: functionCtx.type().last!)
     }
-    
+    //    MARK: - Funcion que retorna la direccion de memoria de temporales
     func getTempAddress(forType type: Tipo) -> Int {
         if isGlobal {
             return tempGlobalMemory.save(type)
@@ -235,7 +238,7 @@ class Heart {
             return tempMemory.save(type)
         }
     }
-    
+    //    MARK: - Funcion que agrega a los cuadruplos el respectivo cuadruplo
     func addExprQuad(){
         let (opR, typeR) = getOperandAndType()
         let (opL, typeL) = getOperandAndType()
@@ -253,14 +256,15 @@ class Heart {
     }
 }
 
-// MARK: - Memory handling functions
+    // MARK: - Seccion de funciones para le manejo de la memoria
 extension Heart {
     
+    //    MARK: - Funcion para poner en ceros la memoria local y temporal
     func resetLocalMemory() {
         localMemory.reset()
         tempMemory.reset()
     }
-    
+    //    MARK: -
     func getParamType(from funcName: String, paramNum: Int) -> Tipo {
         if let type = functions[funcName]?.paramsSecuence[paramNum-1] {
             return type
@@ -276,7 +280,7 @@ extension Heart {
     }
     
 
-    
+    //    MARK: - Funcion para verificar las variables existan en el directorio de procedimientos y si no existe retorna error
     func getVariable(withId id: String) -> Variables? {
         if let idVar = functions[currentFunction]?.variables[id] {
             return idVar
@@ -290,6 +294,7 @@ extension Heart {
     
     }
     
+    //    MARK: - Funcion utilizada para imprimir los cuadruplos
     func printQuads() {
 
         func formatNumber(_ string: String) -> String{
@@ -334,14 +339,13 @@ extension Heart {
         }
     }
 }
-
+    //MARK: - Funciones ctx, entrada y salida a las producciones de la gramatica
 extension Heart {
     
     
     func enterPreciseV5(_ ctx:PreciseV5Parser.PreciseV5Context){
-        
-
         if stop {return}
+        
     }
     
     func exitPreciseV5(_ ctx:PreciseV5Parser.PreciseV5Context){
@@ -353,19 +357,14 @@ extension Heart {
             fillGoTo(globalJumps, with: quadsCount)
         }
         addQuad(.End, nil, nil, nil)
-        
-        
-//        print(functions)
         printQuads()
     }
     
     func enterDeclare(_ ctx:PreciseV5Parser.DeclareContext){
-    
         if stop {return}
     }
     
     func exitDeclare(_ ctx:PreciseV5Parser.DeclareContext){
-        
         if stop {return}
         
         let nombreVariable = getTexto(from: ctx.ID()!)
@@ -425,13 +424,10 @@ extension Heart {
     
     func enterExpresionbool(_ ctx:PreciseV5Parser.ExpresionboolContext){
         if stop {return}
-        
-        print("Entro a EXPRESIONN BOOL")
     }
     
     func exitExpresionbool(_ ctx:PreciseV5Parser.ExpresionboolContext){
         if stop {return}
-    
     }
     
     func enterFunction(_ ctx:PreciseV5Parser.FunctionContext){
@@ -448,8 +444,6 @@ extension Heart {
     
     func exitExpresion(_ ctx:PreciseV5Parser.ExpresionContext){
         if stop {return}
-        
-        print("Entro a EXPRESION")
         
         if let operador = operators.top(){
             
@@ -488,8 +482,6 @@ extension Heart {
     
     func exitTermino(_ ctx:PreciseV5Parser.TerminoContext){
         if stop {return}
-        
-        print("Entro a termino")
         
         if let operador = operators.top(){
             
@@ -581,7 +573,6 @@ extension Heart {
     }
     
     func enterLectura(_ ctx:PreciseV5Parser.LecturaContext){
-        
         if stop {return}
     }
     
@@ -591,12 +582,9 @@ extension Heart {
     
     func enterAsignacion(_ ctx:PreciseV5Parser.AsignacionContext){
         if stop {return}
-        
-    
     }
     
     func exitAsignacion(_ ctx:PreciseV5Parser.AsignacionContext){
-        
         if stop {return}
         
         if ctx.ID() != nil {
@@ -612,8 +600,7 @@ extension Heart {
         let (resultValue,resultType) = getOperandAndType()
         let (idValue,idType) = getOperandAndType()
         
-        
-//        Cubo semantico
+//        Preguntar al cubo semantico si se puede o no
         let assignType = getResultType(idType, resultType, .Assign)
         if assignType == .Error{
             print("No se puede asignar la expresion de tipo '\(resultType)'")
@@ -622,8 +609,6 @@ extension Heart {
             addQuad(.Assign, idValue, nil, resultValue)
             print("se agrego")
         }
-        
-        
     }
     
     func enterVarcte(_ ctx:PreciseV5Parser.VarcteContext){
@@ -698,7 +683,6 @@ extension Heart {
     func exitPnCond(_ ctx: PreciseV5Parser.PnCondContext) {
         if stop {return}
     }
-    
 
     func enterPnEq(_ ctx: PreciseV5Parser.PnEqContext) {
         if stop {return}
@@ -735,8 +719,6 @@ extension Heart {
         let operador : Operator = parent.PLUS() != nil ? .Sum : .Sub
         
         operators.push(operador)
-        
-
     }
    
     func exitPnSA(_ ctx: PreciseV5Parser.PnSAContext) {
@@ -759,7 +741,6 @@ extension Heart {
         if stop {return}
     }
     
-    
     func enterPnIfWh(_ ctx: PreciseV5Parser.PnIfWhContext) {
         if stop {return}
         
@@ -772,7 +753,6 @@ extension Heart {
             jumps.push(quadsCount)
             addQuad(.GoToFalse, resultado, nil, nil)
         }
-        
     }
   
     func exitPnIfWh(_ ctx: PreciseV5Parser.PnIfWhContext) {
@@ -786,7 +766,6 @@ extension Heart {
         let goto = jumps.pop()
         jumps.push(quadsCount - 1)
         fillGoTo(goto!, with: quadsCount)
-    
     }
     
     func exitPnElse(_ ctx: PreciseV5Parser.PnElseContext) {
@@ -799,7 +778,7 @@ extension Heart {
     
     
     
-    // MARK: - Nodes and rules
+    
     func enterEveryRule(_ ctx:ParserRuleContext){
         
     }
@@ -816,8 +795,3 @@ extension Heart {
         
     }
 }
-
-
-
-
-
