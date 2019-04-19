@@ -35,6 +35,10 @@ class Heart {
 //    Array de los errores de la maquina virtual
     var errors: [String] = []
     
+    var funcAddressHistory = Stack<Int>()
+    
+    var comingFuncAddress = Stack<Int>()
+    
     
     
     //   MARK: - Constantes memoria en ejecucion
@@ -47,9 +51,8 @@ class Heart {
     
     
     
-// DIRECTORIO DE PROCECIMIENTOS DONDE GUARDAMOS TODO NO SE TE OLVIDE WEY
+    // DIRECTORIO DE PROCECIMIENTOS DONDE GUARDAMOS TODO NO SE TE OLVIDE WEY
     var DirectorioP = [Variables]()
-    //     IMPORTANTE!!!!!!!
     
     // Estructura de datos para los saltos pendientes en cuadruplos
     var jumps = Stack<Int>()
@@ -63,6 +66,12 @@ class Heart {
     
     /// Pila Operandos
     var operands = Stack<Int>()
+    
+    
+    // MARK : - Estructuras para la maquina virtual
+    var localsHistory = Stack<Memory>()
+    var tempsHistory = Stack<Memory>()
+    var callsHistory = Stack<Int>()
     
     
     
@@ -264,12 +273,41 @@ extension Heart {
         localMemory.reset()
         tempMemory.reset()
     }
-    //    MARK: -
+    
     func getParamType(from funcName: String, paramNum: Int) -> Tipo {
         if let type = functions[funcName]?.paramsSecuence[paramNum-1] {
             return type
         }
         return .Error
+    }
+    func getFuncName(of function: Funcion) -> String {
+        return functions.someKey(forValue: function)!
+    }
+    
+    func getValue(from address: Int) -> (value: Any, type: Tipo) {
+        
+        switch address {
+        case ..<0:
+            let (arrayAddress,_) = getValue(from: -address)
+            return getValue(from: arrayAddress as! Int)
+        case ..<constantBaseAddress:
+            let function = getFuncWithAddress(address)
+            let funcName = getFuncName(of: function)
+            let globalReturnVar = functions[globalFunc]?.variables[funcName]
+            let globalReturnAddress = (globalReturnVar?.address)!
+            
+            return getValue(from: globalReturnAddress)
+        case ..<globalBaseAddress:
+            return constantMemory.getValue(from: address)
+        case ..<localBaseAddress:
+            return globalMemory.getValue(from: address)
+        case ..<tempBaseAdress:
+            return localMemory.getValue(from: address)
+        case ..<tempGlobalAddress:
+            return tempMemory.getValue(from: address)
+        default:
+            return tempGlobalMemory.getValue(from: address)
+        }
     }
     
     func getFuncAddress(with funcName: String) -> Int {
@@ -277,6 +315,31 @@ extension Heart {
             return address
         }
         return -1
+    }
+    
+    func save(_ value: Any, in address: Int) {
+        switch address {
+        case ..<0:
+            let (arrayAddress,_) = getValue(from: -address)
+            //            return getValue(from: arrayAddress as! Address)
+            save(value, in: arrayAddress as! Int)
+        case ..<constantBaseAddress:
+            let function = getFuncWithAddress(address)
+            let funcName = getFuncName(of: function)
+            let globalReturnVar = functions[funcName]?.variables[funcName]
+            let globalReturnAddress = (globalReturnVar?.address)!
+            save(value, in: globalReturnAddress)
+        case ..<globalBaseAddress:
+            constantMemory.save(value, in: address)
+        case ..<localBaseAddress:
+            globalMemory.save(value, in: address)
+        case ..<tempBaseAdress:
+            localMemory.save(value, in: address)
+        case ..<tempGlobalAddress:
+            tempMemory.save(value, in: address)
+        default:
+            tempGlobalMemory.save(value, in: address)
+        }
     }
     
 
