@@ -11,7 +11,7 @@ import Foundation
 
 struct Memory {
     
-    // MARK: - Constantes
+    // MARK: - Constantes de memoria 
     private let intBase = 0
     private let floatBase = 1000
     private let charBase = 2000
@@ -27,7 +27,7 @@ struct Memory {
     
     private var baseAddress = 0
     
-    // MARK: - Get Variables
+    // MARK: - Funciones para traer las variables
     private var intStartAddress : Int {
         get {
             return baseAddress + intBase
@@ -54,13 +54,12 @@ struct Memory {
         }
     }
     
-    // MARK: - Init
+
     init(baseAddress: Int){
         self.baseAddress = baseAddress
     }
     
-    // MARK: - Custom functions
-    
+
     mutating func save(_ value: Any, in address: Int) {
         switch address {
         case ..<floatStartAddress:
@@ -100,7 +99,7 @@ struct Memory {
         bools.removeAll()
         strings.removeAll()
     }
-    
+    //    MARK: - Funcion para traer el valor respectivo
     func getValue(from address: Int) -> (value: Any, type: Tipo) {
         switch address {
         case ..<floatStartAddress:
@@ -116,6 +115,7 @@ struct Memory {
         }
     }
     
+    //    MARK: - Funciones para guardar en memoria
     mutating func save(int: Int?) -> Int {
         ints.append(int)
         return intStartAddress + ints.count - 1
@@ -141,8 +141,8 @@ struct Memory {
         return stringStartAddress + strings.count - 1
     }
     
-    // MARK: Find functions
-    // Only for constants table
+    // MARK: Funciones para encontrar la memoria
+    
     
     func find(bool: Bool) -> Int? {
         if let index = bools.firstIndex(of: bool) {
@@ -184,12 +184,12 @@ struct Memory {
         return nil
     }
     
-    
-    
-    
-    
-    
-    
-    
+    mutating func allocateArrays(){
+        for _ in 1...1000 {
+            ints.append(nil)
+            floats.append(nil)
+            bools.append(nil)
+            chars.append(nil)
+        }
+    }
 }
-
