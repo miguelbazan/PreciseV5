@@ -193,9 +193,9 @@ class Heart {
         return Tipo(rawValue: rawType)!
     }
     
-    /// Fill the quad with direction
+    /// Meter en el cuadruplo la direccion del GoTo faltante que se sabe mas abajo en la compilacion
     ///
-    /// - Parameters:
+    /// - Parametros:
     ///   - quadToFill: index of the quad, in quadruples array, to fill with the direction
     ///   - direction: direction to fill to the quad
     
@@ -347,7 +347,15 @@ extension Heart {
     func exitPreciseV5(_ ctx:PreciseV5Parser.PreciseV5Context){
         
         if stop {return}
-        print(functions)
+        
+        if let globalJumps = globalJumps.pop(){
+            
+            fillGoTo(globalJumps, with: quadsCount)
+        }
+        addQuad(.End, nil, nil, nil)
+        
+        
+//        print(functions)
         printQuads()
     }
     
@@ -402,6 +410,13 @@ extension Heart {
     
     func enterEstatuto(_ ctx:PreciseV5Parser.EstatutoContext){
         if stop {return}
+        
+        if currentFunction == globalFunc{
+            if let globalJump = globalJumps.pop(){
+                fillGoTo(globalJump, with: quadsCount)
+            }
+        }
+        
     }
     
     func exitEstatuto(_ ctx:PreciseV5Parser.EstatutoContext){
@@ -410,10 +425,13 @@ extension Heart {
     
     func enterExpresionbool(_ ctx:PreciseV5Parser.ExpresionboolContext){
         if stop {return}
+        
+        print("Entro a EXPRESIONN BOOL")
     }
     
     func exitExpresionbool(_ ctx:PreciseV5Parser.ExpresionboolContext){
         if stop {return}
+    
     }
     
     func enterFunction(_ ctx:PreciseV5Parser.FunctionContext){
@@ -430,6 +448,19 @@ extension Heart {
     
     func exitExpresion(_ ctx:PreciseV5Parser.ExpresionContext){
         if stop {return}
+        
+        print("Entro a EXPRESION")
+        
+        if let operador = operators.top(){
+            
+            switch operador{
+                
+            case .And, .Or:
+                addExprQuad()
+            default:
+                break
+            }
+        }
     }
     
     func enterExp(_ ctx:PreciseV5Parser.ExpContext){
@@ -438,6 +469,17 @@ extension Heart {
     
     func exitExp(_ ctx:PreciseV5Parser.ExpContext){
         if stop {return}
+        
+        if let operador = operators.top(){
+            
+            switch operador{
+                
+            case .LessThan, .GreaterThan, .Equal, .NotEqual:
+                addExprQuad()
+            default:
+                break
+            }
+        }
     }
     
     func enterTermino(_ ctx:PreciseV5Parser.TerminoContext){
@@ -446,14 +488,47 @@ extension Heart {
     
     func exitTermino(_ ctx:PreciseV5Parser.TerminoContext){
         if stop {return}
+        
+        print("Entro a termino")
+        
+        if let operador = operators.top(){
+            
+            switch operador{
+                
+            case .Sum, .Sub:
+                addExprQuad()
+            default:
+                break
+            }
+        }
     }
     
     func enterFactor(_ ctx:PreciseV5Parser.FactorContext){
         if stop {return}
+        
+        if ctx.LPAREN() != nil{
+            
+            operators.push(.FalseBottomMark)
+        }
     }
     
     func exitFactor(_ ctx:PreciseV5Parser.FactorContext){
         if stop {return}
+        
+        if ctx.RPAREN() != nil{
+            _ = operators.pop()
+        }
+        
+        if let operador = operators.top(){
+            
+            switch operador{
+                
+            case .Mult, .Div:
+                addExprQuad()
+            default:
+                break
+            }
+        }
     }
     
     func enterCondicion(_ ctx:PreciseV5Parser.CondicionContext){
@@ -462,14 +537,24 @@ extension Heart {
     
     func exitCondicion(_ ctx:PreciseV5Parser.CondicionContext){
         if stop {return}
+        
+        let goto = jumps.pop()
+        fillGoTo(goto!, with: quadsCount)
     }
     
     func enterCiclo(_ ctx:PreciseV5Parser.CicloContext){
         if stop {return}
+        
+        jumps.push(quadsCount)
     }
     
     func exitCiclo(_ ctx:PreciseV5Parser.CicloContext){
         if stop {return}
+        
+        let goto = jumps.pop()
+        let dir = jumps.pop()
+        addQuad(.GoTo, nil, nil, dir)
+        fillGoTo(goto!, with: quadsCount)
     }
     
     func enterEscritura(_ ctx:PreciseV5Parser.EscrituraContext){
@@ -478,6 +563,21 @@ extension Heart {
     
     func exitEscritura(_ ctx:PreciseV5Parser.EscrituraContext){
         if stop {return}
+        
+        if let textNode = ctx.TEXT() {
+            let sentence = getTexto(from: textNode)
+            
+            if let sentenceAddress = constantMemory.find(string: sentence){
+                addOperandToStacks(address: sentenceAddress, type: .String)
+                addQuad(.Print, sentenceAddress, nil, nil)
+            } else {
+                let sentenceAddress = constantMemory.save(string: sentence)
+                addQuad(.Print, sentenceAddress, nil, nil)
+            }
+        } else {
+            let (operando, _) = getOperandAndType()
+            addQuad(.Print, operando, nil, nil)
+        }
     }
     
     func enterLectura(_ ctx:PreciseV5Parser.LecturaContext){
@@ -492,8 +592,7 @@ extension Heart {
     func enterAsignacion(_ ctx:PreciseV5Parser.AsignacionContext){
         if stop {return}
         
-        
-        
+    
     }
     
     func exitAsignacion(_ ctx:PreciseV5Parser.AsignacionContext){
@@ -519,7 +618,8 @@ extension Heart {
         if assignType == .Error{
             print("No se puede asignar la expresion de tipo '\(resultType)'")
         } else{
-            addQuad(.Assign, resultValue, nil, idValue)
+//            Estos esta al revez para que si jale, pero debe ser .Assign, resultValue, nil, idValue
+            addQuad(.Assign, idValue, nil, resultValue)
             print("se agrego")
         }
         
@@ -529,8 +629,14 @@ extension Heart {
     func enterVarcte(_ ctx:PreciseV5Parser.VarcteContext){
         if stop {return}
         
+        if let idNode = ctx.ID() {
+            let id = getTexto(from: idNode)
+            guard let idVar = getVariable(withId: id) else {return}
+            addOperandToStacks(address: idVar.address, type: idVar.tipo)
+        }
+        
         if let floatNode = ctx.CTEFLOAT(){
-            var float = Float(getTexto(from: floatNode))!
+            let float = Float(getTexto(from: floatNode))!
             
             if let floatAddress = constantMemory.find(float: float){
                 addOperandToStacks(address: floatAddress, type: .Float)
@@ -538,15 +644,154 @@ extension Heart {
                 let floatAddress = constantMemory.save(float: float)
                 addOperandToStacks(address: floatAddress, type: .Float)
             }
+        } else if let intNode = ctx.CTEINT(){
+            
+            let int = Int(getTexto(from: intNode))!
+            
+            if let intAddress = constantMemory.find(int: int){
+                addOperandToStacks(address: intAddress, type: .Int)
+            }else{
+                let intAddress = constantMemory.save(int: int)
+                addOperandToStacks(address: intAddress, type: .Int)
+            }
+        } else if let charNode = ctx.CTECHAR() {
+            
+            let charText = getTexto(from: charNode)
+            let char = Character(charText[1])
+            
+            if let charAddress = constantMemory.find(char: char){
+                addOperandToStacks(address: charAddress, type: .Char)
+            } else {
+                let charAddress = constantMemory.save(char: char)
+                addOperandToStacks(address: charAddress, type: .Char)
+            }
         }
-        
-        
+//            else {
+//
+//            let boolText = ctx.getText()
+//
+//            let bool = boolText == "true" ? true : false
+//
+//            if let boolAddres = constantMemory.find(bool: bool){
+//                addOperandToStacks(address: boolAddres, type: .Bool)
+//            } else {
+//                let boolAddress = constantMemory.save(bool: bool)
+//                addOperandToStacks(address: boolAddress, type: .Bool)
+//            }
+//            }
     }
     
     func exitVarcte(_ ctx:PreciseV5Parser.VarcteContext){
         if stop {return}
     }
     
+    func enterPnCond(_ ctx: PreciseV5Parser.PnCondContext) {
+        if stop {return}
+        
+        let parent = ctx.parent as! PreciseV5Parser.ExpresionboolContext
+        
+        let operador: Operator = parent.AND() != nil ? .And : .Or
+        
+        operators.push(operador)
+    }
+  
+    func exitPnCond(_ ctx: PreciseV5Parser.PnCondContext) {
+        if stop {return}
+    }
+    
+
+    func enterPnEq(_ ctx: PreciseV5Parser.PnEqContext) {
+        if stop {return}
+        
+        let parent = ctx.parent as! PreciseV5Parser.ExpresionContext
+        let operador : Operator
+        
+        if parent.LTHAN() != nil{
+            operador = .LessThan
+        } else if parent.GTHAN() != nil{
+            operador = .GreaterThan
+        } else if parent.EQUAL() != nil {
+            operador = .Equal
+        } else{
+            operador = .NotEqual
+        }
+        
+        operators.push(operador)
+        
+    }
+   
+    func exitPnEq(_ ctx: PreciseV5Parser.PnEqContext) {
+        if stop {return}
+        
+    }
+    
+    func enterPnSA(_ ctx: PreciseV5Parser.PnSAContext) {
+        if stop {return}
+        
+        print("Entro pnSA")
+        
+        let parent = ctx.parent as! PreciseV5Parser.ExpContext
+        
+        let operador : Operator = parent.PLUS() != nil ? .Sum : .Sub
+        
+        operators.push(operador)
+        
+
+    }
+   
+    func exitPnSA(_ ctx: PreciseV5Parser.PnSAContext) {
+        if stop {return}
+    }
+    
+   
+    func enterPnDM(_ ctx: PreciseV5Parser.PnDMContext) {
+        if stop {return}
+        
+        let parent = ctx.parent as! PreciseV5Parser.TerminoContext
+        
+        let operador : Operator = parent.MUL() != nil ? .Mult : .Div
+        
+        operators.push(operador)
+        
+    }
+    
+    func exitPnDM(_ ctx: PreciseV5Parser.PnDMContext) {
+        if stop {return}
+    }
+    
+    
+    func enterPnIfWh(_ ctx: PreciseV5Parser.PnIfWhContext) {
+        if stop {return}
+        
+        let expresionType = types.pop()
+        
+        if (expresionType != .Bool){
+            print("Type mismatch")
+        }else {
+            let resultado = operands.pop()
+            jumps.push(quadsCount)
+            addQuad(.GoToFalse, resultado, nil, nil)
+        }
+        
+    }
+  
+    func exitPnIfWh(_ ctx: PreciseV5Parser.PnIfWhContext) {
+        if stop {return}
+    }
+
+    func enterPnElse(_ ctx: PreciseV5Parser.PnElseContext) {
+        if stop {return}
+        
+        addQuad(.GoTo, nil, nil, nil)
+        let goto = jumps.pop()
+        jumps.push(quadsCount - 1)
+        fillGoTo(goto!, with: quadsCount)
+    
+    }
+    
+    func exitPnElse(_ ctx: PreciseV5Parser.PnElseContext) {
+        if stop {return}
+    }
     
     
     

@@ -222,4 +222,76 @@ public protocol PreciseV5Listener: ParseTreeListener {
 	   - ctx: the parse tree
 	 */
 	func exitVarcte(_ ctx: PreciseV5Parser.VarcteContext)
+	/**
+	 * Enter a parse tree produced by {@link PreciseV5Parser#pnCond}.
+	 - Parameters:
+	   - ctx: the parse tree
+	 */
+	func enterPnCond(_ ctx: PreciseV5Parser.PnCondContext)
+	/**
+	 * Exit a parse tree produced by {@link PreciseV5Parser#pnCond}.
+	 - Parameters:
+	   - ctx: the parse tree
+	 */
+	func exitPnCond(_ ctx: PreciseV5Parser.PnCondContext)
+	/**
+	 * Enter a parse tree produced by {@link PreciseV5Parser#pnEq}.
+	 - Parameters:
+	   - ctx: the parse tree
+	 */
+	func enterPnEq(_ ctx: PreciseV5Parser.PnEqContext)
+	/**
+	 * Exit a parse tree produced by {@link PreciseV5Parser#pnEq}.
+	 - Parameters:
+	   - ctx: the parse tree
+	 */
+	func exitPnEq(_ ctx: PreciseV5Parser.PnEqContext)
+	/**
+	 * Enter a parse tree produced by {@link PreciseV5Parser#pnSA}.
+	 - Parameters:
+	   - ctx: the parse tree
+	 */
+	func enterPnSA(_ ctx: PreciseV5Parser.PnSAContext)
+	/**
+	 * Exit a parse tree produced by {@link PreciseV5Parser#pnSA}.
+	 - Parameters:
+	   - ctx: the parse tree
+	 */
+	func exitPnSA(_ ctx: PreciseV5Parser.PnSAContext)
+	/**
+	 * Enter a parse tree produced by {@link PreciseV5Parser#pnDM}.
+	 - Parameters:
+	   - ctx: the parse tree
+	 */
+	func enterPnDM(_ ctx: PreciseV5Parser.PnDMContext)
+	/**
+	 * Exit a parse tree produced by {@link PreciseV5Parser#pnDM}.
+	 - Parameters:
+	   - ctx: the parse tree
+	 */
+	func exitPnDM(_ ctx: PreciseV5Parser.PnDMContext)
+	/**
+	 * Enter a parse tree produced by {@link PreciseV5Parser#pnIfWh}.
+	 - Parameters:
+	   - ctx: the parse tree
+	 */
+	func enterPnIfWh(_ ctx: PreciseV5Parser.PnIfWhContext)
+	/**
+	 * Exit a parse tree produced by {@link PreciseV5Parser#pnIfWh}.
+	 - Parameters:
+	   - ctx: the parse tree
+	 */
+	func exitPnIfWh(_ ctx: PreciseV5Parser.PnIfWhContext)
+	/**
+	 * Enter a parse tree produced by {@link PreciseV5Parser#pnElse}.
+	 - Parameters:
+	   - ctx: the parse tree
+	 */
+	func enterPnElse(_ ctx: PreciseV5Parser.PnElseContext)
+	/**
+	 * Exit a parse tree produced by {@link PreciseV5Parser#pnElse}.
+	 - Parameters:
+	   - ctx: the parse tree
+	 */
+	func exitPnElse(_ ctx: PreciseV5Parser.PnElseContext)
 }
