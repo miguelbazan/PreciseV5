@@ -249,6 +249,19 @@ open class PreciseV5BaseListener: PreciseV5Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	open func enterLlamada(_ ctx: PreciseV5Parser.LlamadaContext) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	open func exitLlamada(_ ctx: PreciseV5Parser.LlamadaContext) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	open func enterPnCond(_ ctx: PreciseV5Parser.PnCondContext) { }
 	/**
 	 * {@inheritDoc}
@@ -321,6 +334,32 @@ open class PreciseV5BaseListener: PreciseV5Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	open func exitPnElse(_ ctx: PreciseV5Parser.PnElseContext) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	open func enterPnLlamadaL(_ ctx: PreciseV5Parser.PnLlamadaLContext) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	open func exitPnLlamadaL(_ ctx: PreciseV5Parser.PnLlamadaLContext) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	open func enterPnLlamadaN(_ ctx: PreciseV5Parser.PnLlamadaNContext) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	open func exitPnLlamadaN(_ ctx: PreciseV5Parser.PnLlamadaNContext) { }
 
 	/**
 	 * {@inheritDoc}

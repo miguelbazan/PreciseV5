@@ -19,46 +19,47 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-//        print(semanticCube["1"]["1"]["1"])
-        
-        
         let input = """
+
         program pepe:
-        
-        var A : int;
-        var B : int;
-        var C : int;
-        var D : int;
-        var E : int;
-        var f : int;
-        var g : int;
-        var h : int;
-        var i : int;
-        var j : int;
-        
+
+        var a : int;
+
+        function int fibo(int n){
+
+        var ans : int;
+
+        if (n<1 || n==1)
+        {
+        ans = n;
+        } else{
+        var fibo : int;
+        fibo = 1;
+        var fiboprev : int;
+        fiboprev = 1;
+        var cont : int;
+
+        cont = 2;
+
+        while (cont < n)
+        {
+            var temp : int;
+            temp = fibo;
+            fibo = fibo + fiboprev;
+            fiboprev = temp;
+            cont = cont + 1;
+        };
+        ans = fibo;
+        };
+        return ans;
+        }
+
         main(){
-                A = 5;
-        B = 6;
-        C = 7;
-        D = 1;
 
-        if (A+B>D){
-            if (A<B){
-                A = 0;
-                B = B + D;
-            }
-            else {
-                C = A + B;
-            }
-        }
-        else {
-            A = B + C;
-        }
-            D = B + A * C;
-        }
+        a = fibo(5);
+        print(a);
 
+        }
         end;
 
         """

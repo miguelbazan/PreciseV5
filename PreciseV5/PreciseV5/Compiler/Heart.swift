@@ -39,7 +39,9 @@ class Heart {
     
     var comingFuncAddress = Stack<Int>()
     
+//    NBumero de argumentos en la funcion
     
+    var paramNum = 0
     
     //   MARK: - Constantes memoria en ejecucion
     
@@ -456,6 +458,16 @@ extension Heart {
     
     func enterArray(_ ctx:PreciseV5Parser.ArrayContext){
         if stop {return}
+        
+        
+//        let parent = ctx.parent as! PreciseV5Parser.VarcteContext
+//
+//        let id = getTexto(from: parent.ID()!)
+//        print(id)
+//
+//        guard let _ = getVariable(withId: id) else {return}
+//
+//        operators.push(.FalseBottomMark)
     }
     
     func exitArray(_ ctx:PreciseV5Parser.ArrayContext){
@@ -495,10 +507,96 @@ extension Heart {
     
     func enterFunction(_ ctx:PreciseV5Parser.FunctionContext){
         if stop {return}
+        
+        globalJumps.push(quadsCount)
+        
+        addQuad(.GoTo, nil, nil, nil)
+        
+        let nombreFuncion = getTexto(from: ctx.ID().first!)
+        if let parent = ctx.parent as? PreciseV5Parser.EstatutoContext {
+            if (parent.parent as? PreciseV5Parser.FunctionContext != nil){
+                print("No se puede declarar la funcion '\(nombreFuncion)' dentro de otra funcion")
+            }
+        }
+        
+        resetLocalMemory()
+        
+        
+        if functions.keys.contains(nombreFuncion){
+            print("La funcion '\(nombreFuncion) ya existe")
+            return
+        }
+        
+        let returnType = getReturnType(from: ctx)
+        let sAddress = functions.count
+        currentFunction = nombreFuncion
+        
+//        Meter al directorio de procedimientos el nombre de la funcion
+        functions[currentFunction] = Funcion(returnType: returnType, address: sAddress, quadAddress: quadsCount)
+        
+        let returnVarAddress = globalMemory.save(returnType)
+        let returnVar = Variables(returnType, returnVarAddress)
+//        Guardar el resultado del return en el dirproc
+        functions[globalFunc]?.variables[nombreFuncion] = returnVar
+        
+//        REvision de los parametros de la funcion
+        
+        var id = ctx.ID()
+        id.remove(at: 0)
+        let type = ctx.type()
+        
+        let paramID = id.map({getTexto(from: $0)})
+        
+        let paramType = type.map({getType(from: $0)})
+        
+        for i in 0..<paramID.count {
+            
+            let pID = paramID[i]
+            let pType = paramType[i]
+            
+//            REvisar si existen las variables dentro del contexto
+            
+            if (functions[currentFunction]?.variables.keys.contains(pID))!{
+                print("La variable '\(pID)' ya existe.")
+                return
+            }
+            
+            let vAddress = localMemory.save(pType)
+            
+            functions[nombreFuncion]?.variables[pID] = Variables(pType,vAddress,nil,i)
+            
+            functions[nombreFuncion]?.paramsSecuence.append(pType)
+        }
     }
     
     func exitFunction(_ ctx:PreciseV5Parser.FunctionContext){
         if stop {return}
+        
+        
+        let nombreFuncion = getTexto(from: ctx.ID().first!)
+        
+        let funcionType = getReturnType(from: ctx)
+        
+        if ctx.RETURN() == nil {
+            
+            if funcionType != .Void{
+                print("La funcion '\(nombreFuncion)' necesita Return")
+            }
+        } else {
+            if funcionType != .Void{
+                let (opVal,opType) = getOperandAndType()
+                
+                if opType == funcionType{
+                    addQuad(.Return, opVal, nil, nil)
+                } else {
+                    print("El retorno debe de ser del mismo tipo que la funcion '\(nombreFuncion)'")
+                }
+            }
+            print("La funcion '\(nombreFuncion) es de tipo Void y no se necesita Return")
+        }
+        
+        currentFunction = globalFunc
+        addQuad(.EndProc, nil, nil, nil)
     }
     
     func enterExpresion(_ ctx:PreciseV5Parser.ExpresionContext){
@@ -518,6 +616,87 @@ extension Heart {
                 break
             }
         }
+    }
+    
+    func enterLlamada(_ ctx: PreciseV5Parser.LlamadaContext) {
+        if stop {return}
+        
+        let nombreFuncion = getTexto(from: ctx.ID()!)
+        
+        if !functions.keys.contains(nombreFuncion) {
+            print("La funcion '\(nombreFuncion)' no existe!")
+            return
+        }
+        
+        let returnType = (functions[nombreFuncion]?.returnType)!
+        
+        if (ctx.parent as? PreciseV5Parser.EstatutoContext != nil){
+            if returnType != .Void{
+                print("La funcion '\(nombreFuncion)' tiene un Return y no puede ser llamada")
+            }
+        } else {
+            if returnType == .Void{
+                print("La funcion '\(nombreFuncion)' no puede ser llamada")
+            }
+        }
+        
+        let address = getFuncAddress(with: nombreFuncion)
+        addQuad(.ERA, address, nil, nil)
+        
+        paramNum = 1
+        operators.push(.FalseBottomMark)
+
+    }
+   
+    func exitLlamada(_ ctx: PreciseV5Parser.LlamadaContext) {
+        if stop {return}
+        
+        _ = operators.pop()
+        
+        paramNum = 0
+        
+        let nombreFuncion = getTexto(from: ctx.ID()!)
+        let funcionAddress = getFuncAddress(with: nombreFuncion)
+        
+        addQuad(.GoSub, funcionAddress, nil, nil)
+        
+        let returnType = (functions[nombreFuncion]?.returnType)!
+        if returnType != .Void{
+            let tAddress = getTempAddress(forType: returnType)
+            addQuad(.Assign, funcionAddress, nil, tAddress)
+            addOperandToStacks(address: tAddress, type: returnType)
+        }
+        
+    }
+    
+    func enterPnLlamadaL(_ ctx: PreciseV5Parser.PnLlamadaLContext) {
+        if stop {return}
+        
+        let (pValue,pType) = getOperandAndType()
+        let parent = ctx.parent as! PreciseV5Parser.LlamadaContext
+        
+        let nombreFuncion = getTexto(from: parent.ID()!)
+        
+        let pype = getParamType(from: nombreFuncion, paramNum: paramNum)
+        if pType != pype{
+            print("La funcion '\(nombreFuncion)' es de tipo '\(pType)' y debe ser de tipo '\(pype)'")
+        }
+        addQuad(.Param, pValue, nil, paramNum)
+        
+    }
+    
+    func exitPnLlamadaL(_ ctx: PreciseV5Parser.PnLlamadaLContext) {
+        if stop {return}
+    }
+    
+    func enterPnLlamadaN(_ ctx: PreciseV5Parser.PnLlamadaNContext) {
+        if stop {return}
+        
+        paramNum += 1
+    }
+    
+    func exitPnLlamadaN(_ ctx: PreciseV5Parser.PnLlamadaNContext) {
+        if stop {return}
     }
     
     func enterExp(_ ctx:PreciseV5Parser.ExpContext){
@@ -565,6 +744,8 @@ extension Heart {
             
             operators.push(.FalseBottomMark)
         }
+        
+        
     }
     
     func exitFactor(_ ctx:PreciseV5Parser.FactorContext){
@@ -583,6 +764,11 @@ extension Heart {
             default:
                 break
             }
+        }
+        if let idNode = ctx.ID() {
+            let id = getTexto(from: idNode)
+            guard let idVar = getVariable(withId: id) else {return}
+            addOperandToStacks(address: idVar.address, type: idVar.tipo)
         }
     }
     
@@ -677,12 +863,6 @@ extension Heart {
     func enterVarcte(_ ctx:PreciseV5Parser.VarcteContext){
         if stop {return}
         
-        if let idNode = ctx.ID() {
-            let id = getTexto(from: idNode)
-            guard let idVar = getVariable(withId: id) else {return}
-            addOperandToStacks(address: idVar.address, type: idVar.tipo)
-        }
-        
         if let floatNode = ctx.CTEFLOAT(){
             let float = Float(getTexto(from: floatNode))!
             
@@ -738,7 +918,7 @@ extension Heart {
         
         let parent = ctx.parent as! PreciseV5Parser.ExpresionboolContext
         
-        let operador: Operator = parent.AND() != nil ? .And : .Or
+        let operador: Operator = parent.AND().first != nil ? .And : .Or
         
         operators.push(operador)
     }
