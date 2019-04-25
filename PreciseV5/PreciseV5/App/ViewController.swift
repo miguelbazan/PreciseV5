@@ -23,55 +23,62 @@ class ViewController: UIViewController {
 
         program pepe:
 
-        var a : int;
-
-        function int fibo(int n){
-
-        var ans : int;
-
-        if (n<1 || n==1)
-        {
-        ans = n;
-        } else{
-        var fibo : int;
-        fibo = 1;
-        var fiboprev : int;
-        fiboprev = 1;
-        var cont : int;
-
-        cont = 2;
-
-        while (cont < n)
-        {
-            var temp : int;
-            temp = fibo;
-            fibo = fibo + fiboprev;
-            fiboprev = temp;
-            cont = cont + 1;
+        var a[6]:int;
+        var tam: int;
+        a[0] = 4;
+        a[1] = 3;
+        a[2] = 1;
+        a[3] = 9;
+        a[4] = 0;
+        a[5] = 3;
+        tam = 6;
+        
+        function void sort(){
+        var i: Int;
+        i = 1;
+        while(i < tam) {
+        var j:int;
+        j = 0;
+        while(j < tam - 1) {
+            if (a[j] > a[j+1]) {
+                var temp:int;
+                temp = a[j];
+                a[j] = a[j+1];
+                a[j+1] = temp;
+            };
+            j = j+1;
         };
-        ans = fibo;
+        i = i+1;
         };
-        return ans;
         }
+        function void printArray(){
+        var cont:Int;
+        cont = 0;
+        while(cont < tam) {
+        print(a[cont]);
+        cont = cont + 1;
+        };
+        }
+        
+        
 
         main(){
+        
+        printArray();
+        sort();
+        printArray();
 
-        a = fibo(5);
-        print(a);
 
         }
-        end;
 
+        end;
         """
         
 //     setup()
         
         Heart.shared.runCode(input: input)
         
-
     }
-    
-    
     
     func setup(){
         

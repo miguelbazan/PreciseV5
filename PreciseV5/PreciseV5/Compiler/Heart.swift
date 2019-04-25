@@ -440,10 +440,28 @@ extension Heart {
         
         let varType = getType(from: ctx.type()!)
         
-        let varAddress = isGlobal ? globalMemory.save(varType) : localMemory.save(varType)
-        let variable = Variables(varType, varAddress)
-        functions[currentFunction]?.variables[nombreVariable] = variable
-        print("jalo")
+        if let arrSizeNode = ctx.CTEINT(){
+            
+            let arrSize = Int(getTexto(from: arrSizeNode))!
+            
+            let varAddress = isGlobal ? globalMemory.save(varType) : localMemory.save(varType)
+            
+            for _ in 1..<arrSize {
+                _ = isGlobal ? globalMemory.save(varType) : localMemory.save(varType)
+            }
+            
+            let vari = Variables(varType, varAddress, arrSize)
+            functions[currentFunction]?.variables[nombreVariable] = vari
+        } else {
+            let varAddress = isGlobal ? globalMemory.save(varType) : localMemory.save(varType)
+            let variable = Variables(varType, varAddress)
+            functions[currentFunction]?.variables[nombreVariable] = variable
+            print("jalo")
+        }
+        
+        
+        
+        
 //        print(functions)
         
     }
@@ -459,19 +477,38 @@ extension Heart {
     func enterArray(_ ctx:PreciseV5Parser.ArrayContext){
         if stop {return}
         
+        let id = getTexto(from: ctx.ID()!)
+        guard let _ = getVariable(withId: id) else {return}
         
-//        let parent = ctx.parent as! PreciseV5Parser.VarcteContext
-//
-//        let id = getTexto(from: parent.ID()!)
-//        print(id)
-//
-//        guard let _ = getVariable(withId: id) else {return}
-//
-//        operators.push(.FalseBottomMark)
+        operators.push(.FalseBottomMark)
     }
     
     func exitArray(_ ctx:PreciseV5Parser.ArrayContext){
         if stop {return}
+        
+        let id = getTexto(from: ctx.ID()!)
+        
+        let tipo = types.top()!
+        if tipo != .Int{
+            print("El tipo '\(tipo)' tiene que ser de tipo Int.")
+            return
+        }
+        
+        let rValue = operands.top()!
+        let vari = getVariable(withId: id)!
+        addQuad(.Verify, rValue, nil, vari.arrSize!)
+        
+        let sAddres = vari.address!
+        let (index,_) = getOperandAndType()
+        
+        let rIndexAddress = getTempAddress(forType: .Int)
+        
+        let arrBaseAddress = constantMemory.save(int: sAddres)
+        
+        addQuad(.Sum, index, arrBaseAddress, rIndexAddress)
+        addOperandToStacks(address: -rIndexAddress, type: vari.tipo)
+        
+        _ = operators.pop() // Para sacar el FalseBottomMark
     }
     
     func enterBody(_ ctx:PreciseV5Parser.BodyContext){
@@ -841,8 +878,8 @@ extension Heart {
             
             guard let variable = getVariable(withId: id) else {return}
             addOperandToStacks(address: variable.address, type: variable.tipo)
-            print(operands)
-            print(types)
+//            print(operands)
+//            print(types)
             
         }
         
@@ -954,8 +991,6 @@ extension Heart {
     
     func enterPnSA(_ ctx: PreciseV5Parser.PnSAContext) {
         if stop {return}
-        
-        print("Entro pnSA")
         
         let parent = ctx.parent as! PreciseV5Parser.ExpContext
         
