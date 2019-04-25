@@ -19,58 +19,66 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-//        print(semanticCube["1"]["1"]["1"])
-        
-        
         let input = """
-        program pepe:
-        
-        var A : int;
-        var B : int;
-        var C : int;
-        var D : int;
-        var E : int;
-        var f : int;
-        var g : int;
-        var h : int;
-        var i : int;
-        var j : int;
-        
-        main(){
-                A = 5;
-        B = 6;
-        C = 7;
-        D = 1;
 
-        if (A+B>D){
-            if (A<B){
-                A = 0;
-                B = B + D;
-            }
-            else {
-                C = A + B;
-            }
+        program pepe:
+
+        var a[6]:int;
+        var tam: int;
+        a[0] = 4;
+        a[1] = 3;
+        a[2] = 1;
+        a[3] = 9;
+        a[4] = 0;
+        a[5] = 3;
+        tam = 6;
+        
+        function void sort(){
+        var i: Int;
+        i = 1;
+        while(i < tam) {
+        var j:int;
+        j = 0;
+        while(j < tam - 1) {
+            if (a[j] > a[j+1]) {
+                var temp:int;
+                temp = a[j];
+                a[j] = a[j+1];
+                a[j+1] = temp;
+            };
+            j = j+1;
+        };
+        i = i+1;
+        };
         }
-        else {
-            A = B + C;
+        function void printArray(){
+        var cont:Int;
+        cont = 0;
+        while(cont < tam) {
+        print(a[cont]);
+        cont = cont + 1;
+        };
         }
-            D = B + A * C;
+        
+        
+
+        main(){
+        
+        printArray();
+        sort();
+        printArray();
+
+
         }
 
         end;
-
         """
         
 //     setup()
         
         Heart.shared.runCode(input: input)
         
-
     }
-    
-    
     
     func setup(){
         

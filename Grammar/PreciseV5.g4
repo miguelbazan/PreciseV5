@@ -7,24 +7,28 @@ grammar PreciseV5;
 */
 
 
-preciseV5       : PROGRAM ID COLON declare*? function* body END SCOLON ;
-declare         : VAR ID array? COLON type SCOLON ;
+preciseV5       : PROGRAM ID COLON estatuto*? function* body END SCOLON ;
+declare         : VAR ID (LBRA CTEINT RBRA)? COLON type SCOLON ;
 type            : INT | FLOAT | BOOL | CHAR ;
-array           : LBRA varcte RBRA ;
+array           : ID LBRA exp RBRA ;
 body            : MAIN LPAREN RPAREN LCBRA estatuto* RCBRA ;
-estatuto        : condicion | ciclo | escritura | lectura | asignacion | declare ;
+estatuto        : condicion | ciclo | escritura | lectura | asignacion | declare | (llamada SCOLON) ;
 expresionbool   : expresion (pnCond (AND | OR) expresion)* ;
-function        : FUNCTION (type | VOID) ID LPAREN (type ID (COMA type ID)*)? RPAREN LCBRA ((estatuto)*)? (RETURN expresionbool SCOLON)? RCBRA ;
+function        : FUNCTION (type | VOID) ID LPAREN (type ID (COMA type ID)*)? RPAREN LCBRA estatuto* (RETURN expresionbool SCOLON)? RCBRA ;
 expresion       : exp (pnEq (GTHAN | LTHAN | GRTHAN | LSTHAN | NOTEQUAL | EQUAL) exp)? ;
 exp             : termino (pnSA (PLUS | MIN) termino )? ;
 termino         : factor (pnDM(DIV | MUL) factor)? ;
-factor          : LPAREN expresion RPAREN | varcte ;
+factor          : LPAREN expresion RPAREN | varcte | array | ID | (llamada SCOLON) ;
 condicion       : IF LPAREN expresionbool RPAREN pnIfWh LCBRA estatuto* RCBRA (ELSE pnElse LCBRA estatuto* RCBRA)? SCOLON ;
 ciclo           : WHILE LPAREN expresionbool RPAREN pnIfWh LCBRA estatuto* RCBRA SCOLON ;
 escritura       : PRINT LPAREN (TEXT | expresionbool) RPAREN SCOLON ;
 lectura         : READ LPAREN ID (array)? RPAREN SCOLON ;
-asignacion      : ID (array)? ASSIGN expresionbool SCOLON;
-varcte          : ID (LBRA exp RBRA (LPAREN exp RPAREN | COMA exp)*)?| CTEINT | CTEFLOAT | 'true' | 'false' | CTECHAR ;
+asignacion      : (ID | array) ASSIGN expresionbool SCOLON;
+varcte          : CTEINT | CTEFLOAT | CTECHAR | 'true' | 'false' ;
+llamada         : ID LPAREN (expresionbool pnLlamadaL (COMA pnLlamadaN expresionbool pnLlamadaL)*)? RPAREN;
+
+
+
 
 pnCond          : ;
 pnEq            : ;
@@ -32,6 +36,8 @@ pnSA            : ;
 pnDM            : ;
 pnIfWh          : ;
 pnElse          : ;
+pnLlamadaL      : ;
+pnLlamadaN      : ;
 
 
 

@@ -16,7 +16,7 @@ struct Variables {
     var arrSize: Int?
     var paramIndex: Int?
     
-    init(_ tipo: Tipo,_ address: Int,_ arrSize: Int? = nil,_ paramIndex: Int? = nil){
+    init(_ tipo: Tipo,_ address: Int,_ arrSize: Int? = nil, _ paramIndex: Int? = nil){
         
         self.tipo = tipo
         self.address = address

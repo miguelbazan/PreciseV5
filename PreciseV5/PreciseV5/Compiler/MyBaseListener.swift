@@ -234,9 +234,31 @@ class PreciseV5Walker: PreciseV5BaseListener {
         wizard.exitPnElse(ctx)
     }
     
+    override func enterLlamada(_ ctx: PreciseV5Parser.LlamadaContext) {
+        wizard.enterLlamada(ctx)
+        
+    }
+    
+    override func exitLlamada(_ ctx: PreciseV5Parser.LlamadaContext) {
+        wizard.exitLlamada(ctx)
+    }
+    
+    override func enterPnLlamadaL(_ ctx: PreciseV5Parser.PnLlamadaLContext) {
+        wizard.enterPnLlamadaL(ctx)
+    }
+   
+    override func exitPnLlamadaL(_ ctx: PreciseV5Parser.PnLlamadaLContext) {
+        wizard.exitPnLlamadaL(ctx)
+    }
     
     
-    
+    override func enterPnLlamadaN(_ ctx: PreciseV5Parser.PnLlamadaNContext) {
+        wizard.enterPnLlamadaN(ctx)
+    }
+  
+    override func exitPnLlamadaN(_ ctx: PreciseV5Parser.PnLlamadaNContext) {
+        wizard.exitPnLlamadaN(ctx)
+    }
     
     
     

@@ -223,6 +223,18 @@ public protocol PreciseV5Listener: ParseTreeListener {
 	 */
 	func exitVarcte(_ ctx: PreciseV5Parser.VarcteContext)
 	/**
+	 * Enter a parse tree produced by {@link PreciseV5Parser#llamada}.
+	 - Parameters:
+	   - ctx: the parse tree
+	 */
+	func enterLlamada(_ ctx: PreciseV5Parser.LlamadaContext)
+	/**
+	 * Exit a parse tree produced by {@link PreciseV5Parser#llamada}.
+	 - Parameters:
+	   - ctx: the parse tree
+	 */
+	func exitLlamada(_ ctx: PreciseV5Parser.LlamadaContext)
+	/**
 	 * Enter a parse tree produced by {@link PreciseV5Parser#pnCond}.
 	 - Parameters:
 	   - ctx: the parse tree
@@ -294,4 +306,28 @@ public protocol PreciseV5Listener: ParseTreeListener {
 	   - ctx: the parse tree
 	 */
 	func exitPnElse(_ ctx: PreciseV5Parser.PnElseContext)
+	/**
+	 * Enter a parse tree produced by {@link PreciseV5Parser#pnLlamadaL}.
+	 - Parameters:
+	   - ctx: the parse tree
+	 */
+	func enterPnLlamadaL(_ ctx: PreciseV5Parser.PnLlamadaLContext)
+	/**
+	 * Exit a parse tree produced by {@link PreciseV5Parser#pnLlamadaL}.
+	 - Parameters:
+	   - ctx: the parse tree
+	 */
+	func exitPnLlamadaL(_ ctx: PreciseV5Parser.PnLlamadaLContext)
+	/**
+	 * Enter a parse tree produced by {@link PreciseV5Parser#pnLlamadaN}.
+	 - Parameters:
+	   - ctx: the parse tree
+	 */
+	func enterPnLlamadaN(_ ctx: PreciseV5Parser.PnLlamadaNContext)
+	/**
+	 * Exit a parse tree produced by {@link PreciseV5Parser#pnLlamadaN}.
+	 - Parameters:
+	   - ctx: the parse tree
+	 */
+	func exitPnLlamadaN(_ ctx: PreciseV5Parser.PnLlamadaNContext)
 }
