@@ -22,52 +22,19 @@ class ViewController: UIViewController {
         let input = """
 
         program pepe:
-
-        var a[6]:int;
-        var tam: int;
-        a[0] = 4;
-        a[1] = 3;
-        a[2] = 1;
-        a[3] = 9;
-        a[4] = 0;
-        a[5] = 3;
-        tam = 6;
-        
-        function void sort(){
-        var i: Int;
-        i = 1;
-        while(i < tam) {
-        var j:int;
-        j = 0;
-        while(j < tam - 1) {
-            if (a[j] > a[j+1]) {
-                var temp:int;
-                temp = a[j];
-                a[j] = a[j+1];
-                a[j+1] = temp;
-            };
-            j = j+1;
-        };
-        i = i+1;
-        };
-        }
-        function void printArray(){
-        var cont:Int;
-        cont = 0;
-        while(cont < tam) {
-        print(a[cont]);
-        cont = cont + 1;
-        };
-        }
+        var i: int;
+        var j: int;
+        var k: int;
         
         
 
         main(){
         
-        printArray();
-        sort();
-        printArray();
+        i = 2;
+        j = 8;
 
+        k = i + j;
+        print(k);
 
         }
 
@@ -96,6 +63,14 @@ class ViewController: UIViewController {
         }
     }
     
+//    func showResults(results: [String], error: Bool) {
+////        consoleTextView.textColor = error ? .textError : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+//
+//        var text = ""
+//        for result in results {
+//            text += (result + "\n")
+//        }
+//    }
     
   
     

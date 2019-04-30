@@ -339,14 +339,14 @@ extension Heart{
         output(result)
     }
     
-//    func verify(leftAddress: Int, tempAddress tempVal: Int, quadIndex: inout Int) {
-//        let (leftVal, _) = getValue(from: leftAddress)
-//
-//        if (leftVal as! Int) >= tempVal {
-//            error("Error: Index in array is out of bounds")
-//            end(quadIndex: &quadIndex)
-//        }
-//    }
+    func verify(leftAddress: Int, tempAddress tempVal: Int, quadIndex: inout Int) {
+        let (leftVal, _) = getValue(from: leftAddress)
+
+        if (leftVal as! Int) >= tempVal {
+            print("Error: Index in array is out of bounds")
+            end(quadIndex: &quadIndex)
+        }
+    }
     
     func returnOp(leftAddress val: Int){
         let funcName = getCurrentFuncName()
@@ -358,10 +358,10 @@ extension Heart{
         save(returnVal, in: globalReturnAddress)
     }
     
-//    func end(quadIndex: inout Int) {
-//        quadIndex = quadsCount
-//        sendResultToEditorVC()
-//    }
+    func end(quadIndex: inout Int) {
+        quadIndex = quadsCount
+        sendResult()
+    }
     
     
     func Maquina(){
@@ -414,7 +414,7 @@ extension Heart{
             case .Print:
                 printOp(leftAddress: cuad.operandLeft!)
             case .Verify:                                   // FALTA PONER AQUI
-                break
+                 verify(leftAddress: cuad.operandLeft!, tempAddress: cuad.temp!, quadIndex: &Index)
             case .Return:
                 returnOp(leftAddress: cuad.operandLeft!)
             case .End:
@@ -430,13 +430,15 @@ extension Heart{
     // MARK: - Funciones base de la maquina virtual
     extension Heart{
         
-        //    func sendResultToEditorVC() {
-        //        if errors.isEmpty {
-        //            editorVC.showResults(results: outputs, error: false)
-        //        } else {
-        //            editorVC.showResults(results: errors, error: true)
-        //        }
-        //    }
+            func sendResult() {
+                if errors.isEmpty {
+//                    vController.showResults(results: outputs, error: false)
+                    print(outputs)
+                } else {
+//                    vController.showResults(results: errors, error: true)
+                    print(errors)
+                }
+            }
         
         //    MARK: - Funcion que agrega al stack de outputs
         func output(_ output: String) {
