@@ -52,6 +52,10 @@ class Heart {
     let tempGlobalAddress = 25000
     
     
+//    Instancia del View Controller
+    
+//    let vController : ViewController!
+    
     
     // DIRECTORIO DE PROCECIMIENTOS DONDE GUARDAMOS TODO NO SE TE OLVIDE WEY
     var DirectorioP = [Variables]()
@@ -146,6 +150,7 @@ class Heart {
     func runCode(input: String){
         
         clearModels()
+//        vController = view
         do {
             let lexer = PreciseV5Lexer(ANTLRInputStream(input))
             let tokens = CommonTokenStream(lexer)
@@ -423,6 +428,7 @@ extension Heart {
         }
         addQuad(.End, nil, nil, nil)
         printQuads()
+        Maquina()
     }
     
     func enterDeclare(_ ctx:PreciseV5Parser.DeclareContext){

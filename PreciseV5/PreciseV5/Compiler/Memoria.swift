@@ -53,7 +53,6 @@ struct Memory {
             return baseAddress + stringBase
         }
     }
-    
 
     init(baseAddress: Int){
         self.baseAddress = baseAddress
