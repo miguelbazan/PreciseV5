@@ -1716,6 +1716,7 @@ open class PreciseV5Parser: Parser {
 		 	case .T__0:fallthrough
 		 	case .T__1:fallthrough
 		 	case .LPAREN:fallthrough
+		 	case .MIN:fallthrough
 		 	case .CTEINT:fallthrough
 		 	case .CTEFLOAT:fallthrough
 		 	case .CTECHAR:fallthrough
@@ -1913,6 +1914,10 @@ open class PreciseV5Parser: Parser {
 				return getToken(PreciseV5Parser.Tokens.CTEINT.rawValue, 0)
 			}
 			open
+			func MIN() -> TerminalNode? {
+				return getToken(PreciseV5Parser.Tokens.MIN.rawValue, 0)
+			}
+			open
 			func CTEFLOAT() -> TerminalNode? {
 				return getToken(PreciseV5Parser.Tokens.CTEFLOAT.rawValue, 0)
 			}
@@ -1946,24 +1951,69 @@ open class PreciseV5Parser: Parser {
 	    		try! exitRule()
 	    }
 		do {
-		 	try enterOuterAlt(_localctx, 1)
-		 	setState(262)
-		 	_la = try _input.LA(1)
-		 	if (!(//closure
-		 	 { () -> Bool in
-		 	      let testSet: Bool = {  () -> Bool in
-		 	   let testArray: [Int] = [_la, PreciseV5Parser.Tokens.T__0.rawValue,PreciseV5Parser.Tokens.T__1.rawValue,PreciseV5Parser.Tokens.CTEINT.rawValue,PreciseV5Parser.Tokens.CTEFLOAT.rawValue,PreciseV5Parser.Tokens.CTECHAR.rawValue]
-		 	    return  Utils.testBitLeftShiftArray(testArray, 0)
-		 	}()
-		 	      return testSet
-		 	 }())) {
-		 	try _errHandler.recoverInline(self)
-		 	}
-		 	else {
-		 		_errHandler.reportMatch(self)
-		 		try consume()
-		 	}
+		 	setState(273)
+		 	try _errHandler.sync(self)
+		 	switch(try getInterpreter().adaptivePredict(_input,24, _ctx)) {
+		 	case 1:
+		 		try enterOuterAlt(_localctx, 1)
+		 		setState(263)
+		 		try _errHandler.sync(self)
+		 		_la = try _input.LA(1)
+		 		if (//closure
+		 		 { () -> Bool in
+		 		      let testSet: Bool = _la == PreciseV5Parser.Tokens.MIN.rawValue
+		 		      return testSet
+		 		 }()) {
+		 			setState(262)
+		 			try match(PreciseV5Parser.Tokens.MIN.rawValue)
 
+		 		}
+
+		 		setState(265)
+		 		try match(PreciseV5Parser.Tokens.CTEINT.rawValue)
+
+
+		 		break
+		 	case 2:
+		 		try enterOuterAlt(_localctx, 2)
+		 		setState(267)
+		 		try _errHandler.sync(self)
+		 		_la = try _input.LA(1)
+		 		if (//closure
+		 		 { () -> Bool in
+		 		      let testSet: Bool = _la == PreciseV5Parser.Tokens.MIN.rawValue
+		 		      return testSet
+		 		 }()) {
+		 			setState(266)
+		 			try match(PreciseV5Parser.Tokens.MIN.rawValue)
+
+		 		}
+
+		 		setState(269)
+		 		try match(PreciseV5Parser.Tokens.CTEFLOAT.rawValue)
+
+
+		 		break
+		 	case 3:
+		 		try enterOuterAlt(_localctx, 3)
+		 		setState(270)
+		 		try match(PreciseV5Parser.Tokens.CTECHAR.rawValue)
+
+		 		break
+		 	case 4:
+		 		try enterOuterAlt(_localctx, 4)
+		 		setState(271)
+		 		try match(PreciseV5Parser.Tokens.T__0.rawValue)
+
+		 		break
+		 	case 5:
+		 		try enterOuterAlt(_localctx, 5)
+		 		setState(272)
+		 		try match(PreciseV5Parser.Tokens.T__1.rawValue)
+
+		 		break
+		 	default: break
+		 	}
 		}
 		catch ANTLRException.recognition(let re) {
 			_localctx.exception = re
@@ -2046,26 +2096,26 @@ open class PreciseV5Parser: Parser {
 	    }
 		do {
 		 	try enterOuterAlt(_localctx, 1)
-		 	setState(264)
+		 	setState(275)
 		 	try match(PreciseV5Parser.Tokens.ID.rawValue)
-		 	setState(265)
+		 	setState(276)
 		 	try match(PreciseV5Parser.Tokens.LPAREN.rawValue)
-		 	setState(278)
+		 	setState(289)
 		 	try _errHandler.sync(self)
 		 	_la = try _input.LA(1)
 		 	if (//closure
 		 	 { () -> Bool in
 		 	      let testSet: Bool = {  () -> Bool in
-		 	   let testArray: [Int] = [_la, PreciseV5Parser.Tokens.T__0.rawValue,PreciseV5Parser.Tokens.T__1.rawValue,PreciseV5Parser.Tokens.LPAREN.rawValue,PreciseV5Parser.Tokens.CTEINT.rawValue,PreciseV5Parser.Tokens.CTEFLOAT.rawValue,PreciseV5Parser.Tokens.CTECHAR.rawValue,PreciseV5Parser.Tokens.ID.rawValue]
+		 	   let testArray: [Int] = [_la, PreciseV5Parser.Tokens.T__0.rawValue,PreciseV5Parser.Tokens.T__1.rawValue,PreciseV5Parser.Tokens.LPAREN.rawValue,PreciseV5Parser.Tokens.MIN.rawValue,PreciseV5Parser.Tokens.CTEINT.rawValue,PreciseV5Parser.Tokens.CTEFLOAT.rawValue,PreciseV5Parser.Tokens.CTECHAR.rawValue,PreciseV5Parser.Tokens.ID.rawValue]
 		 	    return  Utils.testBitLeftShiftArray(testArray, 0)
 		 	}()
 		 	      return testSet
 		 	 }()) {
-		 		setState(266)
+		 		setState(277)
 		 		try expresionbool()
-		 		setState(267)
+		 		setState(278)
 		 		try pnLlamadaL()
-		 		setState(275)
+		 		setState(286)
 		 		try _errHandler.sync(self)
 		 		_la = try _input.LA(1)
 		 		while (//closure
@@ -2073,24 +2123,24 @@ open class PreciseV5Parser: Parser {
 		 		      let testSet: Bool = _la == PreciseV5Parser.Tokens.COMA.rawValue
 		 		      return testSet
 		 		 }()) {
-		 			setState(268)
+		 			setState(279)
 		 			try match(PreciseV5Parser.Tokens.COMA.rawValue)
-		 			setState(269)
+		 			setState(280)
 		 			try pnLlamadaN()
-		 			setState(270)
+		 			setState(281)
 		 			try expresionbool()
-		 			setState(271)
+		 			setState(282)
 		 			try pnLlamadaL()
 
 
-		 			setState(277)
+		 			setState(288)
 		 			try _errHandler.sync(self)
 		 			_la = try _input.LA(1)
 		 		}
 
 		 	}
 
-		 	setState(280)
+		 	setState(291)
 		 	try match(PreciseV5Parser.Tokens.RPAREN.rawValue)
 
 		}

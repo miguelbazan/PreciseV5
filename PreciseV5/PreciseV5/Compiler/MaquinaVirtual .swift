@@ -27,7 +27,7 @@ extension Heart{
     //    MARK: - Funciones base para operaciones aritmeticas +, -, *, /
     
     func suma(leftAddres: Int, RightAddress: Int, temporal:Int){
-        let (leftVal, leftType) = getValue(from: temporal)
+        let (leftVal, leftType) = getValue(from: leftAddres)
         let (rightVal, rightType) = getValue(from: RightAddress)
         
         if leftType == .Int && rightType == .Int {
@@ -401,7 +401,7 @@ extension Heart{
             case .GoToTrue:
                 break
             case .GoToFalse:
-                goToFalse(leftAddress: cuad.operandLeft!, tempAddress: cuad.operandRight!, quadIndex: &Index)
+                goToFalse(leftAddress: cuad.operandLeft!, tempAddress: cuad.temp!, quadIndex: &Index)
             case .GoSub:
                 goSub(leftAddress: cuad.operandLeft!, quadIndex: &Index)
             case .ERA:
@@ -413,12 +413,12 @@ extension Heart{
                 break
             case .Print:
                 printOp(leftAddress: cuad.operandLeft!)
-            case .Verify:                                   // FALTA PONER AQUI
+            case .Verify:
                  verify(leftAddress: cuad.operandLeft!, tempAddress: cuad.temp!, quadIndex: &Index)
             case .Return:
                 returnOp(leftAddress: cuad.operandLeft!)
             case .End:
-                endProc(quadIndex: &Index)
+                end(quadIndex: &Index)
             case .FalseBottomMark:
                 break
             }
@@ -432,10 +432,10 @@ extension Heart{
         
             func sendResult() {
                 if errors.isEmpty {
-//                    vController.showResults(results: outputs, error: false)
+                    vc.showResults(results: outputs, error: false)
                     print(outputs)
                 } else {
-//                    vController.showResults(results: errors, error: true)
+                    vc.showResults(results: errors, error: true)
                     print(errors)
                 }
             }
@@ -498,7 +498,7 @@ extension Heart{
             let function = getCurrentFunc()
             
             if let funcName = functions.someKey(forValue: function) {
-                print(funcName)
+//                print(funcName)
             }
             
             return getFuncName(of: function)

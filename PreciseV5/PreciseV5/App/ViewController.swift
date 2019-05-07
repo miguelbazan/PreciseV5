@@ -14,65 +14,36 @@ import Antlr4
 class ViewController: UIViewController {
 
     var semanticCube: JSON!
+    var archivo : Archivo!
     
+
+    @IBOutlet weak var codeArchivo: UITextView!
+    @IBOutlet weak var viewCode: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let input = """
-
-        program pepe:
-        var i: int;
-        var j: int;
-        var k: int;
-        
-        
-
-        main(){
-        
-        i = 2;
-        j = 8;
-
-        k = i + j;
-        print(k);
-
-        }
-
-        end;
-        """
-        
-//     setup()
-        
-        Heart.shared.runCode(input: input)
-        
+        title = archivo.nombre
+        codeArchivo.text = archivo.code
+    
     }
     
-    func setup(){
-        
-        if let path = Bundle.main.path(forResource: "CuboSemantico", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
-                let jsonObj = try JSON(data: data)
-                semanticCube = jsonObj["semanticCube"]
-                
-            } catch let error {
-                print("parse error: \(error.localizedDescription)")
-            }
-        } else {
-            print("Invalid filename/path.")
-        }
+    func showCompileError(_ message: String) {
+        let text = "COMPILE ERROR: \n\(message) "
+        viewCode.text = text
     }
     
-//    func showResults(results: [String], error: Bool) {
-////        consoleTextView.textColor = error ? .textError : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-//
-//        var text = ""
-//        for result in results {
-//            text += (result + "\n")
-//        }
-//    }
+    @IBAction func runCodigo(_ sender: Any) {
+        let input = codeArchivo.text!
+        Heart.shared.runCode(input: input, viewc: self)
+    }
     
-  
-    
+    func showResults(results: [String], error: Bool) {
+        var text = ""
+        for result in results {
+            text += (result + "\n")
+        }
+        viewCode.text = text
+    }
 }
 

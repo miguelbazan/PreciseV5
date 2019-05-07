@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24026AF422814012008608D0 /* Archivo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24026AF322814012008608D0 /* Archivo.swift */; };
+		24026AF6228145EC008608D0 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24026AF5228145EC008608D0 /* TableViewController.swift */; };
+		24026AF822814601008608D0 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24026AF722814601008608D0 /* TableViewCell.swift */; };
+		24026AFA22814620008608D0 /* ViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24026AF922814620008608D0 /* ViewControllerNew.swift */; };
+		24026AFC22814790008608D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24026AFB22814790008608D0 /* Main.storyboard */; };
 		243EB05822530470003C525B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243EB05722530470003C525B /* ViewController.swift */; };
 		243EB061225304A2003C525B /* Cuadruplos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243EB05A225304A2003C525B /* Cuadruplos.swift */; };
 		243EB062225304A2003C525B /* Operadores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243EB05B225304A2003C525B /* Operadores.swift */; };
@@ -19,7 +24,6 @@
 		248BE8B8226A59D300467016 /* MaquinaVirtual .swift in Sources */ = {isa = PBXBuildFile; fileRef = 248BE8B7226A59D300467016 /* MaquinaVirtual .swift */; };
 		249C41222252FEBA0059CBE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C41212252FEBA0059CBE6 /* AppDelegate.swift */; };
 		24B0211A225C1CAC00DACB9F /* Funciones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B02119225C1CAC00DACB9F /* Funciones.swift */; };
-		24BDBD4A222E0B0B009FA75D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24BDBD48222E0B0B009FA75D /* Main.storyboard */; };
 		24BDBD4C222E0B0C009FA75D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24BDBD4B222E0B0C009FA75D /* Assets.xcassets */; };
 		24BDBD4F222E0B0C009FA75D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24BDBD4D222E0B0C009FA75D /* LaunchScreen.storyboard */; };
 		24C19BE7225D7BAB00F77700 /* Memoria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C19BE6225D7BAB00F77700 /* Memoria.swift */; };
@@ -36,7 +40,6 @@
 		24C19C13225D878200F77700 /* PreciseV5LexerATN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C19C08225D878200F77700 /* PreciseV5LexerATN.swift */; };
 		24D0C582225321D200B14A59 /* Antlr4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243EB0A722531DFE003C525B /* Antlr4.framework */; };
 		24DA92CC2252FD30000C9AE2 /* CuboSemantico.json in Resources */ = {isa = PBXBuildFile; fileRef = 24DA92CB2252FD30000C9AE2 /* CuboSemantico.json */; };
-		24ECB8CB2266A66800EAAF39 /* Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ECB8CA2266A66800EAAF39 /* Extras.swift */; };
 		24ECBB61226685F8003FF1A4 /* DiccEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ECBB60226685F8003FF1A4 /* DiccEx.swift */; };
 		24ECBB63226685FE003FF1A4 /* StringEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ECBB62226685FE003FF1A4 /* StringEx.swift */; };
 		537432E1D1784BD9854BE8C8 /* Pods_PreciseV5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9820FCBAF3B51927E1B2DC53 /* Pods_PreciseV5.framework */; };
@@ -68,6 +71,11 @@
 
 /* Begin PBXFileReference section */
 		0546606411991CF3CEA3D465 /* Pods-PreciseV5.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PreciseV5.release.xcconfig"; path = "Target Support Files/Pods-PreciseV5/Pods-PreciseV5.release.xcconfig"; sourceTree = "<group>"; };
+		24026AF322814012008608D0 /* Archivo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Archivo.swift; path = "/Users/miguelbazan/Documents/ITC 2014/Semestres/10 Decimo Semestre/Compiladores/PreciseV5/PreciseV5/PreciseV5/PreciseV5/App/Archivo.swift"; sourceTree = "<absolute>"; };
+		24026AF5228145EC008608D0 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		24026AF722814601008608D0 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		24026AF922814620008608D0 /* ViewControllerNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerNew.swift; sourceTree = "<group>"; };
+		24026AFB22814790008608D0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		243EB05722530470003C525B /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		243EB05A225304A2003C525B /* Cuadruplos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cuadruplos.swift; sourceTree = "<group>"; };
 		243EB05B225304A2003C525B /* Operadores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operadores.swift; sourceTree = "<group>"; };
@@ -82,7 +90,6 @@
 		249C41212252FEBA0059CBE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24B02119225C1CAC00DACB9F /* Funciones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Funciones.swift; sourceTree = "<group>"; };
 		24BDBD41222E0B0B009FA75D /* PreciseV5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PreciseV5.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		24BDBD49222E0B0B009FA75D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		24BDBD4B222E0B0C009FA75D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24BDBD4E222E0B0C009FA75D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		24BDBD50222E0B0C009FA75D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,7 +106,6 @@
 		24C19C07225D878200F77700 /* PreciseV5ParserATN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreciseV5ParserATN.swift; path = ../../../../Grammar/PreciseV5ParserATN.swift; sourceTree = "<group>"; };
 		24C19C08225D878200F77700 /* PreciseV5LexerATN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreciseV5LexerATN.swift; path = ../../../../Grammar/PreciseV5LexerATN.swift; sourceTree = "<group>"; };
 		24DA92CB2252FD30000C9AE2 /* CuboSemantico.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CuboSemantico.json; sourceTree = "<group>"; };
-		24ECB8CA2266A66800EAAF39 /* Extras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extras.swift; sourceTree = "<group>"; };
 		24ECBB60226685F8003FF1A4 /* DiccEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiccEx.swift; sourceTree = "<group>"; };
 		24ECBB62226685FE003FF1A4 /* StringEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringEx.swift; sourceTree = "<group>"; };
 		5FB3D93D3BAD7DC51D30B59F /* Pods-PreciseV5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PreciseV5.debug.xcconfig"; path = "Target Support Files/Pods-PreciseV5/Pods-PreciseV5.debug.xcconfig"; sourceTree = "<group>"; };
@@ -122,8 +128,12 @@
 		243EB0552253043B003C525B /* App */ = {
 			isa = PBXGroup;
 			children = (
+				24026AF922814620008608D0 /* ViewControllerNew.swift */,
+				24026AF722814601008608D0 /* TableViewCell.swift */,
+				24026AF5228145EC008608D0 /* TableViewController.swift */,
 				243EB05722530470003C525B /* ViewController.swift */,
 				249C41212252FEBA0059CBE6 /* AppDelegate.swift */,
+				24026AF322814012008608D0 /* Archivo.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -142,7 +152,6 @@
 				243EB09D22530845003C525B /* Heart.swift */,
 				243EB082225306F6003C525B /* Variables.swift */,
 				24C19BE6225D7BAB00F77700 /* Memoria.swift */,
-				24ECB8CA2266A66800EAAF39 /* Extras.swift */,
 				248BE8B7226A59D300467016 /* MaquinaVirtual .swift */,
 			);
 			path = Compiler;
@@ -209,7 +218,7 @@
 				243EB068225304B6003C525B /* Sources */,
 				243EB05922530493003C525B /* Compiler */,
 				243EB0552253043B003C525B /* App */,
-				24BDBD48222E0B0B009FA75D /* Main.storyboard */,
+				24026AFB22814790008608D0 /* Main.storyboard */,
 				24BDBD4B222E0B0C009FA75D /* Assets.xcassets */,
 				24BDBD4D222E0B0C009FA75D /* LaunchScreen.storyboard */,
 				24BDBD50222E0B0C009FA75D /* Info.plist */,
@@ -333,7 +342,7 @@
 				24BDBD4F222E0B0C009FA75D /* LaunchScreen.storyboard in Resources */,
 				24BDBD4C222E0B0C009FA75D /* Assets.xcassets in Resources */,
 				24DA92CC2252FD30000C9AE2 /* CuboSemantico.json in Resources */,
-				24BDBD4A222E0B0B009FA75D /* Main.storyboard in Resources */,
+				24026AFC22814790008608D0 /* Main.storyboard in Resources */,
 				246DE9D1222F6DA20007D4BE /* gitignore in Resources */,
 				24C19C0F225D878200F77700 /* PreciseV5.interp in Resources */,
 				24C19C0C225D878200F77700 /* PreciseV5.tokens in Resources */,
@@ -398,10 +407,11 @@
 				243EB05822530470003C525B /* ViewController.swift in Sources */,
 				24C19BE7225D7BAB00F77700 /* Memoria.swift in Sources */,
 				243EB083225306F6003C525B /* Variables.swift in Sources */,
+				24026AFA22814620008608D0 /* ViewControllerNew.swift in Sources */,
 				24B0211A225C1CAC00DACB9F /* Funciones.swift in Sources */,
+				24026AF422814012008608D0 /* Archivo.swift in Sources */,
 				243EB063225304A2003C525B /* MyBaseListener.swift in Sources */,
 				24C19C13225D878200F77700 /* PreciseV5LexerATN.swift in Sources */,
-				24ECB8CB2266A66800EAAF39 /* Extras.swift in Sources */,
 				243EB065225304A2003C525B /* Stack.swift in Sources */,
 				24C19C11225D878200F77700 /* PreciseV5Listener.swift in Sources */,
 				249C41222252FEBA0059CBE6 /* AppDelegate.swift in Sources */,
@@ -412,10 +422,12 @@
 				248BE8B8226A59D300467016 /* MaquinaVirtual .swift in Sources */,
 				24C19C0B225D878200F77700 /* PreciseV5Lexer.swift in Sources */,
 				24ECBB63226685FE003FF1A4 /* StringEx.swift in Sources */,
+				24026AF6228145EC008608D0 /* TableViewController.swift in Sources */,
 				24C19C12225D878200F77700 /* PreciseV5ParserATN.swift in Sources */,
 				24ECBB61226685F8003FF1A4 /* DiccEx.swift in Sources */,
 				243EB062225304A2003C525B /* Operadores.swift in Sources */,
 				243EB064225304A2003C525B /* Tipos.swift in Sources */,
+				24026AF822814601008608D0 /* TableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,14 +442,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		24BDBD48222E0B0B009FA75D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				24BDBD49222E0B0B009FA75D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		24BDBD4D222E0B0C009FA75D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

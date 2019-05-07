@@ -43,6 +43,9 @@ class Heart {
     
     var paramNum = 0
     
+//    Insrancia de view controller
+    var vc: ViewController!
+    
     //   MARK: - Constantes memoria en ejecucion
     
     let constantBaseAddress = 5000
@@ -112,10 +115,10 @@ class Heart {
                 let jsonObj = try JSON(data: data)
                 semanticCube = jsonObj["semanticCube"]
             } catch let error {
-                print("Parse error \(error.localizedDescription)") // Poner funcion de compile error
+                compileError("Parse error \(error.localizedDescription)") // Poner funcion de compile error
             }
         } else {
-            print("Couldn't find semanticCube") // Aqui tambien
+            compileError("Couldn't find semanticCube") // Aqui tambien
             
         }
     }
@@ -147,10 +150,10 @@ class Heart {
     }
     
     //    MARK: - Funcion para inicializar el Lexer y Parser de ANTLR4
-    func runCode(input: String){
+    func runCode(input: String, viewc: ViewController){
         
         clearModels()
-//        vController = view
+        vc = viewc
         do {
             let lexer = PreciseV5Lexer(ANTLRInputStream(input))
             let tokens = CommonTokenStream(lexer)
@@ -160,7 +163,7 @@ class Heart {
             let extractor = PreciseV5Walker.init()
             try walker.walk(extractor, tree)
         } catch {
-           print("Parse error: \(error.localizedDescription)")  // Poner compile error
+           compileError("Parse error: \(error.localizedDescription)")  // Poner compile error
         }
     }
     
@@ -191,10 +194,11 @@ class Heart {
     }
     
     //    MARK: - Funcion para mostrar el compile error y detener la compilacion
-//    func compileError(_ message: String) {
-//        ViewController.showCompileError(message)
-//        stop = true
-//    }
+    
+    func compileError(_ message: String) {
+        vc.showCompileError(message)
+        stop = true
+    }
     
     // MARK: - Funcion para agregar memoria y tipo a sus respectivas estructuras d datos
     func addOperandToStacks(address: Int, type: Tipo) {
@@ -267,7 +271,7 @@ class Heart {
             addQuad(oper, opL, opR, resultAddress)
             addOperandToStacks(address: resultAddress, type: resultType)
         } else {
-            print("Type mismatch")
+            compileError("Type mismatch")
         }
     }
 }
@@ -292,7 +296,7 @@ extension Heart {
     }
     
     func getValue(from address: Int) -> (value: Any, type: Tipo) {
-        
+
         switch address {
         case ..<0:
             let (arrayAddress,_) = getValue(from: -address)
@@ -302,7 +306,7 @@ extension Heart {
             let funcName = getFuncName(of: function)
             let globalReturnVar = functions[globalFunc]?.variables[funcName]
             let globalReturnAddress = (globalReturnVar?.address)!
-            
+
             return getValue(from: globalReturnAddress)
         case ..<globalBaseAddress:
             return constantMemory.getValue(from: address)
@@ -358,7 +362,7 @@ extension Heart {
             return idVar
         } else {
 //         compileError("Variable '\(id)' does not exists")
-            print("Variable '\(id)' does not exists")
+            compileError("Variable '\(id)' does not exists")
             return nil
         }
     
@@ -379,16 +383,16 @@ extension Heart {
             return str
         }
 
-        print("#  Operators   Left   Right  Temp  ")
-        print("-----------------------------------")
+        print("#  Operators    Left   Right  Temp ")
+        print(" ")
         for index in 0..<quadsCount {
             let quad = cuadruplos[index]
 
             var indexString = "\(index)"
             var op = "\(quad.op)"
-            var left = quad.operandLeft?.description ?? "_____"
-            var right = quad.operandRight?.description ?? "_____"
-            var temp = quad.temp?.description ?? "_____"
+            var left = quad.operandLeft?.description ?? "    "
+            var right = quad.operandRight?.description ?? "    "
+            var temp = quad.temp?.description ?? "    "
 
             let length = op.count
             if length != 11 {
@@ -397,12 +401,13 @@ extension Heart {
                     op += " "
                 }
             }
-
+            
             let newIndexString = indexString + " "
             indexString = indexString.count == 1 ? newIndexString : indexString
             left = formatNumber(left)
             right = formatNumber(right)
             temp = formatNumber(temp)
+ 
 
             print(indexString, op, left, right, temp)
 
@@ -440,7 +445,7 @@ extension Heart {
         
         let nombreVariable = getTexto(from: ctx.ID()!)
         if (functions[currentFunction]?.variables.keys.contains(nombreVariable))!{
-            print("La variable '\(nombreVariable)'ya existe")
+            compileError("La variable '\(nombreVariable)'ya existe")
             return
         }
         
@@ -464,9 +469,6 @@ extension Heart {
             functions[currentFunction]?.variables[nombreVariable] = variable
             print("jalo")
         }
-        
-        
-        
         
 //        print(functions)
         
@@ -496,7 +498,7 @@ extension Heart {
         
         let tipo = types.top()!
         if tipo != .Int{
-            print("El tipo '\(tipo)' tiene que ser de tipo Int.")
+            compileError("El tipo '\(tipo)' tiene que ser de tipo Int.")
             return
         }
         
@@ -558,7 +560,7 @@ extension Heart {
         let nombreFuncion = getTexto(from: ctx.ID().first!)
         if let parent = ctx.parent as? PreciseV5Parser.EstatutoContext {
             if (parent.parent as? PreciseV5Parser.FunctionContext != nil){
-                print("No se puede declarar la funcion '\(nombreFuncion)' dentro de otra funcion")
+                compileError("No se puede declarar la funcion '\(nombreFuncion)' dentro de otra funcion")
             }
         }
         
@@ -566,7 +568,7 @@ extension Heart {
         
         
         if functions.keys.contains(nombreFuncion){
-            print("La funcion '\(nombreFuncion) ya existe")
+            compileError("La funcion '\(nombreFuncion) ya existe")
             return
         }
         
@@ -600,7 +602,7 @@ extension Heart {
 //            REvisar si existen las variables dentro del contexto
             
             if (functions[currentFunction]?.variables.keys.contains(pID))!{
-                print("La variable '\(pID)' ya existe.")
+                compileError("La variable '\(pID)' ya existe.")
                 return
             }
             
@@ -615,7 +617,6 @@ extension Heart {
     func exitFunction(_ ctx:PreciseV5Parser.FunctionContext){
         if stop {return}
         
-        
         let nombreFuncion = getTexto(from: ctx.ID().first!)
         
         let funcionType = getReturnType(from: ctx)
@@ -623,7 +624,7 @@ extension Heart {
         if ctx.RETURN() == nil {
             
             if funcionType != .Void{
-                print("La funcion '\(nombreFuncion)' necesita Return")
+                compileError("La funcion '\(nombreFuncion)' necesita Return")
             }
         } else {
             if funcionType != .Void{
@@ -632,10 +633,12 @@ extension Heart {
                 if opType == funcionType{
                     addQuad(.Return, opVal, nil, nil)
                 } else {
-                    print("El retorno debe de ser del mismo tipo que la funcion '\(nombreFuncion)'")
+                    compileError("El retorno debe de ser del mismo tipo que la funcion '\(nombreFuncion)'")
                 }
+
+            } else {
+                compileError("La funcion '\(nombreFuncion) es de tipo Void y no se necesita Return")
             }
-            print("La funcion '\(nombreFuncion) es de tipo Void y no se necesita Return")
         }
         
         currentFunction = globalFunc
@@ -667,7 +670,7 @@ extension Heart {
         let nombreFuncion = getTexto(from: ctx.ID()!)
         
         if !functions.keys.contains(nombreFuncion) {
-            print("La funcion '\(nombreFuncion)' no existe!")
+            compileError("La funcion '\(nombreFuncion)' no existe!")
             return
         }
         
@@ -675,11 +678,11 @@ extension Heart {
         
         if (ctx.parent as? PreciseV5Parser.EstatutoContext != nil){
             if returnType != .Void{
-                print("La funcion '\(nombreFuncion)' tiene un Return y no puede ser llamada")
+                compileError("La funcion '\(nombreFuncion)' tiene un Return y no puede ser llamada")
             }
         } else {
             if returnType == .Void{
-                print("La funcion '\(nombreFuncion)' no puede ser llamada")
+                compileError("La funcion '\(nombreFuncion)' no puede ser llamada")
             }
         }
         
@@ -722,7 +725,7 @@ extension Heart {
         
         let pype = getParamType(from: nombreFuncion, paramNum: paramNum)
         if pType != pype{
-            print("La funcion '\(nombreFuncion)' es de tipo '\(pType)' y debe ser de tipo '\(pype)'")
+            compileError("La funcion '\(nombreFuncion)' es de tipo '\(pType)' y debe ser de tipo '\(pype)'")
         }
         addQuad(.Param, pValue, nil, paramNum)
         
@@ -874,20 +877,22 @@ extension Heart {
     
     func enterAsignacion(_ ctx:PreciseV5Parser.AsignacionContext){
         if stop {return}
-    }
-    
-    func exitAsignacion(_ ctx:PreciseV5Parser.AsignacionContext){
-        if stop {return}
         
         if ctx.ID() != nil {
             let id = getTexto(from: ctx.ID()!)
             
             guard let variable = getVariable(withId: id) else {return}
             addOperandToStacks(address: variable.address, type: variable.tipo)
-//            print(operands)
-//            print(types)
+            //            print(operands)
+            //            print(types)
             
         }
+    }
+    
+    func exitAsignacion(_ ctx:PreciseV5Parser.AsignacionContext){
+        if stop {return}
+        
+      
         
         let (resultValue,resultType) = getOperandAndType()
         let (idValue,idType) = getOperandAndType()
@@ -895,10 +900,10 @@ extension Heart {
 //        Preguntar al cubo semantico si se puede o no
         let assignType = getResultType(idType, resultType, .Assign)
         if assignType == .Error{
-            print("No se puede asignar la expresion de tipo '\(resultType)'")
+            compileError("No se puede asignar la expresion de tipo '\(resultType)'")
         } else{
 //            Estos esta al revez para que si jale, pero debe ser .Assign, resultValue, nil, idValue
-            addQuad(.Assign, idValue, nil, resultValue)
+            addQuad(.Assign, resultValue, nil, idValue)
             print("se agrego")
         }
     }
@@ -906,8 +911,11 @@ extension Heart {
     func enterVarcte(_ ctx:PreciseV5Parser.VarcteContext){
         if stop {return}
         
-        if let floatNode = ctx.CTEFLOAT(){
-            let float = Float(getTexto(from: floatNode))!
+        if let floatNode = ctx.CTEFLOAT() {
+            var float = Float(getTexto(from: floatNode))!
+            if (ctx.MIN() != nil){
+                float = -float
+            }
             
             if let floatAddress = constantMemory.find(float: float){
                 addOperandToStacks(address: floatAddress, type: .Float)
@@ -917,7 +925,11 @@ extension Heart {
             }
         } else if let intNode = ctx.CTEINT(){
             
-            let int = Int(getTexto(from: intNode))!
+            var int = Int(getTexto(from: intNode))!
+            
+            if (ctx.MIN() != nil){
+                int = -int
+            }
             
             if let intAddress = constantMemory.find(int: int){
                 addOperandToStacks(address: intAddress, type: .Int)
@@ -937,20 +949,20 @@ extension Heart {
                 addOperandToStacks(address: charAddress, type: .Char)
             }
         }
-//            else {
-//
-//            let boolText = ctx.getText()
-//
-//            let bool = boolText == "true" ? true : false
-//
-//            if let boolAddres = constantMemory.find(bool: bool){
-//                addOperandToStacks(address: boolAddres, type: .Bool)
-//            } else {
-//                let boolAddress = constantMemory.save(bool: bool)
-//                addOperandToStacks(address: boolAddress, type: .Bool)
-//            }
-//            }
-    }
+            else {
+
+                let boolText = ctx.getText()
+
+                let bool = boolText == "true" ? true : false
+
+                if let boolAddres = constantMemory.find(bool: bool){
+                    addOperandToStacks(address: boolAddres, type: .Bool)
+                } else {
+                    let boolAddress = constantMemory.save(bool: bool)
+                    addOperandToStacks(address: boolAddress, type: .Bool)
+                }
+            }
+        }
     
     func exitVarcte(_ ctx:PreciseV5Parser.VarcteContext){
         if stop {return}
@@ -1031,7 +1043,7 @@ extension Heart {
         let expresionType = types.pop()
         
         if (expresionType != .Bool){
-            print("Type mismatch")
+            compileError("Type mismatch")
         }else {
             let resultado = operands.pop()
             jumps.push(quadsCount)
