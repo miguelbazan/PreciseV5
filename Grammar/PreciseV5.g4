@@ -24,11 +24,8 @@ ciclo           : WHILE LPAREN expresionbool RPAREN pnIfWh LCBRA estatuto* RCBRA
 escritura       : PRINT LPAREN (TEXT | expresionbool) RPAREN SCOLON ;
 lectura         : READ LPAREN ID (array)? RPAREN SCOLON ;
 asignacion      : (ID | array) ASSIGN expresionbool SCOLON;
-varcte          : CTEINT | CTEFLOAT | CTECHAR | 'true' | 'false' ;
+varcte          : ((MIN)? CTEINT) | ((MIN)? CTEFLOAT) | CTECHAR | 'true' | 'false' ;
 llamada         : ID LPAREN (expresionbool pnLlamadaL (COMA pnLlamadaN expresionbool pnLlamadaL)*)? RPAREN;
-
-
-
 
 pnCond          : ;
 pnEq            : ;
