@@ -132,7 +132,7 @@ FALSE               : F A L S E;
 CTEINT              : DIGIT+ ;
 CTEFLOAT            : DIGIT+ DOT DIGIT+;
 CTECHAR             : APOS [A-Za-z0-9_] APOS;
-TEXT                : QUOTE .*? QUOTE;
+TEXT                : QUOTE [A-Za-z][A-Za-z0-9_]*? QUOTE;
 
 
 ID                  : [A-Za-z][A-Za-z0-9_]*;

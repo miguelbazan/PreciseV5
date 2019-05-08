@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/miguelbazan/Documents/ITC 2014/Semestres/10 Decimo Semestre/Compiladores/PreciseV5/PreciseV5/PreciseV5/PreciseV5/App/Archivo.swift">
-   </FileRef>
-   <FileRef
       location = "group:PreciseV5.xcodeproj">
    </FileRef>
    <FileRef

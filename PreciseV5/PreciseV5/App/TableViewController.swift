@@ -11,10 +11,12 @@ import UIKit
 class TableViewController: UITableViewController {
     
     var archivos = [Archivo]()
-
+    var nombreNewArchivo = ""
+    
+    var hola = 1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         var archivo = Archivo(nombre: "Fibonacci Ciclico", code:
             """
             
@@ -77,7 +79,6 @@ class TableViewController: UITableViewController {
             """)
         archivos.append(archivo)
         
-        
 
     }
 
@@ -95,14 +96,11 @@ class TableViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
         
-        cell.textLabel?.text = archivos[indexPath.row].nombre
-        //cell.lbtitulo?.text =  archivos[indexPath.row].nombre
+        //cell.textLabel?.text = archivos[indexPath.row].nombre
+        cell.lbLabel.text = archivos[indexPath.row].nombre
         
-
-        // Configure the cell...
-
         return cell
     }
 
@@ -151,18 +149,67 @@ class TableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print(archivos.count)
         
-        if (segue.identifier=="oldCode"){
-            let vistCode = segue.destination as! ViewController
-            let indexPath = tableView.indexPathForSelectedRow!
+        let vistCode = segue.destination as! ViewController
+        let indexPath = tableView.indexPathForSelectedRow!
+        
+        vistCode.archivoPasar = archivos[indexPath.row]
+        vistCode.indexArchivo = indexPath.row
+        
+    }
+    @IBAction func newCode(_ sender: Any) {
+        
+        print("hola")
+        //var newCode = segue.destination as! ViewControllerNew
+        
+        //1. Create the alert controller.
+        let alert = UIAlertController(title: "Nombre del Archivo", message: nil, preferredStyle: .alert)
+        
+        
+        //2. Add the text field. You can configure it however you need.
+        alert.addTextField { (textField) in
+            textField.placeholder = "Nombre archivo"
+        }
+        
+        // 3. Grab the value from the text field, and print it when the user clicks OK.
+        alert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { [weak alert] (_) in
+            print("cerrar")
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Aceptar", style: .default, handler: { [weak alert] (_) in
+            self.nombreNewArchivo = (alert?.textFields![0].text)!
             
-            vistCode.archivo = archivos[indexPath.row]
-        }
-        else{
-            print("hola")
-            let newCode = segue.destination as! ViewControllerNew
-        }
+            print(self.nombreNewArchivo)
+            let archivoFinal = Archivo(nombre: self.nombreNewArchivo, code: """
+                program pepe:
+                
+                
+                main(){
+                
+                }
+                end;
+                """)
+            print(archivoFinal)
+            self.archivos.append(archivoFinal)
+            
+            self.reload()
+        }))
+        // 4. Present the alert.
+        self.present(alert, animated: true, completion: nil)
         
+        
+
+        
+        //let vistCode = segue.destination as! ViewController
+        //let indexPath = tableView.indexPathForSelectedRow!
+        
+        //vistCode.archivo = archivos.last
+    }
+    
+    func reload()
+    {
+        tableView.reloadData()
     }
 }
 

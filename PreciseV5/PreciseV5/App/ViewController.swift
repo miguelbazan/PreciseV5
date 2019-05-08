@@ -14,7 +14,10 @@ import Antlr4
 class ViewController: UIViewController {
 
     var semanticCube: JSON!
-    var archivo : Archivo!
+    var archivoPasar : Archivo!
+    var indexArchivo: Int!
+    
+    var otherViewController: TableViewController = TableViewController()
     
 
     @IBOutlet weak var codeArchivo: UITextView!
@@ -23,8 +26,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = archivo.nombre
-        codeArchivo.text = archivo.code
+        print(indexArchivo)
+        
+        title = archivoPasar.nombre
+        codeArchivo.text = archivoPasar.code
     
     }
     
@@ -34,6 +39,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func runCodigo(_ sender: Any) {
+//        otherViewController.archivos[0].code = codeArchivo.text
+        print(otherViewController.hola)
         let input = codeArchivo.text!
         Heart.shared.runCode(input: input, viewc: self)
     }
