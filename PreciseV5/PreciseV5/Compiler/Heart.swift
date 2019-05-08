@@ -48,17 +48,11 @@ class Heart {
     
     //   MARK: - Constantes memoria en ejecucion
     
-    let constantBaseAddress = 5000
-    let globalBaseAddress = 10000
-    let localBaseAddress = 15000
-    let tempBaseAdress = 20000
-    let tempGlobalAddress = 25000
-    
-    
-//    Instancia del View Controller
-    
-//    let vController : ViewController!
-    
+    let constantBaseAddress = 20000
+    let globalBaseAddress = 25000
+    let localBaseAddress = 30000
+    let tempBaseAdress = 35000
+    let tempGlobalAddress = 40000
     
     // DIRECTORIO DE PROCECIMIENTOS DONDE GUARDAMOS TODO NO SE TE OLVIDE WEY
     var DirectorioP = [Variables]()

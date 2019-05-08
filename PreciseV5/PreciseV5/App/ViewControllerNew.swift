@@ -10,11 +10,15 @@ import UIKit
 
 class ViewControllerNew: UIViewController {
 
-    @IBOutlet weak var tvNewCode: UITextView!
+    @IBOutlet weak var code: UITextView!
     @IBOutlet weak var outputCode: UITextView!
+    
+    var otherViewController: TableViewController = TableViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        /*
         //1. Create the alert controller.
         let alert = UIAlertController(title: "Nombre del Archivo", message: nil, preferredStyle: .alert)
         
@@ -48,11 +52,25 @@ class ViewControllerNew: UIViewController {
         }))
         // 4. Present the alert.
         self.present(alert, animated: true, completion: nil)
-    }
+    }*/
     
-    @IBAction func runCode(_ sender: Any) {
-        outputCode.text = tvNewCode.text
-    }
+        func showCompileError(_ message: String) {
+            let text = "COMPILE ERROR: \n\(message) "
+            outputCode.text = text
+        }
+        
+       /* func runCode(_ sender: Any) {
+            let input = code.text!
+            Heart.shared.runCode(input: input, viewc: ViewControllerNew.self)
+    }*/
+        
+        func showResults(results: [String], error: Bool) {
+            var text = ""
+            for result in results {
+                text += (result + "\n")
+            }
+            outputCode.text = text
+        }
     
     /*
     // MARK: - Navigation
@@ -64,4 +82,5 @@ class ViewControllerNew: UIViewController {
     }
     */
 
+}
 }

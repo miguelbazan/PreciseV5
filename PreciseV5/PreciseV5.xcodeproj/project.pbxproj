@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		24026AF422814012008608D0 /* Archivo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24026AF322814012008608D0 /* Archivo.swift */; };
 		24026AF6228145EC008608D0 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24026AF5228145EC008608D0 /* TableViewController.swift */; };
 		24026AF822814601008608D0 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24026AF722814601008608D0 /* TableViewCell.swift */; };
 		24026AFA22814620008608D0 /* ViewControllerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24026AF922814620008608D0 /* ViewControllerNew.swift */; };
@@ -24,7 +23,6 @@
 		248BE8B8226A59D300467016 /* MaquinaVirtual .swift in Sources */ = {isa = PBXBuildFile; fileRef = 248BE8B7226A59D300467016 /* MaquinaVirtual .swift */; };
 		249C41222252FEBA0059CBE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C41212252FEBA0059CBE6 /* AppDelegate.swift */; };
 		24B0211A225C1CAC00DACB9F /* Funciones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B02119225C1CAC00DACB9F /* Funciones.swift */; };
-		24BDBD4C222E0B0C009FA75D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24BDBD4B222E0B0C009FA75D /* Assets.xcassets */; };
 		24BDBD4F222E0B0C009FA75D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24BDBD4D222E0B0C009FA75D /* LaunchScreen.storyboard */; };
 		24C19BE7225D7BAB00F77700 /* Memoria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C19BE6225D7BAB00F77700 /* Memoria.swift */; };
 		24C19C09225D878200F77700 /* PreciseV5.g4 in Resources */ = {isa = PBXBuildFile; fileRef = 24C19BFE225D878100F77700 /* PreciseV5.g4 */; };
@@ -38,31 +36,32 @@
 		24C19C11225D878200F77700 /* PreciseV5Listener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C19C06225D878200F77700 /* PreciseV5Listener.swift */; };
 		24C19C12225D878200F77700 /* PreciseV5ParserATN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C19C07225D878200F77700 /* PreciseV5ParserATN.swift */; };
 		24C19C13225D878200F77700 /* PreciseV5LexerATN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C19C08225D878200F77700 /* PreciseV5LexerATN.swift */; };
-		24D0C582225321D200B14A59 /* Antlr4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243EB0A722531DFE003C525B /* Antlr4.framework */; };
 		24DA92CC2252FD30000C9AE2 /* CuboSemantico.json in Resources */ = {isa = PBXBuildFile; fileRef = 24DA92CB2252FD30000C9AE2 /* CuboSemantico.json */; };
 		24ECBB61226685F8003FF1A4 /* DiccEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ECBB60226685F8003FF1A4 /* DiccEx.swift */; };
 		24ECBB63226685FE003FF1A4 /* StringEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ECBB62226685FE003FF1A4 /* StringEx.swift */; };
 		537432E1D1784BD9854BE8C8 /* Pods_PreciseV5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9820FCBAF3B51927E1B2DC53 /* Pods_PreciseV5.framework */; };
+		7506C5212281F41100F7E3E2 /* Archivo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7506C5202281F41100F7E3E2 /* Archivo.swift */; };
+		7562D426228206EB0004C276 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7562D425228206EB0004C276 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		243EB0A622531DFE003C525B /* PBXContainerItemProxy */ = {
+		24BD424722826800007B4BF8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 243EB09F22531DFE003C525B /* Antlr4.xcodeproj */;
+			containerPortal = 24BD424022826800007B4BF8 /* Antlr4.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = "Antlr4::Antlr4::Product";
 			remoteInfo = Antlr4;
 		};
-		243EB0A822531DFE003C525B /* PBXContainerItemProxy */ = {
+		24BD424922826800007B4BF8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 243EB09F22531DFE003C525B /* Antlr4.xcodeproj */;
+			containerPortal = 24BD424022826800007B4BF8 /* Antlr4.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = "Antlr4::Antlr4Tests::Product";
 			remoteInfo = Antlr4Tests;
 		};
-		24D0C580225321C300B14A59 /* PBXContainerItemProxy */ = {
+		24BD424F2282682C007B4BF8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 243EB09F22531DFE003C525B /* Antlr4.xcodeproj */;
+			containerPortal = 24BD424022826800007B4BF8 /* Antlr4.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = "Antlr4::Antlr4";
 			remoteInfo = Antlr4;
@@ -71,7 +70,6 @@
 
 /* Begin PBXFileReference section */
 		0546606411991CF3CEA3D465 /* Pods-PreciseV5.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PreciseV5.release.xcconfig"; path = "Target Support Files/Pods-PreciseV5/Pods-PreciseV5.release.xcconfig"; sourceTree = "<group>"; };
-		24026AF322814012008608D0 /* Archivo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Archivo.swift; path = "/Users/miguelbazan/Documents/ITC 2014/Semestres/10 Decimo Semestre/Compiladores/PreciseV5/PreciseV5/PreciseV5/PreciseV5/App/Archivo.swift"; sourceTree = "<absolute>"; };
 		24026AF5228145EC008608D0 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		24026AF722814601008608D0 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		24026AF922814620008608D0 /* ViewControllerNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerNew.swift; sourceTree = "<group>"; };
@@ -84,13 +82,12 @@
 		243EB05E225304A2003C525B /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		243EB082225306F6003C525B /* Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
 		243EB09D22530845003C525B /* Heart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heart.swift; sourceTree = "<group>"; };
-		243EB09F22531DFE003C525B /* Antlr4.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Antlr4.xcodeproj; path = "../../../../../../../../Library/Containers/com.apple.mail/Data/Library/Mail Downloads/F7B3B566-8328-4CAD-9D58-268CCAE24FC1/Swift/Antlr4.xcodeproj"; sourceTree = "<group>"; };
 		246DE9D0222F6DA20007D4BE /* gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gitignore; sourceTree = "<group>"; };
 		248BE8B7226A59D300467016 /* MaquinaVirtual .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MaquinaVirtual .swift"; sourceTree = "<group>"; };
 		249C41212252FEBA0059CBE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24B02119225C1CAC00DACB9F /* Funciones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Funciones.swift; sourceTree = "<group>"; };
+		24BD424022826800007B4BF8 /* Antlr4.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Antlr4.xcodeproj; path = "../../../Library/Containers/com.apple.mail/Data/Library/Mail Downloads/A55826C6-F07F-4C0D-9E52-A72173F6A201/Swift/Antlr4.xcodeproj"; sourceTree = "<group>"; };
 		24BDBD41222E0B0B009FA75D /* PreciseV5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PreciseV5.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		24BDBD4B222E0B0C009FA75D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24BDBD4E222E0B0C009FA75D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		24BDBD50222E0B0C009FA75D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24C19BE6225D7BAB00F77700 /* Memoria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memoria.swift; sourceTree = "<group>"; };
@@ -109,6 +106,8 @@
 		24ECBB60226685F8003FF1A4 /* DiccEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiccEx.swift; sourceTree = "<group>"; };
 		24ECBB62226685FE003FF1A4 /* StringEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringEx.swift; sourceTree = "<group>"; };
 		5FB3D93D3BAD7DC51D30B59F /* Pods-PreciseV5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PreciseV5.debug.xcconfig"; path = "Target Support Files/Pods-PreciseV5/Pods-PreciseV5.debug.xcconfig"; sourceTree = "<group>"; };
+		7506C5202281F41100F7E3E2 /* Archivo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Archivo.swift; sourceTree = "<group>"; };
+		7562D425228206EB0004C276 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9820FCBAF3B51927E1B2DC53 /* Pods_PreciseV5.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PreciseV5.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -117,7 +116,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24D0C582225321D200B14A59 /* Antlr4.framework in Frameworks */,
 				537432E1D1784BD9854BE8C8 /* Pods_PreciseV5.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -133,7 +131,7 @@
 				24026AF5228145EC008608D0 /* TableViewController.swift */,
 				243EB05722530470003C525B /* ViewController.swift */,
 				249C41212252FEBA0059CBE6 /* AppDelegate.swift */,
-				24026AF322814012008608D0 /* Archivo.swift */,
+				7506C5202281F41100F7E3E2 /* Archivo.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -183,11 +181,11 @@
 			path = Grammar;
 			sourceTree = "<group>";
 		};
-		243EB0A022531DFE003C525B /* Products */ = {
+		24BD424122826800007B4BF8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				243EB0A722531DFE003C525B /* Antlr4.framework */,
-				243EB0A922531DFE003C525B /* Antlr4Tests.xctest */,
+				24BD424822826800007B4BF8 /* Antlr4.framework */,
+				24BD424A22826800007B4BF8 /* Antlr4Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -195,7 +193,7 @@
 		24BDBD38222E0B0B009FA75D = {
 			isa = PBXGroup;
 			children = (
-				243EB09F22531DFE003C525B /* Antlr4.xcodeproj */,
+				24BD424022826800007B4BF8 /* Antlr4.xcodeproj */,
 				246DE9D0222F6DA20007D4BE /* gitignore */,
 				24BDBD43222E0B0B009FA75D /* PreciseV5 */,
 				24BDBD42222E0B0B009FA75D /* Products */,
@@ -219,7 +217,7 @@
 				243EB05922530493003C525B /* Compiler */,
 				243EB0552253043B003C525B /* App */,
 				24026AFB22814790008608D0 /* Main.storyboard */,
-				24BDBD4B222E0B0C009FA75D /* Assets.xcassets */,
+				7562D425228206EB0004C276 /* Assets.xcassets */,
 				24BDBD4D222E0B0C009FA75D /* LaunchScreen.storyboard */,
 				24BDBD50222E0B0C009FA75D /* Info.plist */,
 			);
@@ -268,7 +266,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				24D0C581225321C300B14A59 /* PBXTargetDependency */,
+				24BD42502282682C007B4BF8 /* PBXTargetDependency */,
 			);
 			name = PreciseV5;
 			productName = PreciseV5;
@@ -304,8 +302,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 243EB0A022531DFE003C525B /* Products */;
-					ProjectRef = 243EB09F22531DFE003C525B /* Antlr4.xcodeproj */;
+					ProductGroup = 24BD424122826800007B4BF8 /* Products */;
+					ProjectRef = 24BD424022826800007B4BF8 /* Antlr4.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -316,18 +314,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		243EB0A722531DFE003C525B /* Antlr4.framework */ = {
+		24BD424822826800007B4BF8 /* Antlr4.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Antlr4.framework;
-			remoteRef = 243EB0A622531DFE003C525B /* PBXContainerItemProxy */;
+			remoteRef = 24BD424722826800007B4BF8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		243EB0A922531DFE003C525B /* Antlr4Tests.xctest */ = {
+		24BD424A22826800007B4BF8 /* Antlr4Tests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = file;
 			path = Antlr4Tests.xctest;
-			remoteRef = 243EB0A822531DFE003C525B /* PBXContainerItemProxy */;
+			remoteRef = 24BD424922826800007B4BF8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -340,8 +338,8 @@
 				24C19C09225D878200F77700 /* PreciseV5.g4 in Resources */,
 				24C19C0E225D878200F77700 /* PreciseV5Lexer.tokens in Resources */,
 				24BDBD4F222E0B0C009FA75D /* LaunchScreen.storyboard in Resources */,
-				24BDBD4C222E0B0C009FA75D /* Assets.xcassets in Resources */,
 				24DA92CC2252FD30000C9AE2 /* CuboSemantico.json in Resources */,
+				7562D426228206EB0004C276 /* Assets.xcassets in Resources */,
 				24026AFC22814790008608D0 /* Main.storyboard in Resources */,
 				246DE9D1222F6DA20007D4BE /* gitignore in Resources */,
 				24C19C0F225D878200F77700 /* PreciseV5.interp in Resources */,
@@ -409,11 +407,11 @@
 				243EB083225306F6003C525B /* Variables.swift in Sources */,
 				24026AFA22814620008608D0 /* ViewControllerNew.swift in Sources */,
 				24B0211A225C1CAC00DACB9F /* Funciones.swift in Sources */,
-				24026AF422814012008608D0 /* Archivo.swift in Sources */,
 				243EB063225304A2003C525B /* MyBaseListener.swift in Sources */,
 				24C19C13225D878200F77700 /* PreciseV5LexerATN.swift in Sources */,
 				243EB065225304A2003C525B /* Stack.swift in Sources */,
 				24C19C11225D878200F77700 /* PreciseV5Listener.swift in Sources */,
+				7506C5212281F41100F7E3E2 /* Archivo.swift in Sources */,
 				249C41222252FEBA0059CBE6 /* AppDelegate.swift in Sources */,
 				243EB061225304A2003C525B /* Cuadruplos.swift in Sources */,
 				24C19C0D225D878200F77700 /* PreciseV5Parser.swift in Sources */,
@@ -434,10 +432,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		24D0C581225321C300B14A59 /* PBXTargetDependency */ = {
+		24BD42502282682C007B4BF8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Antlr4;
-			targetProxy = 24D0C580225321C300B14A59 /* PBXContainerItemProxy */;
+			targetProxy = 24BD424F2282682C007B4BF8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
